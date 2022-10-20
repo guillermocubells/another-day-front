@@ -1,5 +1,7 @@
 import "./HomePage.css";
 import React, { useState } from "react";
+import apiClient from "../../services/api-client";
+import { useNavigate } from "react-router-dom";
 
 function HomePage() {
   const [form, setForm] = useState({
@@ -11,7 +13,7 @@ function HomePage() {
     image: "",
   });
 
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -24,19 +26,19 @@ function HomePage() {
 
     console.log({ form });
 
-    // apiClient
-    //   .post("/dashboard/create-mood", form)
-    //   .then(({ data }) => {
-    //     console.log("data:", data);
-    //     navigate(`/mood/${data.slug}`);
-    //   })
-    //   .catch((err) => {
-    //     if (err?.response?.data.code === 1) {
-    //       // navigate
-    //       return navigate(`/mood/${err.response.data.slug}`);
-    //     }
-    //     console.log("err:", err);
-    //   });
+    apiClient
+      .post("/api/mood/create", form)
+      .then(({ data }) => {
+        console.log("data:", data);
+        navigate(`/mood/${data.slug}`);
+      })
+      .catch((err) => {
+        if (err?.response?.data.code === 1) {
+          // navigate
+          return navigate(`/mood/${err.response.data.slug}`);
+        }
+        console.log("err:", err);
+      });
   }
   return (
     <div>
