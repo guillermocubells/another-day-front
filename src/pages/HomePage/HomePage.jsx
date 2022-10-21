@@ -15,6 +15,7 @@ function HomePage() {
       .get("/api")
       .then((res) => {
         setMoodData(res.data);
+        console.log(res.data);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -34,6 +35,7 @@ function HomePage() {
       <MoodCheckInForm
         activities={moodData?.activities}
         mood_status={moodData?.mood_status}
+        mood_substatus={moodData?.mood_substatus}
       />
     </div>
   );
