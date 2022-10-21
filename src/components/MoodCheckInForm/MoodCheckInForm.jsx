@@ -10,7 +10,6 @@ function MoodCheckInForm({ activities, mood_status, mood_substatus }) {
   const [form, setForm] = useState({
     status: "",
     substatus: "",
-    properties: "",
     activities: "",
     description: "",
     date: new Date(),
@@ -43,6 +42,17 @@ function MoodCheckInForm({ activities, mood_status, mood_substatus }) {
 
   return (
     <form onSubmit={handleSubmit}>
+      {/* TODO! Make datetime display current time as default  */}
+      <label>
+        Date
+        <input
+          type="datetime-local"
+          name="date"
+          onChange={handleChange}
+          value={form.date}
+        ></input>
+      </label>
+      <br />
       {/* Setting Up Mood Selection */}
       {mood_status.map((status, index) => {
         return (
@@ -75,7 +85,9 @@ function MoodCheckInForm({ activities, mood_status, mood_substatus }) {
           );
         })}
       <br />
-      {/* Get Activities. Also create the option to create a new activity. */}
+      {/* Get Activities. 
+      TODO! create array from selected values
+      TODO! create the option to create a new activity. */}
       {activities.map((activity, index) => {
         return (
           <label key={index}>
@@ -93,23 +105,13 @@ function MoodCheckInForm({ activities, mood_status, mood_substatus }) {
 
       <br />
       <label>
-        Description
-        <input
+        Journal
+        <textarea
           type="text"
           name="description"
           onChange={handleChange}
           value={form.description}
-        ></input>
-      </label>
-      <br />
-      <label>
-        Date
-        <input
-          type="date"
-          name="date"
-          onChange={handleChange}
-          value={form.date}
-        ></input>
+        ></textarea>
       </label>
       <br />
       <label>
