@@ -3,18 +3,20 @@ import apiClient from "../../services/api-client";
 
 import { useNavigate } from "react-router-dom";
 
-function MoodCheckInForm({ activities, mood_status }) {
-  console.log(activities, mood_status);
+function MoodCheckInForm({ activities, mood_status, mood_substatus }) {
+  console.log(activities, mood_status, mood_substatus);
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
     status: "",
+    substatus: "",
     properties: "",
-    activity: "",
+    activities: "",
     description: "",
     date: new Date(),
     image: "",
   });
+  console.log(form);
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -56,44 +58,39 @@ function MoodCheckInForm({ activities, mood_status }) {
         );
       })}
 
+      {/* If a Mood has been selected, show relative substatus */}
+      {form.status && <br />}
+      {form.status &&
+        mood_substatus[form.status].map((item, index) => {
+          return (
+            <label key={index}>
+              {item}
+              <input
+                type="radio"
+                value={item}
+                name="substatus"
+                onChange={handleChange}
+              />{" "}
+            </label>
+          );
+        })}
       <br />
-      <label>
-        Pumped
-        <input
-          type="checkbox"
-          name="pumped"
-          onChange={handleChange}
-          value={form.properties}
-        ></input>
-      </label>
-      <label>
-        Content
-        <input
-          type="checkbox"
-          name="content"
-          onChange={handleChange}
-          value={form.properties}
-        ></input>
-      </label>
-      <label>
-        Stressed
-        <input
-          type="checkbox"
-          name="stressed"
-          onChange={handleChange}
-          value={form.properties}
-        ></input>
-      </label>
-      <br />
-      <label>
-        Activity
-        <input
-          type="text"
-          name="activity"
-          onChange={handleChange}
-          value={form.activity}
-        ></input>
-      </label>
+      {/* Get Activities. Also create the option to create a new activity. */}
+      {activities.map((activity, index) => {
+        return (
+          <label key={index}>
+            {activity}
+            <input
+              type="checkbox"
+              name="activities"
+              id={activity}
+              onChange={handleChange}
+              value={form.activities}
+            ></input>
+          </label>
+        );
+      })}
+
       <br />
       <label>
         Description
@@ -114,15 +111,17 @@ function MoodCheckInForm({ activities, mood_status }) {
           value={form.date}
         ></input>
       </label>
+      <br />
       <label>
         Image
         <input
-          type="text"
+          type="file"
           name="image"
           onChange={handleChange}
           value={form.image}
         ></input>
       </label>
+      <br />
       <button type="submit">Check In</button>
     </form>
   );
