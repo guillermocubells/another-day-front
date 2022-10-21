@@ -1,150 +1,40 @@
 import "./HomePage.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import apiClient from "../../services/api-client";
-import { useNavigate } from "react-router-dom";
+import Loading from "../../components/Loading/Loading";
+import MoodCheckInForm from "../../components/MoodCheckInForm/MoodCheckInForm";
 
 function HomePage() {
-  const [form, setForm] = useState({
-    status: "",
-    properties: "",
-    activity: "",
-    description: "",
-    date: new Date(),
-    image: "",
-  });
+  const [moodData, setMoodData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
-  const navigate = useNavigate();
-
-  function handleChange(evt) {
-    const { name, value } = evt.target;
-
-    setForm({ ...form, [name]: value });
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    console.log({ form });
-
+  // Getting Mood Data
+  useEffect(() => {
+    setIsLoading(true);
     apiClient
-      .post("/api/mood/create", form)
-      .then(({ data }) => {
-        console.log("data:", data);
-        navigate(`/mood/${data.slug}`);
+      .get("/api")
+      .then((res) => {
+        setMoodData(res.data);
+        setIsLoading(false);
       })
-      .catch((err) => {
-        if (err?.response?.data.code === 1) {
-          // navigate
-          return navigate(`/mood/${err.response.data.slug}`);
-        }
-        console.log("err:", err);
+      .catch((error) => {
+        setIsLoading(false);
+        console.error(error);
       });
+  }, []);
+
+  if (isLoading) {
+    return <Loading />;
   }
+
   return (
     <div>
       <h1>Mood Check</h1>
       <br />
-      <form onSubmit={handleSubmit}>
-        <label>
-          Awful
-          <input
-            type="radio"
-            value="bad"
-            name="status"
-            onChange={handleChange}
-          />{" "}
-          Bad
-          <input
-            type="radio"
-            value="okey"
-            name="status"
-            onChange={handleChange}
-          />{" "}
-          Okey
-          <input
-            type="radio"
-            value="good"
-            name="status"
-            onChange={handleChange}
-          />{" "}
-          Good
-          <input
-            type="radio"
-            value="great"
-            name="status"
-            onChange={handleChange}
-          />{" "}
-          Great
-        </label>
-        <br />
-        <label>
-          Pumped
-          <input
-            type="checkbox"
-            name="pumped"
-            onChange={handleChange}
-            value={form.properties}
-          ></input>
-        </label>
-        <label>
-          Content
-          <input
-            type="checkbox"
-            name="content"
-            onChange={handleChange}
-            value={form.properties}
-          ></input>
-        </label>
-        <label>
-          Stressed
-          <input
-            type="checkbox"
-            name="stressed"
-            onChange={handleChange}
-            value={form.properties}
-          ></input>
-        </label>
-        <br />
-        <label>
-          Activity
-          <input
-            type="text"
-            name="activity"
-            onChange={handleChange}
-            value={form.activity}
-          ></input>
-        </label>
-        <br />
-        <label>
-          Description
-          <input
-            type="text"
-            name="description"
-            onChange={handleChange}
-            value={form.description}
-          ></input>
-        </label>
-        <br />
-        <label>
-          Date
-          <input
-            type="date"
-            name="date"
-            onChange={handleChange}
-            value={form.date}
-          ></input>
-        </label>
-        <label>
-          Image
-          <input
-            type="text"
-            name="image"
-            onChange={handleChange}
-            value={form.image}
-          ></input>
-        </label>
-        <button type="submit">Check In</button>
-      </form>
+      <MoodCheckInForm
+        activities={moodData.activities}
+        mood_status={moodData?.mood_status}
+      />
     </div>
   );
 }
