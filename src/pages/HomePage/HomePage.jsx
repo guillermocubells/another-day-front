@@ -32,7 +32,7 @@ function HomePage() {
       <h1>Mood Check</h1>
       <br />
       <MoodCheckInForm
-        activities={moodData.activities}
+        activities={moodData?.activities}
         mood_status={moodData?.mood_status}
       />
     </div>

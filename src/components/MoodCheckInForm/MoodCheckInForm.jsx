@@ -41,37 +41,21 @@ function MoodCheckInForm({ activities, mood_status }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        Awful
-        <input
-          type="radio"
-          value="bad"
-          name="status"
-          onChange={handleChange}
-        />{" "}
-        Bad
-        <input
-          type="radio"
-          value="okey"
-          name="status"
-          onChange={handleChange}
-        />{" "}
-        Okey
-        <input
-          type="radio"
-          value="good"
-          name="status"
-          onChange={handleChange}
-        />{" "}
-        Good
-        <input
-          type="radio"
-          value="great"
-          name="status"
-          onChange={handleChange}
-        />{" "}
-        Great
-      </label>
+      {/* Setting Up Mood Selection */}
+      {mood_status.map((status, index) => {
+        return (
+          <label key={index}>
+            {status}
+            <input
+              type="radio"
+              value={status}
+              name="status"
+              onChange={handleChange}
+            />{" "}
+          </label>
+        );
+      })}
+
       <br />
       <label>
         Pumped
