@@ -10,7 +10,7 @@ function MoodCheckInForm({ activities, mood_status, mood_substatus }) {
   const [form, setForm] = useState({
     status: "",
     substatus: "",
-    activities: "",
+    activities: [],
     description: "",
     date: new Date(),
     image: "",
@@ -22,6 +22,15 @@ function MoodCheckInForm({ activities, mood_status, mood_substatus }) {
     setForm({ ...form, [name]: value });
   }
 
+  function handleCheckbox(evt) {
+    const { name, checked, id } = evt.target;
+    if (checked) {
+      setForm({ ...form, [name]: [...form[name], id] });
+      return;
+    }
+    setForm({ ...form, [name]: form[name].filter((item) => item !== id) });
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -29,12 +38,12 @@ function MoodCheckInForm({ activities, mood_status, mood_substatus }) {
       .post("/api/mood/create", form)
       .then(({ data }) => {
         console.log("data:", data);
-        navigate(`/mood/${data.slug}`);
+        navigate(`/mood/${data._id}`);
       })
       .catch((err) => {
         if (err?.response?.data.code === 1) {
           // navigate
-          return navigate(`/mood/${err.response.data.slug}`);
+          return navigate(`/mood/${err.response.data._id}`);
         }
         console.log("err:", err);
       });
@@ -96,8 +105,8 @@ function MoodCheckInForm({ activities, mood_status, mood_substatus }) {
               type="checkbox"
               name="activities"
               id={activity}
-              onChange={handleChange}
-              value={form.activities}
+              onChange={handleCheckbox}
+              checked={form.activities.id}
             ></input>
           </label>
         );
