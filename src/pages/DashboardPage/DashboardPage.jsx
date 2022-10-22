@@ -1,63 +1,54 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import apiClient from "../../services/api-client";
+import Chart from "../../components/Chart/Chart";
 
-function turnDateToString(date) {
-  const [data, setData] = useState({});
-  //   const [isLoading, setIsLoading] = useState(true);
-  //   const [isError, setIsError] = useState(false);
-  //   console.log("isError:", isError);
-  //   const { id } = useParams();
+//Useful function for filtering
+// function forFiltering(date) {
+//   const [data, setData] = useState({});
+//   const year = data.date.getFullYear();
+//   const month = data.date.getMonth() + 1;
+//   const day = data.date.getDate();
 
-  const year = data.date.getFullYear();
-  const month = data.date.getMonth() + 1;
-  const day = data.date.getDate();
-
-  return `${year}-${makeZeroDate(month)}-${makeZeroDate(day)}`;
-}
+//   return `${year}-${makeZeroDate(month)}-${makeZeroDate(day)}`;
+// }
 
 function DashboardPage() {
+  const [moods, setMoods] = useState();
+  console.log("moods:", moods);
   const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState();
+  const navigate = useNavigate();
+  useEffect(() => {
+    apiClient
+      .get("/dashboard")
+      .then((res) => {
+        setMoods(res.data);
+      })
+      .catch((err) => {
+        console.log("err", err);
+        setError(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <div>{JSON.stringify(error)}</div>;
+  }
+
   return (
     <div>
-      <canvas id="myChart" width="400" height="400"></canvas>
-      <script>const ctx = document.getElementById('myChart');
-const myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-</script>
+      <Chart data={data} />
     </div>
   );
 }
+
+export default DashboardPage;
