@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import Navbar from "./components/Navbar/Navbar";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
+import MoodPage from "./pages/MoodPage/MoodPage";
 
 function App() {
   return (
@@ -47,6 +48,14 @@ function App() {
             <IsAnon>
               <LoginPage />
             </IsAnon>
+          }
+        />
+        <Route
+          path="/mood/:id"
+          element={
+            <IsPrivate>
+              <MoodPage />
+            </IsPrivate>
           }
         />
       </Routes>
