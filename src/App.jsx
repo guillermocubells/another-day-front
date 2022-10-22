@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar/Navbar";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
 import MoodPage from "./pages/MoodPage/MoodPage";
+import DashboardPage from "./pages/DashboardPage/DashboardPage";
 
 function App() {
   return (
@@ -58,6 +59,14 @@ function App() {
             </IsPrivate>
           }
         />
+        <Route
+          path="/dashboard"
+          element={
+            <IsPrivate>
+              <DashboardPage />
+            </IsPrivate>
+          }
+        ></Route>
       </Routes>
     </div>
   );
