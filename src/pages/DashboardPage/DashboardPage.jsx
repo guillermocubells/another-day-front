@@ -17,10 +17,11 @@ import Chart from "../../components/Chart/Chart";
 function DashboardPage() {
   const [moods, setMoods] = useState();
   console.log("moods:", moods);
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
   const navigate = useNavigate();
+
   useEffect(() => {
     apiClient
       .get("/dashboard")
@@ -47,6 +48,18 @@ function DashboardPage() {
   return (
     <div>
       <Chart data={data} />
+      {moods.map((mood) => {
+        return (
+          <div
+            onClick={() => {
+              navigate(`/moods/${mood._id}`);
+            }}
+            key={mood._id}
+          >
+            {mood.title}
+          </div>
+        );
+      })}
     </div>
   );
 }
