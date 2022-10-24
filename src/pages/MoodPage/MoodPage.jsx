@@ -7,8 +7,7 @@ function MoodPage() {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-  console.log("isError:", isError);
-
+  console.log(isError);
   const { id } = useParams();
 
   useEffect(() => {
@@ -16,7 +15,6 @@ function MoodPage() {
     apiClient
       .get(`/api/mood/${id}`)
       .then((res) => {
-        console.log("data", res.data);
         setData(res.data);
       })
       .catch((err) => {
@@ -27,17 +25,18 @@ function MoodPage() {
         setIsLoading(false);
       });
   }, [id]);
+
   if (isLoading) {
     return <Loading />;
   }
-  console.log("Helga");
+
   return (
     <div>
       <article key={data._id}>
         <h5>{new Date(data.date).toDateString()}</h5>
         <h2>{data.status}</h2>
-        <h3>{data.substatus[data.status]}</h3>
-        <h4>{data.activities.join(" ")}</h4>
+        {data.substatus && <h3>{data.substatus[data.status]}</h3>}
+        {data.activities && <h4>{data.activities.join(" ")}</h4>}
         {/* <image /> */}
       </article>
     </div>
