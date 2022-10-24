@@ -36,11 +36,12 @@ function MoodCheckInForm({ activities, mood_status, mood_substatus }) {
 
     apiClient
       .post("/api/mood/create", form)
-      .then(({ data }) => {
-        console.log("data:", data);
+      .then((response) => {
+        const { data } = response;
         navigate(`/mood/${data._id}`);
       })
       .catch((err) => {
+        console.log("yeppp?");
         if (err?.response?.data.code === 1) {
           // navigate
           return navigate(`/mood/${err.response.data._id}`);
