@@ -21,6 +21,7 @@ function ChangePassword() {
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    setErrorMessage("");
 
     apiClient
       .post("/profile/change-password", passwords)

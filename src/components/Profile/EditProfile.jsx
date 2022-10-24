@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useAuthContext } from "../../context/auth.context";
 import apiClient from "../../services/api-client";
 
 function EditProfile({ user, setUser }) {
+  const { storeToken, removeToken } = useAuthContext();
   const [errorMessage, setErrorMessage] = useState("");
 
   function handleChange(evt) {
@@ -11,11 +13,13 @@ function EditProfile({ user, setUser }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    setErrorMessage("");
 
     apiClient
       .post("/profile/edit-profile", user)
       .then((response) => {
-        console.log(response);
+        removeToken();
+        storeToken(response.data.authToken);
       })
       .catch((err) => {
         console.error(err);

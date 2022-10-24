@@ -17,6 +17,7 @@ function DeleteUser() {
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    setErrorMessage("");
 
     apiClient
       .post("/profile/delete-user", form)
@@ -58,6 +59,7 @@ function DeleteUser() {
         </label>
         <button type="submit">Delete Account</button>
       </form>
+      {errorMessage && <div>{errorMessage}</div>}
     </div>
   );
 }
