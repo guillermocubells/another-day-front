@@ -8,7 +8,9 @@ function MoodListItem({ mood }) {
 
   return (
     <article onClick={() => navigate(`/mood/${_id}`)}>
-      <div>{newDate.toDateString()}</div>
+      <div>
+        {newDate.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+      </div>
       <div>{status}</div>
       {activities && <div> {activities}</div>}
     </article>
