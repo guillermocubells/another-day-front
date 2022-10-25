@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import apiClient from "../../services/api-client";
 import Chart from "../../components/Chart/Chart";
+import MoodListItem from "../../components/MoodListItem/MoodListItem";
 
 //Useful function for filtering
 // function forFiltering(date) {
@@ -15,48 +16,45 @@ import Chart from "../../components/Chart/Chart";
 // }
 
 function DashboardPage() {
-  const [moods, setMoods] = useState();
-  console.log("moods:", moods);
-  const [data, setData] = useState([]);
+  const [moodList, setMoodList] = useState([]);
+  console.log("moods:", moodList);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState();
+  const [errorMessage, setErrorMessage] = useState("");
+  const [data, setData] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
+    setIsLoading(true);
     apiClient
       .get("/dashboard")
       .then((res) => {
-        setMoods(res.data);
+        setMoodList(res.data);
       })
-      .catch((err) => {
-        console.log("err", err);
-        setError(err);
+
+      .catch((error) => {
+        console.error(error);
+        setErrorMessage("");
       })
       .finally(() => {
         setIsLoading(false);
       });
   }, []);
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (error) {
-    return <div>{JSON.stringify(error)}</div>;
-  }
-
   return (
     <div>
+      <h1>Dashboard</h1>
+
       <Chart data={data} />
-      {moods.map((mood) => {
+      {moodList.map((mood) => {
         return (
           <div
+            mood={mood}
+            key={mood._id}
             onClick={() => {
               navigate(`/moods/${mood._id}`);
             }}
-            key={mood._id}
           >
-            {mood.title}
+            {mood.status}
           </div>
         );
       })}
