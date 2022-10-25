@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Loading from "../../components/Loading/Loading";
 import apiClient from "../../services/api-client";
-import Chart from "../../components/Chart/Chart";
-import MoodListItem from "../../components/MoodListItem/MoodListItem";
+import BarChart from "../../components/Charts/BarChart";
+import LineChart from "../../components/Charts/LineChart";
 
 //Useful function for filtering
 // function forFiltering(date) {
@@ -17,7 +16,7 @@ import MoodListItem from "../../components/MoodListItem/MoodListItem";
 
 function DashboardPage() {
   const [moodList, setMoodList] = useState([]);
-  console.log("moods:", moodList);
+  // console.log("moods:", moodList);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const [data, setData] = useState({});
@@ -44,7 +43,15 @@ function DashboardPage() {
     <div>
       <h1>Dashboard</h1>
 
-      <Chart data={data} />
+      <div>
+        <h2>Bar Chart</h2>
+        <BarChart data={data} />
+      </div>
+      <div>
+        <h2>Line Chart</h2>
+        <LineChart data={data} />
+      </div>
+
       {moodList.map((mood) => {
         return (
           <div
