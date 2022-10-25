@@ -34,7 +34,7 @@ function MoodList() {
 
   return (
     <section>
-      {moodList.map((mood) => {
+      {moodList.reverse().map((mood) => {
         return <MoodListItem mood={mood} key={mood._id} />;
       })}
     </section>

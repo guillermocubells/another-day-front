@@ -10,7 +10,7 @@ function MoodListItem({ mood }) {
     <article onClick={() => navigate(`/mood/${_id}`)}>
       <div>{newDate.toDateString()}</div>
       <div>{status}</div>
-      <div>{activities}</div>
+      {activities && <div> {activities}</div>}
     </article>
   );
 }
