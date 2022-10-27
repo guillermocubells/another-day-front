@@ -126,13 +126,14 @@ function MoodCheckInForm() {
       TODO! create array from selected values
       TODO! create the option to create a new activity. */}
         {activities.map((activity, index) => {
+          const { _id, title } = activity;
           return (
-            <label key={index}>
-              {activity}
+            <label key={_id}>
+              {title}
               <input
                 type="checkbox"
                 name="activities"
-                id={activity}
+                id={title}
                 onChange={handleCheckbox}
                 checked={form.activities.id}
               ></input>
