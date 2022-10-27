@@ -76,7 +76,7 @@ function MoodCheckInForm() {
   }
 
   return (
-    <>
+    <section className="mood-check-in">
       <h1>Mood Check</h1>
       <form onSubmit={handleSubmit}>
         {/* TODO! Make datetime display current time as default  */}
@@ -163,7 +163,7 @@ function MoodCheckInForm() {
         <br />
         <button type="submit">Check In</button>
       </form>
-    </>
+    </section>
   );
 }
 
