@@ -9,6 +9,7 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import apiClient from "../../services/api-client";
+import Loading from "../../components/Loading/Loading";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
@@ -23,7 +24,20 @@ function BarChart() {
   });
   const [chartOptions, setChartOptions] = useState({});
 
+  let filterStatus = moodList.map((mood) => mood.status);
+  // console.log("filter", filterStatus);
+
+  let filterUnique = filterStatus.filter((v, i, a) => a.indexOf(v) === i);
+  // console.log("filterUnique", filterUnique);
+
+  let countMood = (arr, mood) => {
+    return arr.filter((n) => n === mood).length;
+  };
+
+  // console.log(countMood(filterStatus, "Good"));
+  // console.log(countMood(filterStatus, "Okay"));
   useEffect(() => {
+    setIsLoading(true);
     apiClient
       .get("dashboard")
       .then((res) => {
@@ -36,13 +50,23 @@ function BarChart() {
       .finally(() => {
         setIsLoading(false);
       });
-    setChartData({
-      labels: moodList.map((mood) => mood.status),
+  }, []);
 
+  useEffect(() => {
+    setChartData({
+      // labels: filterUnique,
+      // labels: filterStatus.filter((item, i, ar) => ar.indexOf(item) === i),
+      labels: ["Awful", "Bad", "Okay", "Good", "Great"],
       datasets: [
         {
           label: "CheckIn",
-          data: [12, 34, 34, 65, 87],
+          data: [
+            countMood(filterStatus, "Awful"),
+            countMood(filterStatus, "Bad"),
+            countMood(filterStatus, "Okay"),
+            countMood(filterStatus, "Good"),
+            countMood(filterStatus, "Great"),
+          ],
           borderColor: "rgb(53,162,235)",
           backgroundColor: "rgba(53,162,235,0.4)",
         },
@@ -60,8 +84,11 @@ function BarChart() {
         },
       },
     });
-  }, []);
+  }, [moodList]);
 
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <div>
       <Bar options={chartOptions} data={chartData} />
@@ -70,26 +97,3 @@ function BarChart() {
 }
 
 export default BarChart;
-
-// const [dailyData, setDailyData] = useState([]);
-// const [monthlyData, setMonthlyData] = useState([]);
-// const [yearlyData, setYearlyData] = useState([]);
-
-// const filteredData = dailyData || monthlyData || yearlyData;
-// const lineChart = filteredData[0] ? (
-//   <Line
-//     data={{
-//       labels: filteredData.map(({ date }) =>
-//         new Date(date).toLocaleDateString()
-//       ),
-//       datasets: [
-//         {
-//           data: filteredData.map((data) => data.confirmed),
-//           label: "Mood",
-//           borderColor: "rgb(0, 217, 255)",
-//           fill: true,
-//         },
-//       ],
-//     }}
-//   />
-// ) : null;
