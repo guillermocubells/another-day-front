@@ -10,6 +10,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import apiClient from "../../services/api-client";
+import Loading from "../../components/Loading/Loading";
 
 ChartJS.register(
   CategoryScale,
@@ -32,6 +33,7 @@ function LineChart() {
   const [chartOptions, setChartOptions] = useState({});
 
   useEffect(() => {
+    setIsLoading(true);
     apiClient
       .get("dashboard")
       .then((res) => {
@@ -44,12 +46,67 @@ function LineChart() {
       .finally(() => {
         setIsLoading(false);
       });
+  }, []);
+
+  let filterStatus = moodList.map((mood) => mood.status);
+  console.log("filter", filterStatus);
+
+  // let filterUnique = filterStatus.filter((v, i, a) => a.indexOf(v) === i);
+  // // console.log("filterUnique", filterUnique);
+
+  let conversion = filterStatus.filter((element) => {
+    const arr3 = [];
+    if (element === "Awful") {
+      arr3.push("1");
+    }
+    if (element === "Bad") {
+      arr3.push(2);
+    }
+    if (element === "Okay") {
+      arr3.push(3);
+    }
+    if (element === "Good") {
+      arr3.push(4);
+    }
+    if (element === "Great") {
+      arr3.push(5);
+    }
+    return arr3;
+  });
+
+  console.log(conversion);
+
+  let statusConversion = (arr) => {
+    let arr2 = [];
+    for (let i = 0; i < arr.length; i++) {
+      if (i === "Awful") {
+        return arr2.push(1);
+      }
+      if (i === "Bad") {
+        return arr2.push(2);
+      }
+      if (i === "Okay") {
+        return arr2.push(3);
+      }
+      if (i === "Good") {
+        return arr2.push(4);
+      }
+      if (i === "Great") {
+        return arr2.push(5);
+      }
+    }
+    return arr2;
+  };
+
+  console.log(statusConversion(filterStatus));
+
+  useEffect(() => {
     setChartData({
-      labels: moodList.map((mood) => mood.status),
+      labels: moodList.map((mood) => mood.date),
       datasets: [
         {
           label: "CheckIn",
-          data: moodList.map((mood) => mood.status),
+          data: [1, 2, 3],
           borderColor: "rgb(53,162,235)",
           backgroundColor: "rgba(53,162,235,0.4)",
         },
@@ -59,7 +116,7 @@ function LineChart() {
       responsive: true,
       plugins: {
         legend: {
-          position: "bottom",
+          position: "top",
         },
         title: {
           display: true,
@@ -67,7 +124,11 @@ function LineChart() {
         },
       },
     });
-  }, []);
+  }, [moodList]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div>

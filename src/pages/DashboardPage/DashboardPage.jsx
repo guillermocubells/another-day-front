@@ -51,7 +51,7 @@ function DashboardPage() {
         <h2>Line Chart</h2>
         <LineChart data={data} />
       </div>
-
+      {/* 
       {moodList.map((mood) => {
         return (
           <div
@@ -64,7 +64,7 @@ function DashboardPage() {
             {mood.status}
           </div>
         );
-      })}
+      })} */}
     </div>
   );
 }
