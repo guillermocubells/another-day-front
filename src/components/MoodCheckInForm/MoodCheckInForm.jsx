@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 import apiClient from "../../services/api-client";
 import Loading from "../../components/Loading/Loading";
+import CreateCustomActivity from "../CreateCustomActivity/CreateCustomActivity";
 
 function MoodCheckInForm() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
   const [moodData, setMoodData] = useState({
     mood_status: [],
     mood_substatus: [],
@@ -21,6 +23,7 @@ function MoodCheckInForm() {
     date: new Date(),
     image: "",
   });
+  console.log(form);
 
   // Getting Mood Data
   useEffect(() => {
@@ -59,6 +62,7 @@ function MoodCheckInForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setErrorMessage("");
 
     apiClient
       .post("/api/mood/create", form)
@@ -67,17 +71,16 @@ function MoodCheckInForm() {
         navigate(`/mood/${data._id}`);
       })
       .catch((err) => {
-        if (err?.response?.data.code === 1) {
-          // navigate
-          return navigate(`/mood/${err.response.data._id}`);
-        }
-        console.log("err:", err);
+        console.error(err);
+        const errorDescription = err.response.data.message;
+        setErrorMessage(errorDescription);
       });
   }
 
   return (
     <section className="mood-check-in">
       <h1>Mood Check</h1>
+      {errorMessage && <div>{errorMessage}</div>}
       <form onSubmit={handleSubmit}>
         {/* TODO! Make datetime display current time as default  */}
         <label>
@@ -90,6 +93,7 @@ function MoodCheckInForm() {
           ></input>
         </label>
         <br />
+        <h4>How are you feeling right now?</h4>
         {/* Setting Up Mood Selection */}
         {mood_status.map((status, index) => {
           return (
@@ -125,10 +129,11 @@ function MoodCheckInForm() {
         {/* Get Activities. 
       TODO! create array from selected values
       TODO! create the option to create a new activity. */}
+        <h4>What are you doing?</h4>
         {activities.map((activity, index) => {
           const { _id, title } = activity;
           return (
-            <label key={_id}>
+            <label key={_id || title}>
               {title}
               <input
                 type="checkbox"
@@ -140,10 +145,11 @@ function MoodCheckInForm() {
             </label>
           );
         })}
+        <CreateCustomActivity moodData={moodData} setMoodData={setMoodData} />
 
         <br />
         <label>
-          Journal
+          Note
           <textarea
             type="text"
             name="description"
