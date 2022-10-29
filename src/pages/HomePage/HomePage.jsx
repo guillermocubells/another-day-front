@@ -5,10 +5,10 @@ import MoodList from "../../components/MoodList/MoodList";
 
 function HomePage() {
   return (
-    <>
+    <main className="home">
       <MoodCheckInForm />
       <MoodList />
-    </>
+    </main>
   );
 }
 

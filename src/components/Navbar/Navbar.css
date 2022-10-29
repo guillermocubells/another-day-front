@@ -1,0 +1,14 @@
+nav {
+  padding: var(--spacer-m);
+  display: flex;
+  justify-content: space-between;
+}
+
+nav > div {
+  display: flex;
+  gap: var(--spacer-m);
+}
+
+nav a:hover {
+  cursor: pointer;
+}

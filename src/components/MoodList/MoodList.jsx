@@ -52,7 +52,7 @@ function MoodList() {
   }, {});
 
   return (
-    <section>
+    <section className="mood-list">
       {Object.keys(orderedMoods)
         .sort((a, b) => {
           return b - a;
