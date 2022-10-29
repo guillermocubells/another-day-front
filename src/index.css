@@ -26,3 +26,11 @@ button:hover {
   --text-size-l: 3rem;
   --text-size-xl: 6rem;
 }
+
+body {
+  --color-awful: #000000;
+  --color-bad: #000000;
+  --color-okay: #000000;
+  --color-good: #000000;
+  --color-great: #000000;
+}
