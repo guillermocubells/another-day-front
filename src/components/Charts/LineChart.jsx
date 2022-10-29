@@ -11,6 +11,7 @@ import {
 import { Line } from "react-chartjs-2";
 import apiClient from "../../services/api-client";
 import Loading from "../../components/Loading/Loading";
+import "chartjs-adapter-date-fns";
 
 ChartJS.register(
   CategoryScale,
@@ -48,65 +49,95 @@ function LineChart() {
       });
   }, []);
 
+  // Filter to getting all the moods
   let filterStatus = moodList.map((mood) => mood.status);
-  console.log("filter", filterStatus);
+  // console.log("filter", filterStatus);
 
-  // let filterUnique = filterStatus.filter((v, i, a) => a.indexOf(v) === i);
-  // // console.log("filterUnique", filterUnique);
-
-  let conversion = filterStatus.filter((element) => {
-    const arr3 = [];
-    if (element === "Awful") {
-      arr3.push("1");
-    }
-    if (element === "Bad") {
-      arr3.push(2);
-    }
-    if (element === "Okay") {
-      arr3.push(3);
-    }
-    if (element === "Good") {
-      arr3.push(4);
-    }
-    if (element === "Great") {
-      arr3.push(5);
-    }
-    return arr3;
-  });
-
-  console.log(conversion);
-
+  // Formula to make a conversion to numbers based on the value of the substatus
+  let arr2 = [];
   let statusConversion = (arr) => {
-    let arr2 = [];
     for (let i = 0; i < arr.length; i++) {
-      if (i === "Awful") {
-        return arr2.push(1);
+      if (arr[i] === "Awful") {
+        arr2.push(1);
       }
-      if (i === "Bad") {
-        return arr2.push(2);
+      if (arr[i] === "Bad") {
+        arr2.push(2);
       }
-      if (i === "Okay") {
-        return arr2.push(3);
+      if (arr[i] === "Okay") {
+        arr2.push(3);
       }
-      if (i === "Good") {
-        return arr2.push(4);
+      if (arr[i] === "Good") {
+        arr2.push(4);
       }
-      if (i === "Great") {
-        return arr2.push(5);
+      if (arr[i] === "Great") {
+        arr2.push(5);
       }
     }
     return arr2;
   };
+  // console.log(arr2);
+  // console.log("Equiv", statusConversion(filterStatus));
 
-  console.log(statusConversion(filterStatus));
+  // Formula to get the actual days when the user checked in
+
+  let filterActualDates = moodList.map((mood) => mood.date);
+  console.log("Actual", filterActualDates);
+  console.log(filterActualDates[0]);
+
+  // Formula to convert the filterActualDates to numbers so is posible to compare them
+
+  let convertedDates = filterActualDates.map((date) =>
+    new Date(date).setHours(0, 0, 0, 0)
+  );
+  // console.log("Converted Dates", convertedDates);
+
+  //Function that filters days on the chart
+
+  function filterDates() {
+    //Gets and converts the start value from the input field into a number
+    const start1 = new Date(document.getElementById("start").value);
+    const start = start1.setHours(0, 0, 0, 0);
+    //Gets and converts the end value from the input field into a number
+    const end1 = new Date(document.getElementById("end").value);
+    const end = end1.setHours(0, 0, 0, 0);
+
+    //Filters the days out based on the filter selected
+    const filterDates = convertedDates.filter(
+      (date) => date >= start && date <= end
+    );
+
+    //Set ChartData labels to the filterDates
+    setChartData.labels = filterDates;
+
+    //Creates a start and end array based on the index of the filterDates
+    const startArray = convertedDates.indexOf(filterDates[0]);
+    const endArray = convertedDates.indexOf(
+      filterDates[filterDates.length - 1]
+    );
+
+    // Makes a copy of the filtered data from the convertedDates
+    const copyFilterData = [...convertedDates];
+    copyFilterData.splice(endArray + 1, filterDates.length);
+    copyFilterData.splice(0, startArray);
+
+    console.log(copyFilterData);
+
+    //Set ChartData datasets to the filteredDates
+    setChartData.datasets[0].data = copyFilterData;
+
+    //Updates the chart data
+    setChartData.update();
+  }
 
   useEffect(() => {
     setChartData({
-      labels: moodList.map((mood) => mood.date),
+      labels: filterActualDates.map((date) =>
+        new Date(date).toLocaleDateString()
+      ),
       datasets: [
         {
           label: "CheckIn",
-          data: [1, 2, 3],
+          data: statusConversion(filterStatus),
           borderColor: "rgb(53,162,235)",
           backgroundColor: "rgba(53,162,235,0.4)",
         },
@@ -123,6 +154,15 @@ function LineChart() {
           text: "CheckIn",
         },
       },
+      scales: {
+        xAxis: {
+          // type: "time",
+          time: { unit: "day" },
+        },
+        yAxis: {
+          suggestedMin: 0,
+        },
+      },
     });
   }, [moodList]);
 
@@ -133,6 +173,25 @@ function LineChart() {
   return (
     <div>
       <Line options={chartOptions} data={chartData} />
+      <form>
+        {/* TODO! Make datetime display current time as default  */}
+        <label>
+          Start Date
+          <input
+            id="start"
+            type="date"
+            value="{filterActualDates[0]}"
+            min=""
+            max=""
+          ></input>
+        </label>
+        <label>
+          End Date
+          <input id="end" type="date" value="" min="" max=""></input>
+        </label>
+        <button onclick={filterDates}>Filter</button>
+        {/* <button onclick={filterDates}>Reset</button> */}
+      </form>
     </div>
   );
 }
