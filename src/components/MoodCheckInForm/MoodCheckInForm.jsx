@@ -140,12 +140,17 @@ function MoodCheckInForm() {
                 name="activities"
                 id={title}
                 onChange={handleCheckbox}
-                checked={form.activities.id}
+                checked={form.activities.some((e) => e === title)}
               ></input>
             </label>
           );
         })}
-        <CreateCustomActivity moodData={moodData} setMoodData={setMoodData} />
+        <CreateCustomActivity
+          form={form}
+          setForm={setForm}
+          moodData={moodData}
+          setMoodData={setMoodData}
+        />
 
         <br />
         <label>

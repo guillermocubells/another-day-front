@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
-function CreateCustomActivity({ moodData, setMoodData }) {
+function CreateCustomActivity({ form, setForm, moodData, setMoodData }) {
   const [isActive, setIsActive] = useState(false);
   const [newActivity, setNewActivity] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   function showForm() {
     setIsActive(!isActive);
@@ -16,15 +17,28 @@ function CreateCustomActivity({ moodData, setMoodData }) {
   function handleCreate(evt) {
     evt.preventDefault();
 
+    if (!newActivity) {
+      setErrorMessage("Nothing to add");
+      return;
+    }
+
+    if (moodData.activities.some((e) => e.title === newActivity)) {
+      setErrorMessage("Activity already exists.");
+      return;
+    }
+
     if (!moodData.activities.some((e) => e.title === newActivity)) {
       setMoodData({
         ...moodData,
         activities: [
           ...moodData.activities,
-          { title: newActivity, custom: true },
+          { title: newActivity.trim(), custom: true },
         ],
       });
+
+      setForm({ ...form, activities: [...form.activities, newActivity] });
     }
+    setErrorMessage("");
 
     resetForm();
   }
@@ -35,9 +49,9 @@ function CreateCustomActivity({ moodData, setMoodData }) {
   }
 
   return (
-    <>
+    <div>
       <button type="button" onClick={showForm}>
-        ...
+        {isActive ? "Close" : "..."}
       </button>
       {isActive && (
         <div>
@@ -53,9 +67,10 @@ function CreateCustomActivity({ moodData, setMoodData }) {
           <button type="button" onClick={handleCreate}>
             Create Activity
           </button>
+          {errorMessage && <div>{errorMessage}</div>}
         </div>
       )}
-    </>
+    </div>
   );
 }
 
