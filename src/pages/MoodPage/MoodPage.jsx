@@ -32,8 +32,8 @@ function MoodPage() {
   if (isError) {
     return;
   }
-  console.log(data);
-  const { _id, date, status, substatus, activities } = data;
+
+  const { _id, date, status, substatus, activities, journal } = data;
 
   return (
     <div>
@@ -43,6 +43,12 @@ function MoodPage() {
         {substatus && <h3>{substatus[status]}</h3>}
         {activities && (
           <h4>{activities.map((activity) => activity.title).join(" ")}</h4>
+        )}
+        {journal && (
+          <article>
+            <h3>Journal</h3>
+            <div>{journal}</div>
+          </article>
         )}
         {/* <image /> */}
       </article>
