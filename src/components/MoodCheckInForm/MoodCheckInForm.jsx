@@ -154,7 +154,7 @@ function MoodCheckInForm() {
 
         <br />
         <label>
-          Note
+          Journal
           <textarea
             type="text"
             name="journal"
