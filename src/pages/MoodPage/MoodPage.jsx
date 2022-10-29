@@ -7,7 +7,6 @@ function MoodPage() {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-  console.log(isError);
   const { id } = useParams();
 
   useEffect(() => {
@@ -30,13 +29,21 @@ function MoodPage() {
     return <Loading />;
   }
 
+  if (isError) {
+    return;
+  }
+  console.log(data);
+  const { _id, date, status, substatus, activities } = data;
+
   return (
     <div>
-      <article key={data._id}>
-        <h5>{new Date(data.date).toDateString()}</h5>
-        <h2>{data.status}</h2>
-        {data.substatus && <h3>{data.substatus[data.status]}</h3>}
-        {data.activities && <h4>{data.activities.join(" ")}</h4>}
+      <article key={_id}>
+        <h5>{new Date(date).toDateString()}</h5>
+        <h2>{status}</h2>
+        {substatus && <h3>{substatus[status]}</h3>}
+        {activities && (
+          <h4>{activities.map((activity) => activity.title).join(" ")}</h4>
+        )}
         {/* <image /> */}
       </article>
     </div>
