@@ -19,7 +19,7 @@ function MoodCheckInForm() {
     status: "",
     substatus: "",
     activities: [],
-    description: "",
+    journal: "",
     date: new Date(),
     image: "",
   });
@@ -157,9 +157,9 @@ function MoodCheckInForm() {
           Note
           <textarea
             type="text"
-            name="description"
+            name="journal"
             onChange={handleChange}
-            value={form.description}
+            value={form.journal}
           ></textarea>
         </label>
         <br />
