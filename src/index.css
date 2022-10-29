@@ -20,4 +20,9 @@ button:hover {
   --spacer-s: 0.5rem;
   --spacer-m: 1rem;
   --spacer-l: 2rem;
+  --text-size-xs: 0.625rem;
+  --text-size-s: 1rem;
+  --text-size-m: 2rem;
+  --text-size-l: 3rem;
+  --text-size-xl: 6rem;
 }
