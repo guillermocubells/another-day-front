@@ -32,6 +32,29 @@ function LineChart() {
     datasets: [],
   });
   const [chartOptions, setChartOptions] = useState({});
+  const [filter, setFilter] = useState({
+    date: new Date(),
+  });
+
+  function handleChange(evt) {
+    const { name, value } = evt.target;
+    setFilter({ ...filter, [name]: value });
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    setErrorMessage("");
+    // apiClient
+    //   .post("/api/mood/create", form)
+    //   .then((response) => {
+    //     const { data } = response;
+    //     navigate(`/mood/${data._id}`);
+    //   })
+    //   .catch((err) => {
+    //     console.error(err);
+    //     const errorDescription = err.response.data.message;
+    //     setErrorMessage(errorDescription);
+    //   });
+  }
 
   useEffect(() => {
     setIsLoading(true);
@@ -180,14 +203,22 @@ function LineChart() {
           <input
             id="start"
             type="date"
-            value="{filterActualDates[0]}"
+            onChange={handleChange}
+            value={filter.date}
             min=""
             max=""
           ></input>
         </label>
         <label>
           End Date
-          <input id="end" type="date" value="" min="" max=""></input>
+          <input
+            id="end"
+            type="date"
+            onChange={handleChange}
+            value={filter.date}
+            min=""
+            max=""
+          ></input>
         </label>
         <button onclick={filterDates}>Filter</button>
         {/* <button onclick={filterDates}>Reset</button> */}
