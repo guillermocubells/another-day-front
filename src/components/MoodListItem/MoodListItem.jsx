@@ -12,7 +12,7 @@ function MoodListItem({ mood }) {
         {newDate.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
       </div>
       <div>{status}</div>
-      {activities && <div> {activities}</div>}
+      <div>{activities.map((activity) => activity.title).join(" ")}</div>
     </article>
   );
 }
