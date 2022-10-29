@@ -7,12 +7,21 @@ function MoodListItem({ mood }) {
   const navigate = useNavigate();
 
   return (
-    <article onClick={() => navigate(`/mood/${_id}`)}>
-      <div>
+    <article
+      className={`mood-list__item ${status.toLowerCase()}`}
+      onClick={() => navigate(`/mood/${_id}`)}
+    >
+      <div className="mood-list__item__date">
         {newDate.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
       </div>
-      <div>{status}</div>
-      <div>{activities.map((activity) => activity.title).join(" ")}</div>
+      <h2 className="mood-list__item__status">{status}</h2>
+      <div className="mood-list__item__activities">
+        {activities.map((activity) => {
+          return (
+            <div className="mood-list__item__activity">{activity.title}</div>
+          );
+        })}
+      </div>
     </article>
   );
 }
