@@ -13,31 +13,19 @@ function Navbar() {
       <Link to="/">Gemma! or... Another Day.</Link>
 
       {isLoggedIn && (
-        <>
-          <Link to="/">
-            <button>Check In</button>
-          </Link>
-          <Link to="/profile">
-            <button>Profile</button>
-          </Link>
-          <Link to="/dashboard">
-            <button>Dashboard</button>
-          </Link>
+        <div>
+          <Link to="/">Check In</Link>
+          <Link to="/profile">Profile</Link>
+          <Link to="/dashboard">Dashboard</Link>
           <button onClick={logOutUser}>Logout</button>
-        </>
+        </div>
       )}
 
       {!isLoggedIn && (
-        <>
-          <Link to="/signup">
-            {" "}
-            <button>Sign Up</button>{" "}
-          </Link>
-          <Link to="/login">
-            {" "}
-            <button>Login</button>{" "}
-          </Link>
-        </>
+        <div>
+          <Link to="/signup">Sign Up</Link>
+          <Link to="/login">Login</Link>
+        </div>
       )}
     </nav>
   );
