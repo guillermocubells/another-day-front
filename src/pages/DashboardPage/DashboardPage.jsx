@@ -21,6 +21,7 @@ function DashboardPage() {
   const [errorMessage, setErrorMessage] = useState("");
   const [data, setData] = useState({});
   const navigate = useNavigate();
+  console.log(moodList, isLoading, errorMessage, setData, navigate);
 
   useEffect(() => {
     setIsLoading(true);

@@ -28,7 +28,7 @@ function BarChart() {
   // console.log("filter", filterStatus);
 
   let filterUnique = filterStatus.filter((v, i, a) => a.indexOf(v) === i);
-  // console.log("filterUnique", filterUnique);
+  console.log("filterUnique", filterUnique);
 
   let countMood = (arr, mood) => {
     return arr.filter((n) => n === mood).length;
@@ -36,6 +36,7 @@ function BarChart() {
 
   // console.log(countMood(filterStatus, "Good"));
   // console.log(countMood(filterStatus, "Okay"));
+
   useEffect(() => {
     setIsLoading(true);
     apiClient
@@ -45,12 +46,13 @@ function BarChart() {
       })
       .catch((error) => {
         console.error(error);
+        console.log(errorMessage);
         setErrorMessage("");
       })
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [errorMessage]);
 
   useEffect(() => {
     setChartData({
@@ -84,7 +86,7 @@ function BarChart() {
         },
       },
     });
-  }, [moodList]);
+  }, [moodList, filterStatus]);
 
   if (isLoading) {
     return <Loading />;
