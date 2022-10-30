@@ -43,17 +43,6 @@ function LineChart() {
   function handleSubmit(e) {
     e.preventDefault();
     setErrorMessage("");
-    // apiClient
-    //   .post("/api/mood/create", form)
-    //   .then((response) => {
-    //     const { data } = response;
-    //     navigate(`/mood/${data._id}`);
-    //   })
-    //   .catch((err) => {
-    //     console.error(err);
-    //     const errorDescription = err.response.data.message;
-    //     setErrorMessage(errorDescription);
-    //   });
   }
 
   useEffect(() => {
@@ -72,6 +61,7 @@ function LineChart() {
       });
   }, []);
 
+  console.log(errorMessage, handleSubmit);
   // Filter to getting all the moods
   let filterStatus = moodList.map((mood) => mood.status);
   // console.log("filter", filterStatus);
@@ -98,6 +88,9 @@ function LineChart() {
     }
     return arr2;
   };
+
+  let status = statusConversion(filterStatus);
+  console.log(status);
   // console.log(arr2);
   // console.log("Equiv", statusConversion(filterStatus));
 
@@ -160,7 +153,7 @@ function LineChart() {
       datasets: [
         {
           label: "CheckIn",
-          data: statusConversion(filterStatus),
+          data: status,
           borderColor: "rgb(53,162,235)",
           backgroundColor: "rgba(53,162,235,0.4)",
         },
@@ -187,7 +180,7 @@ function LineChart() {
         },
       },
     });
-  }, [moodList]);
+  }, [moodList, filterActualDates, filterStatus, status]);
 
   if (isLoading) {
     return <Loading />;
