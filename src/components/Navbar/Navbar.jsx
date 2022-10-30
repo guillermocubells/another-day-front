@@ -15,16 +15,16 @@ function Navbar() {
       {isLoggedIn && (
         <div>
           <Link to="/">Check In</Link>
-          <Link to="/profile">Profile</Link>
           <Link to="/dashboard">Dashboard</Link>
+          <Link to="/profile">Profile</Link>
           <button onClick={logOutUser}>Logout</button>
         </div>
       )}
 
       {!isLoggedIn && (
         <div>
-          <Link to="/signup">Sign Up</Link>
           <Link to="/login">Login</Link>
+          <Link to="/signup">Sign Up</Link>
         </div>
       )}
     </nav>
