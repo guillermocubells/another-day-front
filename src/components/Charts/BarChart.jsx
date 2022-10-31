@@ -24,8 +24,10 @@ function BarChart() {
   });
   const [chartOptions, setChartOptions] = useState({});
 
+  console.log(errorMessage);
+
   let filterStatus = moodList.map((mood) => mood.status);
-  // console.log("filter", filterStatus);
+  console.log("filter", filterStatus);
 
   let filterUnique = filterStatus.filter((v, i, a) => a.indexOf(v) === i);
   console.log("filterUnique", filterUnique);
@@ -46,29 +48,26 @@ function BarChart() {
       })
       .catch((error) => {
         console.error(error);
-        console.log(errorMessage);
         setErrorMessage("");
       })
       .finally(() => {
         setIsLoading(false);
       });
-  }, [errorMessage]);
+  }, []);
+
+  let countAwful = countMood(filterStatus, "Awful");
+  let countBad = countMood(filterStatus, "Bad");
+  let countOkay = countMood(filterStatus, "Okay");
+  let countGood = countMood(filterStatus, "Good");
+  let countGreat = countMood(filterStatus, "Great");
 
   useEffect(() => {
     setChartData({
-      // labels: filterUnique,
-      // labels: filterStatus.filter((item, i, ar) => ar.indexOf(item) === i),
       labels: ["Awful", "Bad", "Okay", "Good", "Great"],
       datasets: [
         {
           label: "CheckIn",
-          data: [
-            countMood(filterStatus, "Awful"),
-            countMood(filterStatus, "Bad"),
-            countMood(filterStatus, "Okay"),
-            countMood(filterStatus, "Good"),
-            countMood(filterStatus, "Great"),
-          ],
+          data: [countAwful, countBad, countOkay, countGood, countGreat],
           borderColor: "rgb(53,162,235)",
           backgroundColor: "rgba(53,162,235,0.4)",
         },
@@ -86,7 +85,7 @@ function BarChart() {
         },
       },
     });
-  }, [moodList, filterStatus]);
+  }, [moodList, countAwful, countBad, countOkay, countGood, countGreat]);
 
   if (isLoading) {
     return <Loading />;

@@ -4,16 +4,6 @@ import apiClient from "../../services/api-client";
 import BarChart from "../../components/Charts/BarChart";
 import LineChart from "../../components/Charts/LineChart";
 
-//Useful function for filtering
-// function forFiltering(date) {
-//   const [data, setData] = useState({});
-//   const year = data.date.getFullYear();
-//   const month = data.date.getMonth() + 1;
-//   const day = data.date.getDate();
-
-//   return `${year}-${makeZeroDate(month)}-${makeZeroDate(day)}`;
-// }
-
 function DashboardPage() {
   const [moodList, setMoodList] = useState([]);
   // console.log("moods:", moodList);
