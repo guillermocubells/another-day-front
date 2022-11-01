@@ -1,24 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import apiClient from "../../services/api-client";
 import BarChart from "../../components/Charts/BarChart";
 import LineChart from "../../components/Charts/LineChart";
+import Loading from "../../components/Loading/Loading";
 
 function DashboardPage() {
-  const [moodList, setMoodList] = useState([]);
-  // console.log("moods:", moodList);
+  const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
-  const [data, setData] = useState({});
-  const navigate = useNavigate();
-  console.log(moodList, isLoading, errorMessage, setData, navigate);
 
   useEffect(() => {
     setIsLoading(true);
     apiClient
       .get("/dashboard")
       .then((res) => {
-        setMoodList(res.data);
+        setData(res.data);
       })
 
       .catch((error) => {
@@ -29,6 +25,14 @@ function DashboardPage() {
         setIsLoading(false);
       });
   }, []);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (errorMessage) {
+    return <div>{errorMessage}</div>;
+  }
 
   return (
     <div>
@@ -42,20 +46,6 @@ function DashboardPage() {
         <h2>Line Chart</h2>
         <LineChart data={data} />
       </div>
-      {/* 
-      {moodList.map((mood) => {
-        return (
-          <div
-            mood={mood}
-            key={mood._id}
-            onClick={() => {
-              navigate(`/moods/${mood._id}`);
-            }}
-          >
-            {mood.status}
-          </div>
-        );
-      })} */}
     </div>
   );
 }

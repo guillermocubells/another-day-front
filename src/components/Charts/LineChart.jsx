@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { compareAsc, closestIndexTo } from "date-fns";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,7 +11,6 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import apiClient from "../../services/api-client";
 import Loading from "../../components/Loading/Loading";
 import "chartjs-adapter-date-fns";
 
@@ -24,103 +24,43 @@ ChartJS.register(
   Legend
 );
 
-// Status Conversion Function
-let statusConversion = (arr) => {
-  let arr2 = [];
-  let arr1 = arr.map((mood) => mood.status);
-  for (let i = 0; i < arr1.length; i++) {
-    if (arr1[i] === "Awful") {
-      arr2.push(1);
-    }
-    if (arr1[i] === "Bad") {
-      arr2.push(2);
-    }
-    if (arr1[i] === "Okay") {
-      arr2.push(3);
-    }
-    if (arr1[i] === "Good") {
-      arr2.push(4);
-    }
-    if (arr1[i] === "Great") {
-      arr2.push(5);
-    }
-  }
-  return arr2;
-};
+function LineChart({ data }) {
+  const [moodList] = useState(
+    data.sort((a, b) => compareAsc(new Date(a.date), new Date(b.date)))
+  );
 
-// Date Conversion Function
-let dateConversion = (arr) => {
-  let arr3 = [];
-  let arr1 = arr.map((mood) => mood.date);
-  for (let i = 0; i < arr1.length; i++) {
-    arr3.push(new Date(arr1[i]).toLocaleDateString());
-  }
-  return arr3;
-};
-
-//FILTER FUNCTION
-// Date Conversion to Numbers
-let convertedDates = (arr) => {
-  let arr5 = [];
-  let arr4 = arr.map((mood) => mood.date);
-  for (let i = 0; i < arr4.length; i++) {
-    arr5.push(new Date(arr4[i]).setHours(0, 0, 0, 0));
-  }
-  return arr5;
-};
-
-function LineChart() {
-  const [moodList, setMoodList] = useState([]);
-  console.log("moods:", moodList);
-  const [isLoading, setIsLoading] = useState(true);
-  const [errorMessage, setErrorMessage] = useState("");
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [],
   });
+  console.log("moodList", moodList);
   const [chartOptions, setChartOptions] = useState({});
+
   const [form, setForm] = useState({
-    date: new Date(),
+    start: new Date(),
+    end: new Date(),
   });
 
   function handleChange(evt) {
     const { name, value } = evt.target;
     setForm({ ...form, [name]: value });
   }
-  function handleSubmit(e) {
-    e.preventDefault();
-    setErrorMessage("");
+
+  function getChartDates(arr) {
+    return arr.map((e) => new Date(e.date).toLocaleDateString());
+  }
+
+  function getChartScore(arr) {
+    return arr.map((e) => e.score);
   }
 
   useEffect(() => {
-    setIsLoading(true);
-    apiClient
-      .get("dashboard")
-      .then((res) => {
-        setMoodList(res.data);
-      })
-      .catch((error) => {
-        console.error(error);
-        setErrorMessage("");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, []);
-
-  console.log(errorMessage, handleSubmit, handleChange);
-
-  console.log("Converted Dates", convertedDates(moodList));
-  // console.log(convertedDates(moodList));
-
-  useEffect(() => {
     setChartData({
-      labels: dateConversion(moodList),
-      // labels: convertedDates(moodList),
+      labels: getChartDates(moodList),
       datasets: [
         {
           label: "CheckIn",
-          data: statusConversion(moodList),
+          data: getChartScore(moodList),
           borderColor: "rgb(53,162,235)",
           backgroundColor: "rgba(53,162,235,0.4)",
         },
@@ -139,7 +79,6 @@ function LineChart() {
       },
       scales: {
         x: {
-          // type: "time",
           time: { unit: "day" },
         },
         y: {
@@ -150,79 +89,62 @@ function LineChart() {
     });
   }, [moodList]);
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  function filterDate(e) {
+    e.preventDefault();
 
-  //Filter function on Chart
-
-  function filterDate() {
-    const daysOfUser = [...dateConversion(moodList)];
-    console.log(daysOfUser);
-
-    //Gets the start and end date of the filter
-    const start1 = new Date(document.getElementById("start").value);
-    const end1 = new Date(document.getElementById("end").value);
-    console.log("start:", start1, "end:", end1);
-
-    const indexStartDate = daysOfUser.indexOf(start1.value);
-    const indexEndDate = daysOfUser.indexOf(end1.value);
-    console.log(
-      "Index start of user",
-      indexStartDate,
-      "Index end of user",
-      indexEndDate
+    const firstDate = closestIndexTo(
+      new Date(form.start).setHours(0, 0, 0, 0),
+      moodList.map((e) => parseInt(new Date(e.date).getTime().toFixed(0)))
     );
-    // closest to a certain number
+
+    const lastDate = closestIndexTo(
+      new Date(form.end).setHours(23, 23, 23, 23),
+      moodList.map((e) => parseInt(new Date(e.date).getTime().toFixed(0)))
+    );
 
     //Filters the days out based on the filter selected
-    const filterDates = daysOfUser.slice(indexStartDate, indexEndDate + 1);
-    console.log(filterDates);
+    const filterDates = getChartDates(moodList.slice(firstDate, lastDate + 1));
 
-    //Set ChartData labels to the filterDates
-    setChartData.labels = filterDates;
+    // filters scores based on the filter selected
+    const filterDataPoints = getChartScore(
+      moodList.slice(firstDate, lastDate + 1)
+    );
 
-    // Makes a copy of the filtered data from the convertedDates
-    const copyFilterData = [...statusConversion(moodList)];
-    console.log("copy user data", copyFilterData);
+    setChartData({
+      ...chartData,
+      labels: filterDates,
+      datasets: [{ ...chartData.datasets[0], data: filterDataPoints }],
+    });
+  }
 
-    const filterDataPoints = daysOfUser.slice(indexStartDate, indexEndDate + 1);
-    console.log(filterDataPoints);
-
-    //Set ChartData datasets to the filteredDates
-    setChartData.datasets[0].data = filterDataPoints;
-    // setChartData({
-    //   ...chartData,
-    //   datasets: [...datasets, datasets[0]:{data} ],
-    // });
-    //Updates the chart data
-    setChartData.update();
+  if (!data) {
+    return <Loading />;
   }
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={filterDate}>
         {/* TODO! Make datetime display current time as default  */}
         <label>
           Start Date
           <input
-            id="start"
+            name="start"
             type="date"
-            onChange={filterDate}
-            value={form.date}
-            min={dateConversion(moodList)[0]}
-            max={dateConversion(moodList)[-1]}
+            onChange={handleChange}
+            value={form.start}
+            min={getChartDates(moodList)[0]}
+            max={getChartDates(moodList)[moodList.length - 1]}
           ></input>
         </label>
         <label>
           End Date
           <input
-            id="end"
+            name="end"
             type="date"
-            onChange={filterDate}
-            value={form.date}
-            // min=""
-            // max=""
+            onChange={handleChange}
+            value={form.end}
+            min={form.start}
+            max={getChartDates(moodList)[moodList.length - 1]}
           ></input>
         </label>
         <button onClick={filterDate}>Filter</button>
