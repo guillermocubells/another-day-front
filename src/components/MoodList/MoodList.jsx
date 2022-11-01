@@ -57,7 +57,7 @@ function MoodList() {
         .sort((a, b) => {
           return b - a;
         })
-        .map((day, index) => {
+        .map((day) => {
           return (
             <div style={{ padding: 50 }} key={day}>
               <h2>{new Date(Number(day)).toDateString()}</h2>

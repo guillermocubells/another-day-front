@@ -18,7 +18,9 @@ function MoodListItem({ mood }) {
       <div className="mood-list__item__activities">
         {activities.map((activity) => {
           return (
-            <div className="mood-list__item__activity">{activity.title}</div>
+            <div className="mood-list__item__activity" key={activity._id}>
+              {activity.title}
+            </div>
           );
         })}
       </div>
