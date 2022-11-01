@@ -24,7 +24,6 @@ function MoodCheckInForm() {
     date: new Date(),
     image: "",
   });
-  console.log(form);
 
   // Getting Mood Data
   useEffect(() => {
