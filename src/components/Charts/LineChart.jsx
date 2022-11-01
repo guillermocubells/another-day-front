@@ -117,13 +117,22 @@ function LineChart({ data }) {
     });
   }
 
+  function resetDate(e) {
+    e.preventDefault();
+    setChartData({
+      ...chartData,
+      labels: getChartDates(moodList),
+      datasets: [{ ...chartData.datasets[0], data: getChartScore(moodList) }],
+    });
+  }
+
   if (!data) {
     return <Loading />;
   }
 
   return (
     <div>
-      <form onSubmit={filterDate}>
+      <form onSubmit={(filterDate, resetDate)}>
         {/* TODO! Make datetime display current time as default  */}
         <label>
           Start Date
@@ -148,7 +157,7 @@ function LineChart({ data }) {
           ></input>
         </label>
         <button onClick={filterDate}>Filter</button>
-        {/* <button onclick={filterDates}>Reset</button> */}
+        <button onClick={resetDate}>Reset</button>
       </form>
       <Line options={chartOptions} data={chartData} />
     </div>
