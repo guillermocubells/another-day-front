@@ -5,6 +5,7 @@ import {
   LinearScale,
   LineElement,
   PointElement,
+  TimeScale,
   Tooltip,
   Legend,
 } from "chart.js";
@@ -18,6 +19,7 @@ ChartJS.register(
   LinearScale,
   LineElement,
   PointElement,
+  TimeScale,
   Tooltip,
   Legend
 );
@@ -47,7 +49,6 @@ let statusConversion = (arr) => {
 };
 
 // Date Conversion Function
-
 let dateConversion = (arr) => {
   let arr3 = [];
   let arr1 = arr.map((mood) => mood.date);
@@ -55,6 +56,17 @@ let dateConversion = (arr) => {
     arr3.push(new Date(arr1[i]).toLocaleDateString());
   }
   return arr3;
+};
+
+//FILTER FUNCTION
+// Date Conversion to Numbers
+let convertedDates = (arr) => {
+  let arr5 = [];
+  let arr4 = arr.map((mood) => mood.date);
+  for (let i = 0; i < arr4.length; i++) {
+    arr5.push(new Date(arr4[i]).setHours(0, 0, 0, 0));
+  }
+  return arr5;
 };
 
 function LineChart() {
@@ -67,13 +79,13 @@ function LineChart() {
     datasets: [],
   });
   const [chartOptions, setChartOptions] = useState({});
-  const [filter, setFilter] = useState({
+  const [form, setForm] = useState({
     date: new Date(),
   });
 
   function handleChange(evt) {
     const { name, value } = evt.target;
-    setFilter({ ...filter, [name]: value });
+    setForm({ ...form, [name]: value });
   }
   function handleSubmit(e) {
     e.preventDefault();
@@ -96,19 +108,15 @@ function LineChart() {
       });
   }, []);
 
-  // Formula to get the actual days when the user checked in
-  let filterActualDates = moodList.map((mood) => mood.date);
-  console.log("Actual", filterActualDates);
-  console.log(errorMessage, handleSubmit);
-  // Formula to convert the filterActualDates to numbers so is posible to compare them later
-  let convertedDates = filterActualDates.map((date) =>
-    new Date(date).setHours(0, 0, 0, 0)
-  );
-  // console.log("Converted Dates", convertedDates);
+  console.log(errorMessage, handleSubmit, handleChange);
+
+  console.log("Converted Dates", convertedDates(moodList));
+  // console.log(convertedDates(moodList));
 
   useEffect(() => {
     setChartData({
       labels: dateConversion(moodList),
+      // labels: convertedDates(moodList),
       datasets: [
         {
           label: "CheckIn",
@@ -130,11 +138,11 @@ function LineChart() {
         },
       },
       scales: {
-        xAxis: {
+        x: {
           // type: "time",
           time: { unit: "day" },
         },
-        yAxis: {
+        y: {
           suggestedMin: 0,
           suggestedMax: 6,
         },
@@ -146,58 +154,64 @@ function LineChart() {
     return <Loading />;
   }
 
-  //Function that filters days on the chart
+  //Filter function on Chart
 
-  function filterDates() {
-    //Gets and converts the start value from the input field into a number
+  function filterDate() {
+    const daysOfUser = [...dateConversion(moodList)];
+    console.log(daysOfUser);
+
+    //Gets the start and end date of the filter
     const start1 = new Date(document.getElementById("start").value);
-    const start = start1.setHours(0, 0, 0, 0);
-    //Gets and converts the end value from the input field into a number
     const end1 = new Date(document.getElementById("end").value);
-    const end = end1.setHours(0, 0, 0, 0);
+    console.log("start:", start1, "end:", end1);
+
+    const indexStartDate = daysOfUser.indexOf(start1.value);
+    const indexEndDate = daysOfUser.indexOf(end1.value);
+    console.log(
+      "Index start of user",
+      indexStartDate,
+      "Index end of user",
+      indexEndDate
+    );
+    // closest to a certain number
 
     //Filters the days out based on the filter selected
-    const filterDates = convertedDates.filter(
-      (date) => date >= start && date <= end
-    );
+    const filterDates = daysOfUser.slice(indexStartDate, indexEndDate + 1);
+    console.log(filterDates);
 
     //Set ChartData labels to the filterDates
     setChartData.labels = filterDates;
 
-    //Creates a start and end array based on the index of the filterDates
-    const startArray = convertedDates.indexOf(filterDates[0]);
-    const endArray = convertedDates.indexOf(
-      filterDates[filterDates.length - 1]
-    );
-
     // Makes a copy of the filtered data from the convertedDates
-    const copyFilterData = [...convertedDates];
-    copyFilterData.splice(endArray + 1, filterDates.length);
-    copyFilterData.splice(0, startArray);
+    const copyFilterData = [...statusConversion(moodList)];
+    console.log("copy user data", copyFilterData);
 
-    console.log(copyFilterData);
+    const filterDataPoints = daysOfUser.slice(indexStartDate, indexEndDate + 1);
+    console.log(filterDataPoints);
 
     //Set ChartData datasets to the filteredDates
-    setChartData.datasets[0].data = copyFilterData;
-
+    setChartData.datasets[0].data = filterDataPoints;
+    // setChartData({
+    //   ...chartData,
+    //   datasets: [...datasets, datasets[0]:{data} ],
+    // });
     //Updates the chart data
     setChartData.update();
   }
 
   return (
     <div>
-      <Line options={chartOptions} data={chartData} />
-      <form>
+      <form onSubmit={handleSubmit}>
         {/* TODO! Make datetime display current time as default  */}
         <label>
           Start Date
           <input
             id="start"
             type="date"
-            onChange={handleChange}
-            value={filter.date}
-            min=""
-            max=""
+            onChange={filterDate}
+            value={form.date}
+            min={dateConversion(moodList)[0]}
+            max={dateConversion(moodList)[-1]}
           ></input>
         </label>
         <label>
@@ -205,15 +219,16 @@ function LineChart() {
           <input
             id="end"
             type="date"
-            onChange={handleChange}
-            value={filter.date}
-            min=""
-            max=""
+            onChange={filterDate}
+            value={form.date}
+            // min=""
+            // max=""
           ></input>
         </label>
-        <button onClick={filterDates}>Filter</button>
+        <button onClick={filterDate}>Filter</button>
         {/* <button onclick={filterDates}>Reset</button> */}
       </form>
+      <Line options={chartOptions} data={chartData} />
     </div>
   );
 }
