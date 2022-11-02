@@ -28,9 +28,11 @@ button:hover {
 }
 
 body {
-  --color-awful: #000000;
-  --color-bad: #000000;
-  --color-okay: #000000;
-  --color-good: #000000;
-  --color-great: #000000;
+  --color-background: #000000;
+  --color-text: #ffffff;
+  --color-awful: #ff0055;
+  --color-bad: #e64343;
+  --color-okay: #34fff8;
+  --color-good: #31ff80;
+  --color-great: #4bff2f;
 }
