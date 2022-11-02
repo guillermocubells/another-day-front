@@ -1,0 +1,14 @@
+.mood-distribution footer {
+  display: flex;
+  gap: var(--spacer-s);
+}
+
+.mood-distribution footer div {
+  border: 1px solid black;
+  padding: 0.25rem 0.5rem;
+  border-radius: 100vh;
+}
+
+.mood-distribution footer span {
+  border-radius: 100vh;
+}

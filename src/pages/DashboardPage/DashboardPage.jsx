@@ -3,6 +3,7 @@ import apiClient from "../../services/api-client";
 import BarChart from "../../components/Charts/BarChart";
 import LineChart from "../../components/Charts/LineChart";
 import Loading from "../../components/Loading/Loading";
+import TotalMoodDistribution from "../../components/Charts/TotalMoodDistribution";
 
 function DashboardPage() {
   const [data, setData] = useState([]);
@@ -45,6 +46,10 @@ function DashboardPage() {
       <div>
         <h2>Line Chart</h2>
         <LineChart data={data} />
+      </div>
+      <div>
+        <h2>Mood Distribution</h2>
+        <TotalMoodDistribution data={data} />
       </div>
     </div>
   );
