@@ -21,9 +21,12 @@ function DeleteButton({ id }) {
       });
   }
   return (
-    <button type="button" onClick={handleClick}>
-      Delete Entry
-    </button>
+    <>
+      <button type="button" onClick={handleClick}>
+        Delete Entry
+      </button>
+      {errorMessage && <div>{errorMessage}</div>}
+    </>
   );
 }
 
