@@ -59,7 +59,7 @@ function EditMoodPage() {
               .split(".")[0],
             journal,
             image,
-            substatus: substatus[status],
+            substatus: substatus && substatus[status],
             activities: activities.map((item) => item.title),
           });
         }
@@ -75,7 +75,6 @@ function EditMoodPage() {
   if (isLoading && isLoadingMoodData) {
     return <Loading />;
   }
-  const { mood_status, mood_substatus, activities } = moodData;
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -106,6 +105,8 @@ function EditMoodPage() {
         setMessage(errorDescription);
       });
   }
+
+  const { mood_status, mood_substatus, activities } = moodData;
 
   return (
     <section className="mood-check-in">
@@ -142,7 +143,7 @@ function EditMoodPage() {
         {/* If a Mood has been selected, show relative substatus */}
         {form.status && <br />}
         {form.status &&
-          mood_substatus[form.status].map((item, index) => {
+          mood_substatus[form.status]?.map((item, index) => {
             return (
               <label key={index}>
                 {item}
