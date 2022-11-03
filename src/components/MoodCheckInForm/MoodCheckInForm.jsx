@@ -21,10 +21,12 @@ function MoodCheckInForm() {
     substatus: "",
     activities: [],
     journal: "",
-    date: new Date(),
+    date: new Date(new Date().toString().split("GMT")[0] + " UTC")
+      .toISOString()
+      .split(".")[0],
     image: "",
   });
-
+  console.log(form);
   // Getting Mood Data
   useEffect(() => {
     setIsLoading(true);
