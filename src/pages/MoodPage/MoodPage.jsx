@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import apiClient from "../../services/api-client";
 
@@ -8,6 +8,10 @@ function MoodPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const { id } = useParams();
+  const navigate = useNavigate();
+  function moveToEditPage() {
+    navigate(`/mood/${id}/edit`);
+  }
 
   useEffect(() => {
     setIsLoading(true);
@@ -52,6 +56,9 @@ function MoodPage() {
         )}
         {/* <image /> */}
       </article>
+      <button type="button" onClick={moveToEditPage}>
+        Edit
+      </button>
     </div>
   );
 }
