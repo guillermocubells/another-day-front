@@ -7,13 +7,13 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Loading from "../../components/Loading/Loading";
 import CreateCustomActivity from "../../components/CreateCustomActivity/CreateCustomActivity";
+import DeleteButton from "../../components/DeleteButton/DeleteButton";
 
 function EditMoodPage() {
   const { id } = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [data, setData] = useState({});
+  const [message, setMessage] = useState("");
 
   const [moodData, setMoodData] = useState({
     mood_status: [],
@@ -29,25 +29,35 @@ function EditMoodPage() {
     date: new Date(),
     image: "",
   });
-  console.log(form);
+
   useEffect(() => {
     setIsLoading(true);
     apiClient
       .get("/api")
       .then((res) => {
         setMoodData(res.data);
-        setIsLoading(false);
       })
       .catch((error) => {
-        setIsLoading(false);
         console.error(error);
       });
 
     apiClient
       .get(`/api/mood/${id}`)
       .then((res) => {
-        setData(res.data);
-        setForm(res.data);
+        if (res.data) {
+          const { activities, status, date, journal, image, substatus } =
+            res.data;
+          setForm({
+            status,
+            date: new Date(new Date(date).toString().split("GMT")[0] + " UTC")
+              .toISOString()
+              .split(".")[0],
+            journal,
+            image,
+            substatus: substatus[status],
+            activities: activities.map((item) => item.title),
+          });
+        }
       })
       .catch((err) => {
         console.log("err", err);
@@ -60,7 +70,6 @@ function EditMoodPage() {
   if (isLoading) {
     return <Loading />;
   }
-
   const { mood_status, mood_substatus, activities } = moodData;
 
   function handleChange(evt) {
@@ -79,24 +88,23 @@ function EditMoodPage() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setErrorMessage("");
+    setMessage("");
 
     apiClient
       .post(`/api/mood/${id}/edit`, form)
       .then((response) => {
-        const { data } = response;
+        setMessage("Successfully Updated");
       })
       .catch((err) => {
         console.error(err);
         const errorDescription = err.response.data.message;
-        setErrorMessage(errorDescription);
+        setMessage(errorDescription);
       });
   }
 
   return (
     <section className="mood-check-in">
       <h1>Edit</h1>
-      {errorMessage && <div>{errorMessage}</div>}
       <form onSubmit={handleSubmit}>
         {/* TODO! Make datetime display current time as default  */}
         <label>
@@ -119,6 +127,7 @@ function EditMoodPage() {
                 type="radio"
                 value={status}
                 name="status"
+                checked={form.status && form.status.includes(status)}
                 onChange={handleChange}
               />{" "}
             </label>
@@ -136,6 +145,7 @@ function EditMoodPage() {
                   type="radio"
                   value={item}
                   name="substatus"
+                  checked={form.substatus && form.substatus.includes(item)}
                   onChange={handleChange}
                 />{" "}
               </label>
@@ -189,8 +199,10 @@ function EditMoodPage() {
           ></input>
         </label>
         <br />
-        <button type="submit">Check In</button>
+        <button type="submit">Save Changes</button>
       </form>
+      <DeleteButton id={id} />
+      {message && <div>{message}</div>}
     </section>
   );
 }
