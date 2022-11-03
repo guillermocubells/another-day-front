@@ -11,6 +11,7 @@ import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
 import MoodPage from "./pages/MoodPage/MoodPage";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
+import EditMoodPage from "./pages/EditMoodPage/EditMoodPage";
 
 function App() {
   return (
@@ -56,6 +57,14 @@ function App() {
           element={
             <IsPrivate>
               <MoodPage />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/mood/:id/edit"
+          element={
+            <IsPrivate>
+              <EditMoodPage />
             </IsPrivate>
           }
         />
