@@ -11,8 +11,9 @@ import DeleteButton from "../../components/DeleteButton/DeleteButton";
 
 function EditMoodPage() {
   const { id } = useParams();
-
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingMoodData, setIsLoadingMoodData] = useState(true);
+
   const [message, setMessage] = useState("");
 
   const [moodData, setMoodData] = useState({
@@ -32,6 +33,7 @@ function EditMoodPage() {
 
   useEffect(() => {
     setIsLoading(true);
+    setIsLoadingMoodData(true);
     apiClient
       .get("/api")
       .then((res) => {
@@ -39,6 +41,9 @@ function EditMoodPage() {
       })
       .catch((error) => {
         console.error(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
 
     apiClient
@@ -63,11 +68,11 @@ function EditMoodPage() {
         console.log("err", err);
       })
       .finally(() => {
-        setIsLoading(false);
+        setIsLoadingMoodData(false);
       });
   }, [id]);
 
-  if (isLoading) {
+  if (isLoading && isLoadingMoodData) {
     return <Loading />;
   }
   const { mood_status, mood_substatus, activities } = moodData;
@@ -127,7 +132,7 @@ function EditMoodPage() {
                 type="radio"
                 value={status}
                 name="status"
-                checked={form.status && form.status.includes(status)}
+                checked={form.status && form.status?.includes(status)}
                 onChange={handleChange}
               />{" "}
             </label>
@@ -145,7 +150,7 @@ function EditMoodPage() {
                   type="radio"
                   value={item}
                   name="substatus"
-                  checked={form.substatus && form.substatus.includes(item)}
+                  checked={form.substatus && form.substatus?.includes(item)}
                   onChange={handleChange}
                 />{" "}
               </label>
@@ -166,7 +171,7 @@ function EditMoodPage() {
                 name="activities"
                 id={title}
                 onChange={handleCheckbox}
-                checked={form.activities.some((e) => e === title)}
+                checked={form.activities?.some((e) => e === title)}
               ></input>
             </label>
           );
