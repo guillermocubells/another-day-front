@@ -4,6 +4,8 @@ import BarChart from "../../components/Charts/BarChart";
 import LineChart from "../../components/Charts/LineChart";
 import Loading from "../../components/Loading/Loading";
 import TotalMoodDistribution from "../../components/Charts/TotalMoodDistribution";
+import RadarChart from "../../components/Charts/RadarChart";
+import KeyMetrics from "../../components/Charts/KeyMetrics";
 
 function DashboardPage() {
   const [data, setData] = useState([]);
@@ -38,18 +40,24 @@ function DashboardPage() {
   return (
     <div>
       <h1>Dashboard</h1>
-
       <div>
-        <h2>Bar Chart</h2>
+        <KeyMetrics data={data} />
+      </div>
+      <div>
+        <h2>Total Mood Count</h2>
         <BarChart data={data} />
       </div>
       <div>
-        <h2>Line Chart</h2>
+        <h2>Mood Tracker</h2>
         <LineChart data={data} />
       </div>
       <div>
         <h2>Mood Distribution</h2>
         <TotalMoodDistribution data={data} />
+      </div>
+      <div>
+        <h2>Activity Mood Tracker</h2>
+        <RadarChart data={data} />
       </div>
     </div>
   );
