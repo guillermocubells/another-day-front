@@ -7,3 +7,15 @@
   line-height: 1.5em;
   border-radius: var(--spacer-m);
 }
+
+.pill-small input {
+  display: none;
+}
+
+.pill-checkbox:hover {
+  cursor: pointer;
+}
+
+.pill-small.inactive {
+  opacity: var(--opacity);
+}
