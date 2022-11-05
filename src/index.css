@@ -71,6 +71,7 @@ button:hover {
   --border-large: 3px;
 
   --animation-timing-slow: 0.5s;
+  --opacity: 35%;
 }
 
 body {
@@ -91,6 +92,7 @@ body {
   font-size: 14px;
   background-color: var(--color-background);
 }
+
 input {
   font-family: inherit;
   color: grey;
