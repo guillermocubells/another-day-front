@@ -71,7 +71,6 @@ function BarChart({ data }) {
         },
         y: {
           grid: { display: false },
-
           ticks: {
             display: false,
             fontSize: 40,

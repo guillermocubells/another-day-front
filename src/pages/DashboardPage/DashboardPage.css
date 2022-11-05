@@ -14,6 +14,11 @@ input {
   display: flex;
 }
 
+.chart-cards {
+  background-color: white;
+  margin: 32px;
+  border-color: grey;
+}
 /* /* .mood-distribution footer {
   display: flex;
   gap: var(--spacer-s);

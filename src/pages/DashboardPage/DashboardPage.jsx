@@ -41,25 +41,25 @@ function DashboardPage() {
   return (
     <div className="dashboard-layout">
       <h1>Dashboard</h1>
-      <div className="key_metrics">
+      <div className="chart-cards">
         <h2>Key Metrics</h2>
         <br />
         <KeyMetrics data={data} />
       </div>
       <div className="chart-layout">
         <div>
-          <div>
+          <div className="chart-cards">
             <h2>Mood Counter</h2>
             <br />
             <BarChart data={data} />
           </div>
-          <div>
+          <div className="chart-cards">
             <h2>Mood Tracker</h2>
             <br />
             <LineChart data={data} />
           </div>
         </div>
-        <div>
+        <div className="chart-cards">
           <h2>Mood Distribution</h2>
           <br />
           <TotalMoodDistribution data={data} />
