@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 120 120" style="enable-background:new 0 0 120 120;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#030402;}
+	.st2{fill:none;stroke:#030402;stroke-width:3;stroke-linecap:round;}
+	.st3{fill:none;stroke:#030402;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
+	.st4{fill:none;stroke:#030402;stroke-width:3;}
+</style>
+<g>
+	<g>
+		<circle class="st0" cx="60" cy="60" r="58.5"/>
+		<path class="st1" d="M60,3c31.43,0,57,25.57,57,57s-25.57,57-57,57S3,91.43,3,60S28.57,3,60,3 M60,0C26.86,0,0,26.86,0,60
+			s26.86,60,60,60s60-26.86,60-60S93.14,0,60,0L60,0z"/>
+	</g>
+	<g id="Gruppe_9_00000147207819744776625550000014107588063782914969_" transform="translate(-308 -539)">
+		<g id="Gruppe_19_00000095318635609292791860000008257607392542526098_" transform="translate(-1319 359)">
+			<path id="Pfad_1_00000003106784228462642060000011061980659900564159_" class="st2" d="M1716.68,227.6c0,0-6.88-4.86-13.54,0"/>
+			<path id="Pfad_2_00000155833230689774775590000003611682579039908241_" class="st2" d="M1670.85,227.6c0,0-6.88-4.86-13.54,0"/>
+		</g>
+	</g>
+	<path class="st2" d="M28.52,76.18c6.23,10.42,18,17.45,31.48,17.45c13.48,0,25.25-7.03,31.48-17.45"/>
+</g>
+</svg>
