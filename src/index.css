@@ -56,6 +56,7 @@ button:hover {
 }
 
 :root {
+  --spacer-xs: 0.25rem;
   --spacer-s: 0.5rem;
   --spacer-m: 1rem;
   --spacer-l: 2rem;
@@ -64,6 +65,10 @@ button:hover {
   --text-size-m: 2rem;
   --text-size-l: 3rem;
   --text-size-xl: 6rem;
+
+  --border-small: 1px;
+  --border-medium: 2px;
+  --border-large: 3px;
 }
 
 body {
