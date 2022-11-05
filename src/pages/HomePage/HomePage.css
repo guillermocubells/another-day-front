@@ -2,4 +2,5 @@ main.home {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--spacer-m);
+  padding: var(--spacer-m);
 }

@@ -14,6 +14,7 @@ h2 {
 
 h3 {
   font-size: var(--text-size-m);
+  display: inline-block;
 }
 
 h4 {
