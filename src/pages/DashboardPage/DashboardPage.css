@@ -1,0 +1,20 @@
+li {
+  list-style-type: none;
+}
+input {
+  font-family: inherit;
+  color: grey;
+}
+
+.dashboard-layout {
+  display: inline-block;
+}
+
+.chart-layout {
+  display: flex;
+}
+
+/* /* .mood-distribution footer {
+  display: flex;
+  gap: var(--spacer-s);
+} */

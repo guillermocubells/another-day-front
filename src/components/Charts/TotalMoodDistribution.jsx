@@ -12,6 +12,7 @@ const MOODS = ["Awful", "Bad", "Okay", "Good", "Great"];
 
 function TotalMoodDistribution({ data }) {
   const [chartData, setChartData] = useState({ labels: [], datasets: [] });
+  const [chartOptions, setChartOptions] = useState({});
   const [moodDistribution] = useState(
     MOODS.map((mood) => {
       return {
@@ -47,6 +48,14 @@ function TotalMoodDistribution({ data }) {
         },
       ],
     });
+    setChartOptions({
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
+    });
   }, [data, moodDistribution]);
 
   if (!data) {
@@ -55,7 +64,8 @@ function TotalMoodDistribution({ data }) {
 
   return (
     <article className="mood-distribution">
-      {<Doughnut data={chartData} />}
+      {<Doughnut options={chartOptions} data={chartData} />}
+      <br />
       <footer>
         {moodDistribution
           .slice()

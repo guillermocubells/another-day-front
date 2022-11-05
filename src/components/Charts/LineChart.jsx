@@ -55,13 +55,17 @@ function LineChart({ data }) {
   }
 
   useEffect(() => {
+    const LINE_COLOR = {
+      okay: getComputedStyle(document.body).getPropertyValue("--color-okay"),
+    };
+    ChartJS.defaults.font.family = "Sporting Grotesque_Regular";
+    ChartJS.defaults.font.size = 10;
     setChartData({
       labels: getChartDates(moodList),
       datasets: [
         {
-          label: "CheckIn",
           data: getChartScore(moodList),
-          borderColor: "rgb(53,162,235)",
+          borderColor: [LINE_COLOR.okay],
           backgroundColor: "rgba(53,162,235,0.4)",
         },
       ],
@@ -70,18 +74,24 @@ function LineChart({ data }) {
       responsive: true,
       plugins: {
         legend: {
-          position: "top",
+          display: false,
         },
-        title: {
-          display: true,
-          text: "CheckIn",
-        },
+      },
+      font: {
+        size: 40,
       },
       scales: {
         x: {
+          grid: { display: false },
           time: { unit: "day" },
+          ticks: { maxTicksLimit: 5 },
         },
         y: {
+          grid: { display: false },
+          ticks: {
+            display: false,
+            fontSize: 40,
+          },
           suggestedMin: 0,
           suggestedMax: 6,
         },

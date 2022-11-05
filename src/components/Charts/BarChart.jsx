@@ -33,14 +33,27 @@ function BarChart({ data }) {
     let countGood = countMood(moodList, "Good");
     let countGreat = countMood(moodList, "Great");
 
+    const MOOD_COLORS = {
+      awful: getComputedStyle(document.body).getPropertyValue("--color-awful"),
+      bad: getComputedStyle(document.body).getPropertyValue("--color-bad"),
+      okay: getComputedStyle(document.body).getPropertyValue("--color-okay"),
+      good: getComputedStyle(document.body).getPropertyValue("--color-good"),
+      great: getComputedStyle(document.body).getPropertyValue("--color-great"),
+    };
+
     setChartData({
       labels: ["Awful", "Bad", "Okay", "Good", "Great"],
       datasets: [
         {
-          label: "CheckIn",
           data: [countAwful, countBad, countOkay, countGood, countGreat],
           borderColor: "rgb(53,162,235)",
-          backgroundColor: "rgba(53,162,235,0.4)",
+          backgroundColor: [
+            MOOD_COLORS.awful,
+            MOOD_COLORS.bad,
+            MOOD_COLORS.okay,
+            MOOD_COLORS.good,
+            MOOD_COLORS.great,
+          ],
         },
       ],
     });
@@ -48,11 +61,23 @@ function BarChart({ data }) {
       responsive: true,
       plugins: {
         legend: {
-          position: "top",
+          display: false,
         },
-        title: {
-          display: true,
-          text: "CheckIn",
+      },
+      scales: {
+        x: {
+          time: { unit: "day" },
+          grid: { display: false },
+        },
+        y: {
+          grid: { display: false },
+
+          ticks: {
+            display: false,
+            fontSize: 40,
+            stepSize: 0.5,
+            maxTicksLimit: 5,
+          },
         },
       },
     });
