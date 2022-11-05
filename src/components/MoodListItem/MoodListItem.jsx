@@ -25,7 +25,7 @@ function MoodListItem({ mood }) {
             minute: "2-digit",
           })}
         </div>
-        <h2 className="mood-list__item__status">{status}</h2>
+        <h3 className="mood-list__item__status">{status}</h3>
         <div className="mood-list__item__activities">
           {activities.map((activity) => {
             return <PillSmall content={activity.title} key={activity._id} />;
