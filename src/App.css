@@ -5,3 +5,19 @@
 .smiley-image {
   width: 6vw;
 }
+
+/* ############# TYPOGRAPHY ############# */
+
+h1 {
+  font-size: var(--text-size-m);
+}
+
+h2 {
+  font-size: var(--text-size-2);
+}
+
+h3 {
+}
+
+h4 {
+}
