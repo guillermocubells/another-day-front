@@ -1,8 +1,11 @@
 nav {
+  position: sticky;
+  top: 0px;
   background-color: var(--color-white);
   padding: var(--spacer-m);
   display: flex;
   justify-content: space-between;
+  border-bottom: var(--border-large) var(--color-text) solid;
 }
 
 nav > div {
