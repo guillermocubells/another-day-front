@@ -69,6 +69,8 @@ button:hover {
   --border-small: 1px;
   --border-medium: 2px;
   --border-large: 3px;
+
+  --animation-timing-slow: 0.5s;
 }
 
 body {
