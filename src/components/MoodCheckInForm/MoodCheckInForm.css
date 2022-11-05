@@ -1,3 +1,23 @@
+section.mood-check-in .mood-check-in__wrapper h2,
+section.mood-check-in .mood-check-in__wrapper form {
+  border: var(--border-large) var(--color-text) solid;
+  border-radius: var(--spacer-m);
+  overflow: hidden;
+}
+
+section.mood-check-in .mood-check-in__wrapper h2 {
+  width: fit-content;
+  padding: var(--spacer-s) var(--spacer-m);
+  border-bottom: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  background-color: var(--color-white);
+}
+
+section.mood-check-in .mood-check-in__wrapper form {
+  border-top-left-radius: 0;
+}
+
 .mood-check-in__form-status:hover {
   cursor: pointer;
 }
