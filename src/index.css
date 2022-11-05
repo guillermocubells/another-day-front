@@ -86,5 +86,12 @@ html,
 body {
   font-family: "Sporting Grotesque_Regular";
   font-size: 14px;
+}
+
+html {
+  background-color: var(--color-white);
+}
+
+body {
   background-color: var(--color-background);
 }
