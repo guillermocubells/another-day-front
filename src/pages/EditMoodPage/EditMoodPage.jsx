@@ -186,7 +186,7 @@ function EditMoodPage() {
 
         <br />
         <label>
-          Journal
+          Note
           <textarea
             type="text"
             name="journal"

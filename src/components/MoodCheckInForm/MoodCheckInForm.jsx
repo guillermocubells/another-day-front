@@ -26,7 +26,7 @@ function MoodCheckInForm() {
       .split(".")[0],
     image: "",
   });
-  console.log(form);
+
   // Getting Mood Data
   useEffect(() => {
     setIsLoading(true);
@@ -156,7 +156,7 @@ function MoodCheckInForm() {
 
         <br />
         <label>
-          Journal
+          Note
           <textarea
             type="text"
             name="journal"
