@@ -1,8 +1,28 @@
 section.mood-list .mood-list-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: var(--spacer-m);
+}
+
+section.mood-list.mood-list__day-wrapper {
+  overflow: hidden;
+}
+section.mood-list .mood-list__day-date,
+section.mood-list .mood-list__day-entries {
+  border: var(--border-large) var(--color-text) solid;
+  border-radius: var(--spacer-m);
+  overflow: hidden;
 }
 
 section.mood-list .mood-list__day-date {
+  width: fit-content;
+  padding: var(--spacer-s) var(--spacer-m);
+  border-bottom: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
   background-color: var(--color-white);
+}
+
+section.mood-list .mood-list__day-entries {
+  border-top-left-radius: 0;
 }

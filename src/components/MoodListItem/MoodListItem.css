@@ -1,0 +1,19 @@
+.mood-list__day-entries .mood-list__item:not(:last-child) {
+  border-bottom: var(--border-large) var(--color-text) solid;
+}
+
+.mood-list__item {
+  padding: var(--spacer-m);
+  display: flex;
+  gap: var(--spacer-m);
+}
+
+.mood-list__item:hover {
+  cursor: pointer;
+}
+
+.mood-list__item__activities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacer-s);
+}

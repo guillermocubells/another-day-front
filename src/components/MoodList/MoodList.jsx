@@ -65,7 +65,7 @@ function MoodList() {
             return (
               <article key={day} className="mood-list__day-wrapper">
                 <div className="mood-list__day-date">
-                  <h3>{new Date(Number(day)).toDateString()}</h3>
+                  <h4>{new Date(Number(day)).toDateString()}</h4>
                 </div>
                 <div className="mood-list__day-entries">
                   {orderedMoods[day]
