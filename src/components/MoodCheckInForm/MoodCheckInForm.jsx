@@ -103,6 +103,7 @@ function MoodCheckInForm() {
               <img
                 src={MOOD_ASSETS[status].image}
                 alt={`${status} smiley face`}
+                className="smiley-image"
               />
               {status}
               <input
