@@ -1,0 +1,8 @@
+section.mood-list .mood-list-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+section.mood-list .mood-list__day-date {
+  background-color: var(--color-white);
+}

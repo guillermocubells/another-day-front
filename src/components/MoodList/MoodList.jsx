@@ -1,3 +1,5 @@
+import "./MoodList.css";
+
 import React, { useEffect, useState } from "react";
 import apiClient from "../../services/api-client";
 import Loading from "../Loading/Loading";
@@ -53,24 +55,31 @@ function MoodList() {
 
   return (
     <section className="mood-list">
-      {Object.keys(orderedMoods)
-        .sort((a, b) => {
-          return b - a;
-        })
-        .map((day) => {
-          return (
-            <div style={{ padding: 50 }} key={day}>
-              <h2>{new Date(Number(day)).toDateString()}</h2>
-              {orderedMoods[day]
-                .sort((a, b) => {
-                  return new Date(b.date) - new Date(a.date);
-                })
-                .map((mood) => {
-                  return <MoodListItem mood={mood} key={mood._id} />;
-                })}
-            </div>
-          );
-        })}
+      <h2>Journal</h2>
+      <div className="mood-list-wrapper">
+        {Object.keys(orderedMoods)
+          .sort((a, b) => {
+            return b - a;
+          })
+          .map((day) => {
+            return (
+              <article key={day} className="mood-list__day-wrapper">
+                <div className="mood-list__day-date">
+                  <h3>{new Date(Number(day)).toDateString()}</h3>
+                </div>
+                <div className="mood-list__day-entries">
+                  {orderedMoods[day]
+                    .sort((a, b) => {
+                      return new Date(b.date) - new Date(a.date);
+                    })
+                    .map((mood) => {
+                      return <MoodListItem mood={mood} key={mood._id} />;
+                    })}
+                </div>
+              </article>
+            );
+          })}
+      </div>
     </section>
   );
 }

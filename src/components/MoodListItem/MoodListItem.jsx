@@ -1,3 +1,5 @@
+import "./MoodListItem.css";
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,10 +9,7 @@ function MoodListItem({ mood }) {
   const navigate = useNavigate();
 
   return (
-    <article
-      className={`mood-list__item ${status.toLowerCase()}`}
-      onClick={() => navigate(`/mood/${_id}`)}
-    >
+    <div onClick={() => navigate(`/mood/${_id}`)}>
       <div className="mood-list__item__date">
         {newDate.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
       </div>
@@ -24,7 +23,7 @@ function MoodListItem({ mood }) {
           );
         })}
       </div>
-    </article>
+    </div>
   );
 }
 
