@@ -1,4 +1,4 @@
-/* resets */
+/* ############# RESET ############# */
 
 * {
   margin: 0;
@@ -14,6 +14,45 @@ a {
 a:hover,
 button:hover {
   cursor: pointer;
+}
+
+/* ############# IMPORT TYPEFACE ############# */
+
+@font-face {
+  font-family: "Sporting Grotesque_Regular";
+
+  src: url("./assets/typeface/Regular/Sporting_Grotesque-Regular_web.otf");
+  src: url("./assets/typeface/Regular/Sporting_Grotesque-Regular_web.eot?#iefix")
+      format("embedded-opentype"),
+    url("./assets/typeface/Regular/Sporting_Grotesque-Regular_web.woff")
+      format("woff"),
+    url("./assets/typeface/Regular/Sporting_Grotesque-Regular_web.woff2")
+      format("woff2"),
+    url("./assets/typeface/Regular/Sporting_Grotesque-Regular_web.ttf")
+      format("truetype"),
+    url("./assets/typeface/Regular/Sporting_Grotesque-Regular_web.svg#svgFontName")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ############# VARIABLES ############# */
+
+@font-face {
+  font-family: "Sporting Grotesque_Bold";
+  src: url("./assets/typeface/Bold/Sporting_Grotesque-Bold_web.eot");
+  src: url("./assets/typeface/Bold/Sporting_Grotesque-Bold_web.eot?#iefix")
+      format("embedded-opentype"),
+    url("./assets/typeface/Bold/Sporting_Grotesque-Bold_web.woff")
+      format("woff"),
+    url("./assets/typeface/Bold/Sporting_Grotesque-Bold_web.woff2")
+      format("woff2"),
+    url("./assets/typeface/Bold/Sporting_Grotesque-Bold_web.ttf")
+      format("truetype"),
+    url("./assets/typeface/Bold/Sporting_Grotesque-Bold_web.svg#svgFontName")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
 }
 
 :root {
@@ -35,4 +74,10 @@ body {
   --color-okay: #d1f6ff;
   --color-good: #cbffe7;
   --color-great: #cbffd5;
+}
+
+html,
+body {
+  font-family: "Sporting Grotesque_Regular";
+  font-size: 14px;
 }
