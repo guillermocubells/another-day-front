@@ -6,6 +6,7 @@ nav {
   display: flex;
   justify-content: space-between;
   border-bottom: var(--border-large) var(--color-text) solid;
+  z-index: 5;
 }
 
 nav > div {
