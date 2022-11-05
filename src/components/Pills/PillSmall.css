@@ -1,0 +1,10 @@
+.pill-small {
+  background-color: var(--color-white);
+  display: inline-block;
+  width: fit-content;
+  border: var(--border-small) var(--color-text) solid;
+  padding: var(--spacer-xs) var(--spacer-s);
+  height: calc(1em + var(--spacer-s) * 2);
+  line-height: 1.5em;
+  border-radius: 100vh;
+}
