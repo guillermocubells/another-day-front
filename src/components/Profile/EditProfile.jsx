@@ -30,10 +30,10 @@ function EditProfile({ user, setUser }) {
 
   return (
     <div>
-      <h2>Edit Profile</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Username
+          <br />
           <input
             type="text"
             onChange={handleChange}
@@ -41,8 +41,10 @@ function EditProfile({ user, setUser }) {
             value={user.name}
           />
         </label>
+        <br />
         <label>
           Email
+          <br />
           <input
             type="email"
             onChange={handleChange}
@@ -50,7 +52,11 @@ function EditProfile({ user, setUser }) {
             value={user.email}
           />
         </label>
-        <button type="submit">Save Changes</button>
+        <br />
+        <br />
+        <button className="submits" type="submit">
+          Save Changes
+        </button>
       </form>
       {errorMessage && <div>{errorMessage}</div>}
     </div>

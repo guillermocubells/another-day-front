@@ -180,7 +180,9 @@ function MoodCheckInForm() {
           ></input>
         </label>
         <br />
-        <button type="submit">Check In</button>
+        <button className="submits" type="submit">
+          Check In
+        </button>
       </form>
     </section>
   );

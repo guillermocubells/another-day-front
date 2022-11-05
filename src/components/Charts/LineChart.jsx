@@ -145,7 +145,7 @@ function LineChart({ data }) {
       <form onSubmit={(filterDate, resetDate)}>
         {/* TODO! Make datetime display current time as default  */}
         <label>
-          Start Date
+          Start
           <input
             name="start"
             type="date"
@@ -156,7 +156,7 @@ function LineChart({ data }) {
           ></input>
         </label>
         <label>
-          End Date
+          End
           <input
             name="end"
             type="date"
@@ -166,8 +166,12 @@ function LineChart({ data }) {
             max={getChartDates(moodList)[moodList.length - 1]}
           ></input>
         </label>
-        <button onClick={filterDate}>Filter</button>
-        <button onClick={resetDate}>Reset</button>
+        <button className="submits" onClick={filterDate}>
+          Filter
+        </button>
+        <button className="submits" onClick={resetDate}>
+          Reset
+        </button>
       </form>
       <Line options={chartOptions} data={chartData} />
     </div>

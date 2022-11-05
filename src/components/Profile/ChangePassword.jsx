@@ -47,10 +47,10 @@ function ChangePassword() {
 
   return (
     <div>
-      <h2>Change Password</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Old Password:
+          <br />
           <input
             type="password"
             name="oldPassword"
@@ -58,8 +58,10 @@ function ChangePassword() {
             value={passwords.oldPassword}
           />
         </label>
+        <br />
         <label>
           New Password:
+          <br />
           <input
             type="password"
             name="newPassword"
@@ -67,8 +69,10 @@ function ChangePassword() {
             value={passwords.newPassword}
           />
         </label>
+        <br />
         <label>
           Confirm Password:
+          <br />
           <input
             type="password"
             name="confirmPassword"
@@ -76,8 +80,11 @@ function ChangePassword() {
             value={passwords.confirmPassword}
           />
         </label>
-
-        <button type="submit">Change Password</button>
+        <br />
+        <br />
+        <button className="submits" type="submit">
+          Change Password
+        </button>
       </form>
       {errorMessage && <div>{errorMessage}</div>}
     </div>

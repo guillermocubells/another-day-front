@@ -18,7 +18,9 @@ function Navbar() {
           <Link to="/">Journal</Link>
           <Link to="/dashboard">Dashboard</Link>
           <Link to="/profile">Profile</Link>
-          <button onClick={logOutUser}>Logout</button>
+          <button className="submits" onClick={logOutUser}>
+            Logout
+          </button>
         </div>
       )}
 

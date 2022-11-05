@@ -1,0 +1,7 @@
+.profile-layout {
+  display: flex;
+}
+
+.profile-card-layout {
+  padding: var(--spacer-l);
+}

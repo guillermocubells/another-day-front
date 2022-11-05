@@ -62,7 +62,7 @@ function DashboardPage() {
         <div className="chart-cards">
           <h2>Mood Distribution</h2>
           <br />
-          <TotalMoodDistribution data={data} />
+          <TotalMoodDistribution className="chart-cards" data={data} />
         </div>
         {/* <div>
           <h2>Activity Mood Tracker</h2>

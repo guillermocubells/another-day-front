@@ -33,12 +33,28 @@ function ProfilePage() {
   return (
     <div>
       <h1>Hi, {name}</h1>
-      <hr />
-      <EditProfile user={user} setUser={setUser} />
-      <hr />
-      <ChangePassword />
-      <hr />
-      <DeleteUser />
+      Feel free to change your mind
+      <br />
+      Update your profile or change your username
+      <div className="profile-layout">
+        <div className="profile-card-layout">
+          <EditProfile
+            className="profile-card-layout"
+            user={user}
+            setUser={setUser}
+          />
+        </div>
+        <div className="profile-card-layout">
+          <ChangePassword />
+        </div>
+      </div>
+      Do you want to <strong style={{ color: "red" }}>delete</strong> your
+      account?
+      <br />
+      If you’re sure, confirm by logging in below.
+      <div className="profile-card-layout">
+        <DeleteUser />
+      </div>
     </div>
   );
 }

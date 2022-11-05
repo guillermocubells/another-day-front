@@ -1,10 +1,6 @@
 li {
   list-style-type: none;
 }
-input {
-  font-family: inherit;
-  color: grey;
-}
 
 .dashboard-layout {
   display: inline-block;
@@ -15,11 +11,12 @@ input {
 }
 
 .chart-cards {
-  background-color: white;
-  margin: 32px;
-  border-color: grey;
+  border: var(--border-large) var(--color-text) solid;
+  background-color: var(--color-white);
+  margin: var(--spacer-l);
+  padding: var(--spacer-l);
 }
-/* /* .mood-distribution footer {
-  display: flex;
-  gap: var(--spacer-s);
-} */
+
+.chart-cards input {
+  max-width: 120px;
+}
