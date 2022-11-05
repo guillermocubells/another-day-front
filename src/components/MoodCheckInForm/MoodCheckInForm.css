@@ -1,3 +1,8 @@
+section.mood-check-in form {
+  padding: var(--spacer-m);
+  background-color: var(--color-neutral);
+  transition: background-color var(--animation-timing-slow) ease;
+}
 section.mood-check-in .mood-check-in__wrapper h2,
 section.mood-check-in .mood-check-in__wrapper form {
   border: var(--border-large) var(--color-text) solid;
@@ -18,10 +23,6 @@ section.mood-check-in .mood-check-in__wrapper form {
   border-top-left-radius: 0;
 }
 
-section.mood-check-in form {
-  padding: var(--spacer-m);
-}
-
 .mood-check-in__form-status:hover {
   cursor: pointer;
 }
@@ -32,11 +33,20 @@ section.mood-check-in form {
   justify-content: space-between;
 }
 
+.mood-check-in__form-status-wrapper input {
+  display: none;
+}
+
 .mood-check-in__form-status {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: opacity var(--animation-timing-slow) ease;
+}
+
+.mood-check-in__form-status.inactive {
+  opacity: 0.35;
 }
 
 textarea {

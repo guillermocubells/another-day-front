@@ -79,14 +79,18 @@ function MoodCheckInForm() {
         setErrorMessage(errorDescription);
       });
   }
-
   return (
     <section className="mood-check-in">
       <h1>Check In</h1>
       <div className="mood-check-in__wrapper">
         <h2>How are you feeling right now?</h2>
         {errorMessage && <div>{errorMessage}</div>}
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            backgroundColor: form.status ? MOOD_ASSETS[form.status].color : "",
+          }}
+        >
           {/* TODO! Make datetime display current time as default  */}
           <label>
             Date
@@ -97,12 +101,17 @@ function MoodCheckInForm() {
               value={form.date}
             ></input>
           </label>
-          <br />
           <div className="mood-check-in__form-status-wrapper">
             {/* Setting Up Mood Selection */}
             {mood_status.map((status, index) => {
               return (
-                <label key={index} className="mood-check-in__form-status">
+                <label
+                  key={index}
+                  className={`mood-check-in__form-status ${
+                    form.status &&
+                    (form.status?.includes(status) ? "active" : "inactive")
+                  }`}
+                >
                   <img
                     src={MOOD_ASSETS[status].image}
                     alt={`${status} smiley face`}
@@ -113,6 +122,7 @@ function MoodCheckInForm() {
                     type="radio"
                     value={status}
                     name="status"
+                    checked={form.status && form.status?.includes(status)}
                     onChange={handleChange}
                   />{" "}
                 </label>
@@ -120,7 +130,6 @@ function MoodCheckInForm() {
             })}
           </div>
           {/* If a Mood has been selected, show relative substatus */}
-          {form.status && <br />}
           {form.status &&
             mood_substatus[form.status].map((item, index) => {
               return (
@@ -135,7 +144,7 @@ function MoodCheckInForm() {
                 </label>
               );
             })}
-          <br />
+
           {/* Get Activities. 
       TODO! create array from selected values
       TODO! create the option to create a new activity. */}
