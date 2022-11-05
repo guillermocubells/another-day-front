@@ -1,6 +1,13 @@
 main.home {
+  --repeat: 1;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(var(--repeat), minmax(400px, 1fr));
   gap: var(--spacer-m);
   padding: var(--spacer-m);
+}
+
+@media (min-width: 768px) {
+  main.home {
+    --repeat: 2;
+  }
 }
