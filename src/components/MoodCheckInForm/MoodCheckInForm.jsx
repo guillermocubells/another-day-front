@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import apiClient from "../../services/api-client";
 import Loading from "../../components/Loading/Loading";
 import CreateCustomActivity from "../CreateCustomActivity/CreateCustomActivity";
+import PillSmallCheckbox from "../Pills/PillSmallCheckbox";
+
 import { MOOD_ASSETS } from "../../utils/consts";
 
 function MoodCheckInForm() {
@@ -97,6 +99,7 @@ function MoodCheckInForm() {
             <input
               type="datetime-local"
               name="date"
+              step="60"
               onChange={handleChange}
               value={form.date}
             ></input>
@@ -149,21 +152,23 @@ function MoodCheckInForm() {
       TODO! create array from selected values
       TODO! create the option to create a new activity. */}
           <h4>What are you doing?</h4>
-          {activities.map((activity, index) => {
-            const { _id, title } = activity;
-            return (
-              <label key={_id || title}>
-                {title}
-                <input
-                  type="checkbox"
-                  name="activities"
-                  id={title}
-                  onChange={handleCheckbox}
-                  checked={form.activities.some((e) => e === title)}
-                ></input>
-              </label>
-            );
-          })}
+          <div className="mood-check-in__form-activities">
+            {activities.map((activity, index) => {
+              const { _id, title } = activity;
+              return (
+                <PillSmallCheckbox
+                  key={_id || title}
+                  title={title}
+                  handleCheckbox={handleCheckbox}
+                  checked={
+                    form.activities.length
+                      ? form.activities.some((e) => e === title)
+                      : ""
+                  }
+                />
+              );
+            })}
+          </div>
           <CreateCustomActivity
             form={form}
             setForm={setForm}

@@ -46,9 +46,20 @@ section.mood-check-in .mood-check-in__wrapper form {
 }
 
 .mood-check-in__form-status.inactive {
-  opacity: 0.35;
+  opacity: var(--opacity);
 }
 
-textarea {
+.mood-check-in__form-activities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacer-s);
+}
+
+section.mood-check-in form textarea {
+  width: 100%;
+  border-radius: var(--spacer-s);
+  outline: none;
+  border: var(--border-medium) var(--color-text) solid;
+
   resize: none;
 }
