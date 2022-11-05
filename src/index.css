@@ -64,7 +64,7 @@ button:hover {
   --text-size-s: 1rem;
   --text-size-m: 2rem;
   --text-size-l: 3rem;
-  --text-size-xl: 6rem;
+  --text-size-xl: 5vw;
 
   --border-small: 1px;
   --border-medium: 2px;
@@ -87,5 +87,5 @@ html,
 body {
   font-family: "Sporting Grotesque_Regular";
   font-size: 14px;
-  background-color: var(--color-white);
+  background-color: var(--color-background);
 }
