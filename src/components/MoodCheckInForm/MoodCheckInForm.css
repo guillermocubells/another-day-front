@@ -1,3 +1,11 @@
+.mood-check-in__form-status:hover {
+  cursor: pointer;
+}
+
+.mood-check-in__form-status img {
+  width: 25%;
+}
+
 textarea {
   resize: none;
 }

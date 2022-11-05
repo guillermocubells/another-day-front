@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import apiClient from "../../services/api-client";
 import Loading from "../../components/Loading/Loading";
 import CreateCustomActivity from "../CreateCustomActivity/CreateCustomActivity";
+import { MOOD_ASSETS } from "../../utils/consts";
 
 function MoodCheckInForm() {
   const navigate = useNavigate();
@@ -81,7 +82,7 @@ function MoodCheckInForm() {
 
   return (
     <section className="mood-check-in">
-      <h1>Mood Check</h1>
+      <h2>How are you feeling right now?</h2>
       {errorMessage && <div>{errorMessage}</div>}
       <form onSubmit={handleSubmit}>
         {/* TODO! Make datetime display current time as default  */}
@@ -95,11 +96,14 @@ function MoodCheckInForm() {
           ></input>
         </label>
         <br />
-        <h4>How are you feeling right now?</h4>
         {/* Setting Up Mood Selection */}
         {mood_status.map((status, index) => {
           return (
-            <label key={index}>
+            <label key={index} className="mood-check-in__form-status">
+              <img
+                src={MOOD_ASSETS[status].image}
+                alt={`${status} smiley face`}
+              />
               {status}
               <input
                 type="radio"
