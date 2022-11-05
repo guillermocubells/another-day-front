@@ -67,6 +67,7 @@ button:hover {
 }
 
 body {
+  --color-white: #fefefe;
   --color-background: #fffa7b;
   --color-text: #1d1d1d;
   --color-awful: #fd9eb0;
