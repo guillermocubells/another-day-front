@@ -98,26 +98,27 @@ function MoodCheckInForm() {
             ></input>
           </label>
           <br />
-          {/* Setting Up Mood Selection */}
-          {mood_status.map((status, index) => {
-            return (
-              <label key={index} className="mood-check-in__form-status">
-                <img
-                  src={MOOD_ASSETS[status].image}
-                  alt={`${status} smiley face`}
-                  className="smiley-image"
-                />
-                {status}
-                <input
-                  type="radio"
-                  value={status}
-                  name="status"
-                  onChange={handleChange}
-                />{" "}
-              </label>
-            );
-          })}
-
+          <div className="mood-check-in__form-status-wrapper">
+            {/* Setting Up Mood Selection */}
+            {mood_status.map((status, index) => {
+              return (
+                <label key={index} className="mood-check-in__form-status">
+                  <img
+                    src={MOOD_ASSETS[status].image}
+                    alt={`${status} smiley face`}
+                    className="smiley-image"
+                  />
+                  <h3>{status}</h3>
+                  <input
+                    type="radio"
+                    value={status}
+                    name="status"
+                    onChange={handleChange}
+                  />{" "}
+                </label>
+              );
+            })}
+          </div>
           {/* If a Mood has been selected, show relative substatus */}
           {form.status && <br />}
           {form.status &&

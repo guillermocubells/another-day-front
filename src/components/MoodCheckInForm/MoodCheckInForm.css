@@ -18,8 +18,25 @@ section.mood-check-in .mood-check-in__wrapper form {
   border-top-left-radius: 0;
 }
 
+section.mood-check-in form {
+  padding: var(--spacer-m);
+}
+
 .mood-check-in__form-status:hover {
   cursor: pointer;
+}
+
+.mood-check-in__form-status-wrapper {
+  display: flex;
+  gap: var(--spacer-m);
+  justify-content: space-between;
+}
+
+.mood-check-in__form-status {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 textarea {
