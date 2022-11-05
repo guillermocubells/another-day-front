@@ -48,6 +48,14 @@ function CreateCustomActivity({ form, setForm, moodData, setMoodData }) {
     setNewActivity(value);
   }
 
+  function preventSubmitOnEnter(e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleCreate(e);
+      return;
+    }
+  }
+
   return (
     <div>
       <button type="button" onClick={showForm}>
@@ -62,6 +70,7 @@ function CreateCustomActivity({ form, setForm, moodData, setMoodData }) {
               placeholder="Something else"
               name="createActivity"
               value={newActivity}
+              onKeyPress={preventSubmitOnEnter}
             />
           </label>
           <button type="button" onClick={handleCreate}>

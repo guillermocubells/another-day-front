@@ -2,6 +2,24 @@
   width: 6vw;
 }
 
+/* ############# TYPOGRAPHY ############# */
+
+h1 {
+  font-size: var(--text-size-xl);
+}
+
+h2 {
+  font-size: var(--text-size-s);
+}
+
+h3 {
+  font-size: var(--text-size-m);
+  display: inline-block;
+}
+
+h4 {
+}
+
 .submits {
   font: inherit;
   background-color: var(--color-white);

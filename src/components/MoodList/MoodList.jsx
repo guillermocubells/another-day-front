@@ -55,7 +55,7 @@ function MoodList() {
 
   return (
     <section className="mood-list">
-      <h2>Journal</h2>
+      <h1>Journal</h1>
       <div className="mood-list-wrapper">
         {Object.keys(orderedMoods)
           .sort((a, b) => {
@@ -65,7 +65,7 @@ function MoodList() {
             return (
               <article key={day} className="mood-list__day-wrapper">
                 <div className="mood-list__day-date">
-                  <h4>{new Date(Number(day)).toDateString()}</h4>
+                  <h2>{new Date(Number(day)).toDateString()}</h2>
                 </div>
                 <div className="mood-list__day-entries">
                   {orderedMoods[day]

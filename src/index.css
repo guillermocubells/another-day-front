@@ -64,17 +64,20 @@ button:hover {
   --text-size-s: 1rem;
   --text-size-m: 2rem;
   --text-size-l: 3rem;
-  --text-size-xl: 6rem;
+  --text-size-xl: 5vw;
 
   --border-small: 1px;
   --border-medium: 2px;
   --border-large: 3px;
+
+  --animation-timing-slow: 0.5s;
 }
 
 body {
   --color-white: #fefefe;
   --color-background: #fffa7b;
   --color-text: #1d1d1d;
+  --color-neutral: #d1fff8;
   --color-awful: #fd9eb0;
   --color-bad: #ffbeaf;
   --color-okay: #d1f6ff;
