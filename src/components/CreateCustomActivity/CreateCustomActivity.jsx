@@ -58,7 +58,7 @@ function CreateCustomActivity({ form, setForm, moodData, setMoodData }) {
 
   return (
     <div>
-      <button type="button" onClick={showForm}>
+      <button className="btn-submit" type="button" onClick={showForm}>
         {isActive ? "Close" : "..."}
       </button>
       {isActive && (
@@ -73,7 +73,7 @@ function CreateCustomActivity({ form, setForm, moodData, setMoodData }) {
               onKeyPress={preventSubmitOnEnter}
             />
           </label>
-          <button type="button" onClick={handleCreate}>
+          <button className="btn-submit" type="button" onClick={handleCreate}>
             Create Activity
           </button>
           {errorMessage && <div>{errorMessage}</div>}
