@@ -5,12 +5,14 @@ nav {
   padding: var(--spacer-m);
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-bottom: var(--border-large) var(--color-text) solid;
   z-index: 5;
 }
 
 nav > div {
   display: flex;
+  align-items: center;
   gap: var(--spacer-m);
 }
 
