@@ -12,7 +12,8 @@
   display: none;
 }
 
-.pill-checkbox:hover {
+.pill-checkbox:hover,
+.pill-radio:hover {
   cursor: pointer;
 }
 

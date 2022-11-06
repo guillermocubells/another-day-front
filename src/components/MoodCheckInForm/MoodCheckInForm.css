@@ -1,4 +1,7 @@
 section.mood-check-in form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacer-m);
   padding: var(--spacer-m);
   background-color: var(--color-neutral);
   transition: background-color var(--animation-timing-slow) ease;
@@ -33,6 +36,12 @@ section.mood-check-in .mood-check-in__wrapper form {
   justify-content: space-between;
 }
 
+.mood-check-in__form-substatus-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacer-s);
+}
+
 .mood-check-in__form-status-wrapper input {
   display: none;
 }
@@ -49,15 +58,25 @@ section.mood-check-in .mood-check-in__wrapper form {
   opacity: var(--opacity);
 }
 
-.mood-check-in__form-activities {
+.mood-check-in__form-activities,
+.mood-check-in__form-flex {
   display: flex;
+}
+
+.mood-check-in__form-activities {
   flex-wrap: wrap;
   gap: var(--spacer-s);
+  place-items: flex-start;
+}
+
+.mood-check-in__form-image {
+  flex-direction: column;
 }
 
 section.mood-check-in form textarea {
   width: 100%;
   border-radius: var(--spacer-s);
+  padding: var(--spacer-s);
   outline: none;
   border: var(--border-medium) var(--color-text) solid;
 
