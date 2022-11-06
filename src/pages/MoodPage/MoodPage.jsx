@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import apiClient from "../../services/api-client";
+import MoodPageActivities from "../../components/MoodListActivities/MoodListActivities";
 
 function MoodPage() {
   const [data, setData] = useState({});
@@ -38,7 +39,7 @@ function MoodPage() {
   }
 
   const { _id, date, status, substatus, activities, journal } = data;
-
+  // console.log(activities);
   return (
     <div>
       <article key={_id}>
@@ -59,6 +60,9 @@ function MoodPage() {
       <button type="button" onClick={moveToEditPage}>
         Edit
       </button>
+      <div>
+        <MoodPageActivities />
+      </div>
     </div>
   );
 }
