@@ -89,7 +89,7 @@ function MoodCheckInForm() {
   return (
     <section className="mood-check-in">
       <h1>Check In</h1>
-      <div className="mood-check-in__wrapper">
+      <div className={`mood-check-in__wrapper ${!form.status && "inactive"}`}>
         <h2>How are you feeling right now?</h2>
         {errorMessage && <div>{errorMessage}</div>}
         <form
@@ -138,72 +138,74 @@ function MoodCheckInForm() {
               );
             })}
           </div>
-          {/* If a Mood has been selected, show relative substatus */}
-          {form.status && (
-            <div className="mood-check-in__form-substatus-wrapper">
-              {" "}
-              {mood_substatus[form.status].map((item, index) => {
+          <div className="mood-check-in__form-rest_wrapper">
+            {/* If a Mood has been selected, show relative substatus */}
+            {form.status && (
+              <div className="mood-check-in__form-substatus-wrapper">
+                {" "}
+                {mood_substatus[form.status].map((item, index) => {
+                  return (
+                    <PillSmallRadio
+                      key={index}
+                      item={item}
+                      checked={form.substatus && form.substatus?.includes(item)}
+                      handleChange={handleChange}
+                    />
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Get Activities. 
+      TODO! create array from selected values
+      TODO! create the option to create a new activity. */}
+            <h4>What are you doing?</h4>
+            <div className="mood-check-in__form-activities mood-check-in__form-flex">
+              {activities.map((activity, index) => {
+                const { _id, title } = activity;
                 return (
-                  <PillSmallRadio
-                    key={index}
-                    item={item}
-                    checked={form.substatus && form.substatus?.includes(item)}
-                    handleChange={handleChange}
+                  <PillSmallCheckbox
+                    key={_id || title}
+                    title={title}
+                    handleCheckbox={handleCheckbox}
+                    checked={
+                      form.activities.length
+                        ? form.activities.some((e) => e === title)
+                        : ""
+                    }
                   />
                 );
               })}
+              <CreateCustomActivity
+                form={form}
+                setForm={setForm}
+                moodData={moodData}
+                setMoodData={setMoodData}
+              />
             </div>
-          )}
+            <label>
+              Note
+              <textarea
+                type="text"
+                name="journal"
+                onChange={handleChange}
+                value={form.journal}
+              ></textarea>
+            </label>
+            <label className="mood-check-in__form-image mood-check-in__form-flex">
+              Image
+              <input
+                type="file"
+                name="image"
+                onChange={handleChange}
+                value={form.image}
+              ></input>
+            </label>
 
-          {/* Get Activities. 
-      TODO! create array from selected values
-      TODO! create the option to create a new activity. */}
-          <h4>What are you doing?</h4>
-          <div className="mood-check-in__form-activities mood-check-in__form-flex">
-            {activities.map((activity, index) => {
-              const { _id, title } = activity;
-              return (
-                <PillSmallCheckbox
-                  key={_id || title}
-                  title={title}
-                  handleCheckbox={handleCheckbox}
-                  checked={
-                    form.activities.length
-                      ? form.activities.some((e) => e === title)
-                      : ""
-                  }
-                />
-              );
-            })}
-            <CreateCustomActivity
-              form={form}
-              setForm={setForm}
-              moodData={moodData}
-              setMoodData={setMoodData}
-            />
+            <button className="btn-submit" type="submit">
+              Check In
+            </button>
           </div>
-          <label>
-            Note
-            <textarea
-              type="text"
-              name="journal"
-              onChange={handleChange}
-              value={form.journal}
-            ></textarea>
-          </label>
-          <label className="mood-check-in__form-image mood-check-in__form-flex">
-            Image
-            <input
-              type="file"
-              name="image"
-              onChange={handleChange}
-              value={form.image}
-            ></input>
-          </label>
-
-          <button className="btn-submit" type="submit">
-            Check In
-          </button>
         </form>
       </div>
     </section>

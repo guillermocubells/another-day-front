@@ -6,6 +6,18 @@ section.mood-check-in form {
   background-color: var(--color-neutral);
   transition: background-color var(--animation-timing-slow) ease;
 }
+
+.mood-check-in__wrapper form .mood-check-in__form-rest_wrapper {
+  max-height: 200vh;
+  transition: max-height 1s ease;
+  opacity: 1;
+}
+
+.mood-check-in__wrapper.inactive form .mood-check-in__form-rest_wrapper {
+  max-height: 0px;
+  opacity: 0;
+}
+
 section.mood-check-in .mood-check-in__wrapper h2,
 section.mood-check-in .mood-check-in__wrapper form {
   border: var(--border-large) var(--color-text) solid;
