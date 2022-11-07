@@ -33,7 +33,8 @@ section.mood-check-in .mood-check-in__wrapper form {
 .mood-check-in__form-status-wrapper {
   display: flex;
   gap: var(--spacer-m);
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .mood-check-in__form-substatus-wrapper {
