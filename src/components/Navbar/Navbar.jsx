@@ -10,7 +10,7 @@ function Navbar() {
 
   return (
     <nav>
-      <Link to="/">Gemma! or... Another Day.</Link>
+      <Link to="/">Anoday Anode $</Link>
 
       {isLoggedIn && (
         <div>

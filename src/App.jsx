@@ -12,6 +12,7 @@ import IsAnon from "./components/IsAnon/IsAnon";
 import MoodPage from "./pages/MoodPage/MoodPage";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import EditMoodPage from "./pages/EditMoodPage/EditMoodPage";
+import MarketingPage from "./pages/MarketingPage/MarketingPage";
 
 function App() {
   return (
@@ -19,6 +20,15 @@ function App() {
       <Navbar />
 
       <Routes>
+        <Route
+          path="/marketing"
+          element={
+            <IsAnon>
+              <MarketingPage />
+            </IsAnon>
+          }
+        />
+
         <Route
           path="/"
           element={
@@ -35,7 +45,6 @@ function App() {
             </IsPrivate>
           }
         />
-
         <Route
           path="/signup"
           element={

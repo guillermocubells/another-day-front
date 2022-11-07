@@ -50,22 +50,25 @@ function LoginPage() {
 
       <form onSubmit={handleLoginSubmit}>
         <label>Email:</label>
+        <br />
         <input type="email" name="email" value={email} onChange={handleEmail} />
-
+        <br />
         <label>Password:</label>
+        <br />
         <input
           type="password"
           name="password"
           value={password}
           onChange={handlePassword}
         />
-
+        <br />
+        <br />
         <button className="submits" type="submit">
           Login
         </button>
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
-
+      <br />
       <p>Don't have an account yet?</p>
       <Link to={"/signup"}> Sign Up</Link>
     </div>
