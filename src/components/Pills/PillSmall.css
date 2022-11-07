@@ -4,7 +4,6 @@
   width: fit-content;
   border: var(--border-small) var(--color-text) solid;
   padding: var(--spacer-xs) var(--spacer-s);
-  line-height: 1.5em;
   border-radius: var(--spacer-m);
 }
 
