@@ -19,13 +19,15 @@ function MoodListItem({ mood }) {
         <img src={image} alt={`${status} smiley`} className="smiley-image" />
       </div>
       <div className="mood-list__item-info_wrapper">
-        <div className="mood-list__item__date">
-          {newDate.toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-          })}
-        </div>
-        <h3 className="mood-list__item__status">{status}</h3>
+        <h3 className="mood-list__item__status">
+          {status}{" "}
+          <span className="mood-list__item__date">
+            {newDate.toLocaleTimeString("es-es", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
+        </h3>
         <div className="mood-list__item__activities">
           {activities.map((activity) => {
             return <PillSmall content={activity.title} key={activity._id} />;

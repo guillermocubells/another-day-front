@@ -17,3 +17,8 @@
   flex-wrap: wrap;
   gap: var(--spacer-s);
 }
+
+.mood-list__item__date {
+  font-size: 50%;
+  vertical-align: super;
+}

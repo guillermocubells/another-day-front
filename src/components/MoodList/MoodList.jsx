@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import apiClient from "../../services/api-client";
 import Loading from "../Loading/Loading";
 import MoodListItem from "../MoodListItem/MoodListItem";
+import { dateFormat } from "../../utils/date-helper";
 
 function MoodList() {
   const [moodList, setMoodList] = useState([]);
@@ -65,7 +66,7 @@ function MoodList() {
             return (
               <article key={day} className="mood-list__day-wrapper">
                 <div className="mood-list__day-date">
-                  <h2>{new Date(Number(day)).toDateString()}</h2>
+                  <h2>{dateFormat(Number(day))}</h2>
                 </div>
                 <div className="mood-list__day-entries">
                   {orderedMoods[day]
