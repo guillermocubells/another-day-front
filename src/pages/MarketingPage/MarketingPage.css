@@ -1,0 +1,29 @@
+.marketing-layout {
+  display: flex;
+  justify-content: flex-start;
+}
+.hero-background {
+  background-color: white;
+  padding: 44px 0px;
+}
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  padding: 24px;
+  margin: 0 auto;
+  text-align: left;
+  max-width: 250px;
+  background-color: #d1fff8;
+  border-radius: 6px;
+}
+
+.hero:hover {
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.hero img {
+  position: center;
+}
