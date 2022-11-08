@@ -1,3 +1,9 @@
+section.mood-check-in {
+  position: sticky;
+  top: 5rem;
+  align-self: flex-start;
+}
+
 section.mood-check-in form,
 .mood-check-in__wrapper form .mood-check-in__form-rest_wrapper {
   display: flex;

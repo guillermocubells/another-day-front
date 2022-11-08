@@ -94,7 +94,6 @@ body {
   background-color: var(--color-background);
   min-height: 100.1%;
   width: 100%;
-  overflow-x: hidden;
 }
 
 input {

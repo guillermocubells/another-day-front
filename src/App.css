@@ -1,3 +1,8 @@
+.App {
+  overflow-x: clip;
+  width: 100%;
+}
+
 .smiley-image {
   width: 6vw;
 }
