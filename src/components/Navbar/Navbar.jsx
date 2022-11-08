@@ -1,5 +1,5 @@
-import "./Navbar.css";
-import { Link } from "react-router-dom";
+import styles from "./Navbar.module.css";
+import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 
@@ -9,14 +9,30 @@ function Navbar() {
   const { isLoggedIn, logOutUser } = useContext(AuthContext);
 
   return (
-    <nav>
-      <Link to="/">Anoday Anode $</Link>
+    <nav className={`${styles.nav}`}>
+      <NavLink to="/">Anoday Anode $</NavLink>
 
       {isLoggedIn && (
-        <div>
-          <Link to="/">Check In / Journal</Link>
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/profile">Profile</Link>
+        <div className={`${styles.nav__links}`}>
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? styles.active : undefined)}
+            end
+          >
+            Check In / Journal
+          </NavLink>
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) => (isActive ? styles.active : undefined)}
+          >
+            Dashboard
+          </NavLink>
+          <NavLink
+            to="/profile"
+            className={({ isActive }) => (isActive ? styles.active : undefined)}
+          >
+            Profile
+          </NavLink>
           <button className="submits" onClick={logOutUser}>
             Logout
           </button>
@@ -25,8 +41,8 @@ function Navbar() {
 
       {!isLoggedIn && (
         <div>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
+          <NavLink to="/login">Login</NavLink>
+          <NavLink to="/signup">Sign Up</NavLink>
         </div>
       )}
     </nav>

@@ -1,4 +1,4 @@
-nav {
+.nav {
   position: sticky;
   top: 0px;
   background-color: var(--color-white);
@@ -10,12 +10,23 @@ nav {
   z-index: 5;
 }
 
-nav > div {
+.nav > div {
   display: flex;
   align-items: center;
   gap: var(--spacer-m);
 }
 
-nav a:hover {
+.nav a:hover {
   cursor: pointer;
+}
+
+.nav__links > a {
+  border: var(--border-small) transparent solid;
+  transition: border var(--animation-timing-slow) ease;
+  padding: var(--spacer-xs) var(--spacer-s);
+  border-radius: 100vh;
+}
+
+.active {
+  border-color: var(--color-text) !important;
 }
