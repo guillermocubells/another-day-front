@@ -6,6 +6,9 @@
   padding: var(--spacer-xs) var(--spacer-s);
   border-radius: var(--spacer-m);
 }
+.pill-small.nofill {
+  background-color: inherit;
+}
 
 .pill-small input {
   display: none;

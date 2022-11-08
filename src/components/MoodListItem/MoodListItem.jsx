@@ -30,7 +30,13 @@ function MoodListItem({ mood }) {
         </h3>
         <div className="mood-list__item__activities">
           {activities.map((activity) => {
-            return <PillSmall content={activity.title} key={activity._id} />;
+            return (
+              <PillSmall
+                content={activity.title}
+                key={activity._id}
+                nofill={true}
+              />
+            );
           })}
         </div>
       </div>
