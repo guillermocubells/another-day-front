@@ -92,6 +92,9 @@ body {
   font-family: "Sporting Grotesque_Regular";
   font-size: 14px;
   background-color: var(--color-background);
+  min-height: 100.1%;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 input {
