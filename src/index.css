@@ -118,3 +118,7 @@ input[type="password"] {
   border-radius: var(--spacer-s);
   border: var(--border-small) solid var(--color-text);
 }
+
+main {
+  padding: var(--spacer-m);
+}

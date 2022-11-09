@@ -33,12 +33,12 @@ function ProfilePage() {
   return (
     <main className="profile">
       <h1>Hi, {name}</h1>
-      <div>Feel free to change your mind</div>
-      <div className="profile-wrapper">
+      <div className="text-size-medium">Feel free to change your mind...</div>
+      <section className="profile-wrapper">
         <EditProfile user={user} setUser={setUser} />
         <ChangePassword />
         <DeleteUser />
-      </div>
+      </section>
     </main>
   );
 }
