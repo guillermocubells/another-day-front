@@ -1,0 +1,18 @@
+.mood-layout {
+  background-color: var(--color-neutral);
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  padding: 24px;
+  margin: 24px;
+  text-align: left;
+  border-radius: 6px;
+}
+
+.italics {
+  font-style: italic;
+}
+
+.edit-button {
+  max-width: 200px;
+}
