@@ -68,8 +68,8 @@ button:hover {
   --text-size-xl: 5vw;
 
   --border-small: 1px;
-  --border-medium: 2px;
-  --border-large: 3px;
+  --border-medium: 1.5px;
+  --border-large: 2px;
 
   --animation-timing-slow: 0.5s;
   --opacity: 35%;
@@ -102,6 +102,12 @@ body {
   background-color: var(--color-background);
   min-height: 100.1%;
   width: 100%;
+}
+
+html,
+body,
+#root {
+  height: 100%;
 }
 
 input {
