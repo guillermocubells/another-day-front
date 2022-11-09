@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import apiClient from "../../services/api-client";
 import Loading from "../Loading/Loading";
 import PillSmall from "../Pills/PillSmall";
+import "../Pills/PillSmall.css";
+import "../MoodListActivities/MoodListActivities.css";
 
 function MoodPageActivities({ mood }) {
   const [moodList, setMoodList] = useState([]);
@@ -49,19 +51,25 @@ function MoodPageActivities({ mood }) {
     <section className="mood-list">
       <div className="mood-list-wrapper"></div>
       <br />
-      <h4>These are some of the things you do when you are feeling it</h4>
+      <h5>These are some of the things that pump you:</h5>
       <div>
         {statusObjectSelection(moodList, "Great").map((activity) => {
-          return <PillSmall content={activity} key={activity} />;
+          return (
+            <div className="pill-moodpage">
+              <PillSmall content={activity} key={activity} />
+            </div>
+          );
         })}
       </div>
       <br />
-      <h4>
-        According to our records these are some of the things that drawn you
-      </h4>
+      <h5>Avoid getting involved in these things, they might drawn you:</h5>
       <div>
         {statusObjectSelection(moodList, "Awful").map((activity) => {
-          return <PillSmall content={activity} key={activity} />;
+          return (
+            <div className="pill-moodpage">
+              <PillSmall content={activity} key={activity}></PillSmall>
+            </div>
+          );
         })}
       </div>
     </section>

@@ -1,0 +1,8 @@
+.pill-moodpage {
+  background-color: var(--color-white);
+  display: inline-block;
+  width: fit-content;
+  margin-top: var(--spacer-m);
+  margin-right: var(--spacer-xs);
+  border-radius: var(--spacer-m);
+}

@@ -4,8 +4,12 @@ import Loading from "../../components/Loading/Loading";
 import apiClient from "../../services/api-client";
 import MoodPageActivities from "../../components/MoodListActivities/MoodListActivities";
 import { dateFormat } from "../../utils/date-helper";
+import { MOOD_ASSETS } from "../../utils/consts";
+
 import "./MoodPage.css";
 import "../../components/MoodCheckInForm/MoodCheckInForm.css";
+import "../../components/MoodList/MoodList.css";
+import "../../components/MoodListItem/MoodListItem.css";
 
 function MoodPage() {
   const [data, setData] = useState({});
@@ -13,6 +17,7 @@ function MoodPage() {
   const [isError, setIsError] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
+
   function moveToEditPage() {
     navigate(`/mood/${id}/edit`);
   }
@@ -42,30 +47,51 @@ function MoodPage() {
   }
 
   const { _id, date, status, substatus, activities, journal } = data;
+  const { image } = MOOD_ASSETS[status];
+
   // console.log(activities);
   return (
-    <div>
-      <div className="mood-layout">
-        <div>
-          <div className="layout">
+    <div className="mood-list-wrapper">
+      <div className="mood-list-date">
+        <h2>{dateFormat(date)}</h2>
+      </div>
+      <div
+        className="mood-layout"
+        style={{
+          backgroundColor: MOOD_ASSETS[status].color,
+        }}
+      >
+        <div className="mood-layout-2">
+          <div>
             <article key={_id}>
-              <div>
-                <h5 className="italics">{dateFormat(date)}</h5>
+              <div className="mood-layout-2">
+                <div
+                  className={
+                    ("mood-list__item-smiley_wrapper", "smiley-layout")
+                  }
+                >
+                  <img
+                    src={image}
+                    alt={`${status} smiley`}
+                    className="smiley-image"
+                  />
+                </div>
+                <div>
+                  <h2>{status}</h2>
+                  {substatus && <h3>{substatus[status]}</h3>}
+                  {activities && (
+                    <h4>
+                      {activities.map((activity) => activity.title).join(" ")}
+                    </h4>
+                  )}
+                  {journal && (
+                    <article>
+                      <h3>Journal</h3>
+                      <div>{journal}</div>
+                    </article>
+                  )}
+                </div>
               </div>
-              <h2>{status}</h2>
-              {substatus && <h3>{substatus[status]}</h3>}
-              {activities && (
-                <h4>
-                  {activities.map((activity) => activity.title).join(" ")}
-                </h4>
-              )}
-              {journal && (
-                <article>
-                  <h3>Journal</h3>
-                  <div>{journal}</div>
-                </article>
-              )}
-              {/* <image /> */}
             </article>
           </div>
           <div>

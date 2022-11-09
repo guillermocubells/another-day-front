@@ -1,12 +1,29 @@
 .mood-layout {
-  background-color: var(--color-neutral);
-  display: flex;
   flex-direction: column;
   align-content: center;
-  padding: 24px;
-  margin: 24px;
+  padding-left: var(--spacer-l);
+  padding-top: var(--spacer-l);
+  padding-bottom: var(--spacer-l);
+  padding-right: var(--spacer-l);
+  margin-left: var(--spacer-l);
+  margin-right: var(--spacer-l);
   text-align: left;
   border-radius: 6px;
+  justify-content: flex-start;
+  border: var(--border-large) var(--color-text) solid;
+  border-top-left-radius: 0;
+}
+
+.mood-layout-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.smiley-layout {
+  align-items: center;
+  padding-right: var(--spacer-l);
+  justify-content: space-between;
 }
 
 .italics {
@@ -15,4 +32,19 @@
 
 .edit-button {
   max-width: 200px;
+}
+
+.mood-list-date {
+  background-color: var(--color-white);
+  margin-top: var(--spacer-l);
+  margin-left: var(--spacer-l);
+  margin-right: var(--spacer-l);
+  border-radius: var(--spacer-m);
+  border: var(--border-large) var(--color-text) solid;
+  overflow: none;
+  width: fit-content;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  padding: var(--spacer-s) var(--spacer-m);
+  border-bottom: none;
 }
