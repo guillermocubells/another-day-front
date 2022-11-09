@@ -13,7 +13,7 @@
 .nav > div {
   display: flex;
   align-items: center;
-  gap: var(--spacer-m);
+  gap: var(--spacer-s);
 }
 
 .nav a:hover {
