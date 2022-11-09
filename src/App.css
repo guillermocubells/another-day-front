@@ -25,6 +25,10 @@ h3 {
 h4 {
 }
 
+.text-size-medium {
+  font-size: 2rem;
+}
+
 .submits,
 .btn-submit {
   font: inherit;

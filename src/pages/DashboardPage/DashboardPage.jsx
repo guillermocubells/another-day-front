@@ -39,7 +39,7 @@ function DashboardPage() {
   }
 
   return (
-    <div className="dashboard-layout">
+    <main className="dashboard-layout">
       <h1>Dashboard</h1>
       <div className="chart-cards">
         <h2>Key Metrics</h2>
@@ -69,7 +69,7 @@ function DashboardPage() {
           <RadarChart data={data} />
         </div> */}
       </div>
-    </div>
+    </main>
   );
 }
 

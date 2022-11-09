@@ -1,7 +1,57 @@
-.profile-layout {
+main.profile {
+  padding: var(--spacer-m);
   display: flex;
+  flex-direction: column;
+  gap: var(--spacer-m);
 }
 
-.profile-card-layout {
-  padding: var(--spacer-l);
+main.profile > div {
+  padding: var(--spacer-s) 0;
+}
+
+.profile-wrapper {
+  display: grid;
+  align-items: flex-start;
+  gap: var(--spacer-m);
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+}
+
+.profile-card,
+.profile-card form,
+.profile-card form label {
+  display: grid;
+}
+
+.profile-card form {
+  gap: var(--spacer-m);
+}
+
+.profile-card form label {
+  gap: var(--spacer-xs);
+}
+
+.profile-card > h2,
+.profile-card form {
+  border: var(--border-large) var(--color-text) solid;
+  border-radius: var(--spacer-m);
+}
+
+.profile-card > h2 {
+  background-color: var(--color-neutral);
+  padding: var(--spacer-s) var(--spacer-m);
+  width: fit-content;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 0;
+}
+
+.profile-card > h2.delete {
+  background-color: var(--color-awful);
+}
+
+.profile-card form {
+  padding: var(--spacer-m);
+  overflow: hidden;
+  background-color: var(--color-white);
+  border-top-left-radius: 0;
 }

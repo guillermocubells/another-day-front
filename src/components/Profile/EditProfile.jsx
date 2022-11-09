@@ -29,11 +29,12 @@ function EditProfile({ user, setUser }) {
   }
 
   return (
-    <div>
+    <article className="profile-card">
+      <h2 className="profile-username">Settings</h2>
       <form onSubmit={handleSubmit}>
+        Update your profile or change your username
         <label>
           Username
-          <br />
           <input
             type="text"
             onChange={handleChange}
@@ -41,7 +42,6 @@ function EditProfile({ user, setUser }) {
             value={user.name}
           />
         </label>
-        <br />
         <label>
           Email
           <br />
@@ -52,14 +52,12 @@ function EditProfile({ user, setUser }) {
             value={user.email}
           />
         </label>
-        <br />
-        <br />
         <button className="submits" type="submit">
           Save Changes
         </button>
+        {errorMessage && <div>{errorMessage}</div>}
       </form>
-      {errorMessage && <div>{errorMessage}</div>}
-    </div>
+    </article>
   );
 }
 

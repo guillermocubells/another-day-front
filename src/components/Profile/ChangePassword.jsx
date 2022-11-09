@@ -46,11 +46,12 @@ function ChangePassword() {
   }
 
   return (
-    <div>
+    <article className="profile-card">
+      <h2 className="profile-password">Password</h2>
       <form onSubmit={handleSubmit}>
+        Change your password...
         <label>
-          Old Password:
-          <br />
+          Old Password
           <input
             type="password"
             name="oldPassword"
@@ -58,10 +59,8 @@ function ChangePassword() {
             value={passwords.oldPassword}
           />
         </label>
-        <br />
         <label>
-          New Password:
-          <br />
+          New Password
           <input
             type="password"
             name="newPassword"
@@ -69,10 +68,8 @@ function ChangePassword() {
             value={passwords.newPassword}
           />
         </label>
-        <br />
         <label>
-          Confirm Password:
-          <br />
+          Confirm Password
           <input
             type="password"
             name="confirmPassword"
@@ -80,14 +77,12 @@ function ChangePassword() {
             value={passwords.confirmPassword}
           />
         </label>
-        <br />
-        <br />
         <button className="submits" type="submit">
           Change Password
         </button>
+        {errorMessage && <div>{errorMessage}</div>}
       </form>
-      {errorMessage && <div>{errorMessage}</div>}
-    </div>
+    </article>
   );
 }
 

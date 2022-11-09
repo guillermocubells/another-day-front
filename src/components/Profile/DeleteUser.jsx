@@ -34,11 +34,13 @@ function DeleteUser() {
   }
 
   return (
-    <div>
+    <article className="profile-card">
+      <h2 className="profile-delete delete">Delete Account</h2>
       <form onSubmit={handleSubmit}>
+        Do you want to delete your account? If you’re sure, confirm by logging
+        again in below.
         <label>
           Email
-          <br />
           <input
             type="email"
             name="email"
@@ -47,10 +49,8 @@ function DeleteUser() {
             value={form.email}
           />
         </label>
-        <br />
         <label>
           Password
-          <br />
           <input
             type="password"
             name="password"
@@ -59,14 +59,12 @@ function DeleteUser() {
             value={form.password}
           />
         </label>
-        <br />
-        <br />
         <button className="submits" type="submit">
           Delete Account
         </button>
+        {errorMessage && <div>{errorMessage}</div>}
       </form>
-      {errorMessage && <div>{errorMessage}</div>}
-    </div>
+    </article>
   );
 }
 
