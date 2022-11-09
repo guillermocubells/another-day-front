@@ -75,6 +75,8 @@ button:hover {
   --opacity: 35%;
 }
 
+/* ############# Globals ############# */
+
 body {
   --color-white: #fefefe;
   --color-background: #fffa7b;
@@ -99,4 +101,13 @@ body {
 input {
   font-family: inherit;
   color: grey;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  color: var(--color-text);
+  padding: var(--spacer-s);
+  border-radius: var(--spacer-s);
+  border: var(--border-small) solid var(--color-text);
 }
