@@ -79,14 +79,20 @@ button:hover {
 
 body {
   --color-white: #fefefe;
-  --color-background: #fffa7b;
   --color-text: #1d1d1d;
   --color-neutral: #d1fff8;
+  --color-background: #fffa7b;
+
   --color-awful: #fd9eb0;
   --color-bad: #ffbeaf;
   --color-okay: #d1f6ff;
   --color-good: #cbffe7;
   --color-great: #cbffd5;
+  /* --color-awful: #fd9eb0;
+  --color-bad: #ffbeaf;
+  --color-okay: #d1fff8;
+  --color-good: #96ffe5;
+  --color-great: #87f98d; */
 }
 
 html,
@@ -105,6 +111,7 @@ input {
 
 input[type="text"],
 input[type="email"],
+input[type="datetime-local"],
 input[type="password"] {
   color: var(--color-text);
   padding: var(--spacer-s);
