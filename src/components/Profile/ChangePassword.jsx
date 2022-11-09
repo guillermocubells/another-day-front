@@ -51,7 +51,7 @@ function ChangePassword() {
       <form onSubmit={handleSubmit}>
         Change your password...
         <label>
-          Old Password:
+          Old Password
           <input
             type="password"
             name="oldPassword"
@@ -60,7 +60,7 @@ function ChangePassword() {
           />
         </label>
         <label>
-          New Password:
+          New Password
           <input
             type="password"
             name="newPassword"
@@ -69,7 +69,7 @@ function ChangePassword() {
           />
         </label>
         <label>
-          Confirm Password:
+          Confirm Password
           <input
             type="password"
             name="confirmPassword"
