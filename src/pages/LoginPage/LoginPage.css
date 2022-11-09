@@ -1,0 +1,30 @@
+.LoginPage {
+  min-height: calc(100vh - 10rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-wrapper {
+  width: 25rem;
+  background: var(--color-neutral);
+  padding: var(--spacer-m);
+  border: var(--border-large) var(--color-text) solid;
+  border-radius: var(--spacer-m);
+}
+
+.LoginPage h1 {
+  align-self: flex-start;
+}
+
+.login-wrapper,
+.login-wrapper form,
+.login-wrapper label {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-wrapper,
+.login-wrapper form {
+  gap: var(--spacer-m);
+}

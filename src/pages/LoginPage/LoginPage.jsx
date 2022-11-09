@@ -1,4 +1,6 @@
 import "./LoginPage.css";
+import SmileyGreat from "../../assets/image/another-day_smiley-great.svg";
+
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
@@ -45,33 +47,39 @@ function LoginPage() {
   };
 
   return (
-    <div className="LoginPage">
-      <h1>Login</h1>
-
-      <form onSubmit={handleLoginSubmit}>
-        <label>Email</label>
-        <br />
-        <input type="email" name="email" value={email} onChange={handleEmail} />
-        <br />
-        <label>Password</label>
-        <br />
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
-        <br />
-        <br />
-        <button className="submits" type="submit">
-          Login
-        </button>
-      </form>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-      <br />
-      <p>Don't have an account yet?</p>
-      <Link to={"/signup"}> Sign Up</Link>
-    </div>
+    <main className="LoginPage">
+      <div className="login-wrapper">
+        <img src={SmileyGreat} alt="smiley-great" className="smiley-image" />
+        <h1>Login</h1>
+        <form onSubmit={handleLoginSubmit}>
+          <label>
+            Email
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleEmail}
+            />
+          </label>
+          <label>
+            Password
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={handlePassword}
+            />
+          </label>
+          <button className="submits" type="submit">
+            Login
+          </button>
+        </form>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <p>
+          Don't have an account yet? <Link to={"/signup"}> Sign Up</Link>
+        </p>
+      </div>
+    </main>
   );
 }
 

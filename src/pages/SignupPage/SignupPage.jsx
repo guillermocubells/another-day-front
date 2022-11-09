@@ -1,4 +1,5 @@
 import "./SignupPage.css";
+import SmileyGreat from "../../assets/image/another-day_smiley-great.svg";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
@@ -48,6 +49,8 @@ function SignupPage() {
   return (
     <main className="SignupPage">
       <div className="signup-wrapper">
+        <img src={SmileyGreat} alt="smiley-great" className="smiley-image" />
+
         <h1>Sign Up</h1>
         <form onSubmit={handleSignupSubmit}>
           <label>
