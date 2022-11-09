@@ -41,8 +41,12 @@ function Navbar() {
 
       {!isLoggedIn && (
         <div>
-          <NavLink to="/login">Login</NavLink>
-          <NavLink to="/signup">Sign Up</NavLink>
+          <NavLink to="/login" className="submits">
+            Login
+          </NavLink>
+          <NavLink to="/signup" className="submits">
+            Sign Up
+          </NavLink>
         </div>
       )}
     </nav>
