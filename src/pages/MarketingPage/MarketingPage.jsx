@@ -25,7 +25,9 @@ function MarketingPage() {
             the better you stay
           </h3>
           <div>
-            <button>Checkin</button>
+            <button onClick="" className="cta">
+              Checkin
+            </button>
           </div>
         </div>
         <div>

@@ -27,3 +27,15 @@
 .hero img {
   position: center;
 }
+
+.cta {
+  border-radius: var(--spacer-m);
+  font-family: inherit;
+  padding: var(--spacer-m);
+  margin-top: var(--spacer-l);
+  outline: none;
+  background-color: var(--color-white);
+  border: var(--border-medium) var(--color-text) solid;
+  font-size: 16px;
+  min-width: 150px;
+}
