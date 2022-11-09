@@ -49,11 +49,11 @@ function LoginPage() {
       <h1>Login</h1>
 
       <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
+        <label>Email</label>
         <br />
         <input type="email" name="email" value={email} onChange={handleEmail} />
         <br />
-        <label>Password:</label>
+        <label>Password</label>
         <br />
         <input
           type="password"

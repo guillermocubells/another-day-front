@@ -46,39 +46,42 @@ function SignupPage() {
   };
 
   return (
-    <div className="SignupPage">
-      <h1>Sign Up</h1>
-
-      <form onSubmit={handleSignupSubmit}>
-        <label>Email:</label>
-        <br />
-        <input type="email" name="email" value={email} onChange={handleEmail} />
-        <br />
-        <label>Password:</label>
-        <br />
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
-        <br />
-
-        <label>Name:</label>
-        <br />
-        <input type="text" name="name" value={name} onChange={handleName} />
-        <br />
-        <br />
-        <button className="submits" type="submit">
-          Sign Up
-        </button>
-      </form>
-
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-      <br />
-      <p>Already have account?</p>
-      <Link to={"/login"}> Login</Link>
-    </div>
+    <main className="SignupPage">
+      <div className="signup-wrapper">
+        <h1>Sign Up</h1>
+        <form onSubmit={handleSignupSubmit}>
+          <label>
+            Name
+            <input type="text" name="name" value={name} onChange={handleName} />
+          </label>
+          <label>
+            Email
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleEmail}
+            />
+          </label>
+          <label>
+            Password
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={handlePassword}
+            />
+          </label>
+          <button className="submits" type="submit">
+            Sign Up
+          </button>
+        </form>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <p>
+          Already have account? <Link to={"/login"}> Login</Link>
+        </p>
+      </div>
+    </main>
   );
 }
 

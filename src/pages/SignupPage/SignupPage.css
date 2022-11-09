@@ -1,0 +1,22 @@
+.SignupPage {
+  display: flex;
+  min-height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.SignupPage h1 {
+  align-self: flex-start;
+}
+
+.signup-wrapper,
+.signup-wrapper form,
+.signup-wrapper label {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-wrapper,
+.signup-wrapper form {
+  gap: var(--spacer-m);
+}
