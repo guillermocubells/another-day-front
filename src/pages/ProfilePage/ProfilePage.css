@@ -5,14 +5,10 @@ main.profile {
   gap: var(--spacer-m);
 }
 
-main.profile > div {
-  padding: var(--spacer-s) 0;
-}
-
 .profile-wrapper {
   display: grid;
   align-items: flex-start;
-  gap: var(--spacer-m);
+  gap: var(--spacer-l);
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
 }
 

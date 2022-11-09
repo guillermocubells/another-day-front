@@ -33,7 +33,9 @@ function ProfilePage() {
   return (
     <main className="profile">
       <h1>Hi, {name}</h1>
-      <div className="text-size-medium">Feel free to change your mind...</div>
+      <div className="text-size-medium">
+        Feel free to change your mind... or just your settings.
+      </div>
       <section className="profile-wrapper">
         <EditProfile user={user} setUser={setUser} />
         <ChangePassword />

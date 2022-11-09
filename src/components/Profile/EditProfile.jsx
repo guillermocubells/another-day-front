@@ -32,7 +32,7 @@ function EditProfile({ user, setUser }) {
     <article className="profile-card">
       <h2 className="profile-username">Settings</h2>
       <form onSubmit={handleSubmit}>
-        Update your profile or change your username
+        Update your profile or change your username.
         <label>
           Username
           <input

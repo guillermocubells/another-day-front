@@ -2,7 +2,7 @@ main.home {
   --repeat: 1;
   display: grid;
   grid-template-columns: repeat(var(--repeat), minmax(400px, 1fr));
-  gap: var(--spacer-m);
+  gap: var(--spacer-l);
   padding: var(--spacer-m);
 }
 
