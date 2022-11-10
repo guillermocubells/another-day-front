@@ -1,5 +1,5 @@
 import React from "react";
-import { MOOD_ASSETS } from "../../utils/consts";
+import MoodSmiley from "../MoodSmiley/MoodSmiley";
 
 function MoodCheckInStatus({
   mood_status,
@@ -20,11 +20,7 @@ function MoodCheckInStatus({
               (form.status?.includes(status) ? "active" : "inactive")
             }`}
           >
-            <img
-              src={MOOD_ASSETS[status].image}
-              alt={`${status} smiley face`}
-              className="smiley-image"
-            />
+            <MoodSmiley status={status} />
             <h3>{status}</h3>
             <input
               type="radio"
