@@ -11,6 +11,7 @@ import "./MoodPage.css";
 import "../../components/MoodCheckInForm/MoodCheckInForm.css";
 import "../../components/MoodList/MoodList.css";
 import "../../components/MoodListItem/MoodListItem.css";
+import ButtonRegular from "../../components/Buttons/ButtonRegular";
 
 function MoodPage() {
   const [data, setData] = useState({});
@@ -96,13 +97,7 @@ function MoodPage() {
             </article>
           </div>
           <div>
-            <button
-              className="edit-button btn-submit"
-              type="button"
-              onClick={moveToEditPage}
-            >
-              Edit
-            </button>
+            <ButtonRegular handleClick={moveToEditPage}>Edit</ButtonRegular>
           </div>
         </div>
 

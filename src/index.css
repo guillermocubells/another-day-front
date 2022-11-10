@@ -72,6 +72,7 @@ button:hover {
   --border-medium: 1.5px;
   --border-large: 2px;
 
+  --animation-timing-fast: 0.25s;
   --animation-timing-slow: 0.5s;
   --opacity: 35%;
 }
@@ -82,24 +83,32 @@ body {
   --color-white: #fefefe;
   --color-text: #1d1d1d;
   --color-neutral: #d1fff8;
-  --color-background: #fffa7b;
+  --color-gray: #ededed;
 
+  /* --color-background: #fffa7b;
   --color-awful: #fd9eb0;
   --color-bad: #ffbeaf;
   --color-okay: #d1f6ff;
   --color-good: #cbffe7;
-  --color-great: #cbffd5;
-  /* --color-awful: #fd9eb0;
-  --color-bad: #ffbeaf;
+  --color-great: #cbffd5; */
+
+  --color-background: #ffd400;
+  --color-background: #ffd91a;
+  --color-awful: #fc5740;
+  --color-awful: #ff6e5b;
+  --color-bad: #fd77bf;
+  --color-bad: #f97abe;
+  --color-okay: #99fbec;
   --color-okay: #d1fff8;
-  --color-good: #96ffe5;
-  --color-great: #87f98d; */
+  --color-good: #96fff4;
+  --color-great: #87f98d;
+  --color-great: #6eff75;
 }
 
 html,
 body {
   font-family: "Sporting Grotesque_Regular";
-  font-size: 15px;
+  font-size: 14px;
   background-color: var(--color-background);
   min-height: 100.1%;
   width: 100%;
@@ -121,11 +130,13 @@ input[type="email"],
 input[type="datetime-local"],
 input[type="password"] {
   color: var(--color-text);
-  padding: var(--spacer-s);
+  padding: var(--spacer-xs) var(--spacer-s);
   border-radius: var(--spacer-s);
   border: var(--border-small) solid var(--color-text);
 }
 
 main {
   padding: var(--spacer-m);
+  max-width: 1280px;
+  margin: 0 auto;
 }

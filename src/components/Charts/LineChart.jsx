@@ -33,7 +33,7 @@ function LineChart({ data }) {
     labels: [],
     datasets: [],
   });
-  console.log("moodList", moodList);
+
   const [chartOptions, setChartOptions] = useState({});
 
   const [form, setForm] = useState({
@@ -141,7 +141,7 @@ function LineChart({ data }) {
   }
 
   return (
-    <div>
+    <article>
       <form onSubmit={(filterDate, resetDate)}>
         {/* TODO! Make datetime display current time as default  */}
         <label>
@@ -174,7 +174,7 @@ function LineChart({ data }) {
         </button>
       </form>
       <Line options={chartOptions} data={chartData} />
-    </div>
+    </article>
   );
 }
 export default LineChart;

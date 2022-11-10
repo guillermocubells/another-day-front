@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAuthContext } from "../../context/auth.context";
 import apiClient from "../../services/api-client";
+import ButtonSubmit from "../Buttons/ButtonSubmit";
 
 function EditProfile({ user, setUser }) {
   const { storeToken, removeToken } = useAuthContext();
@@ -52,9 +53,7 @@ function EditProfile({ user, setUser }) {
             value={user.email}
           />
         </label>
-        <button className="submits" type="submit">
-          Save Changes
-        </button>
+        <ButtonSubmit>Save Changes</ButtonSubmit>
         {errorMessage && <div>{errorMessage}</div>}
       </form>
     </article>

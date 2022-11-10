@@ -3,6 +3,7 @@ import SmileyGreat from "../../assets/image/another-day_smiley-great.svg";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
+import ButtonSubmit from "../../components/Buttons/ButtonSubmit";
 
 function SignupPage() {
   const [email, setEmail] = useState("");
@@ -75,9 +76,7 @@ function SignupPage() {
               onChange={handlePassword}
             />
           </label>
-          <button className="submits" type="submit">
-            Sign Up
-          </button>
+          <ButtonSubmit>Sign Up</ButtonSubmit>
         </form>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <p>

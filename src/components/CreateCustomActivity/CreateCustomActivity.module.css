@@ -1,0 +1,6 @@
+.activityWrapper {
+  padding-top: var(--spacer-s);
+  display: flex;
+  align-items: center;
+  gap: var(--spacer-s);
+}

@@ -1,20 +1,29 @@
-li {
-  list-style-type: none;
+.dashboard-layout,
+.chart-layout,
+.chart-column-1 {
+  display: grid;
+  gap: var(--spacer-l);
 }
-
-.dashboard-layout {
-  display: inline-block;
-}
-
 .chart-layout {
-  display: flex;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  .chart-layout {
+    grid-template-columns: 2fr 2fr;
+  }
 }
 
 .chart-cards {
+  width: 100%;
   border: var(--border-large) var(--color-text) solid;
+  border-radius: var(--spacer-m);
   background-color: var(--color-white);
-  margin: var(--spacer-l);
   padding: var(--spacer-l);
+}
+
+.chart-cards article,
+.chart-cards article canvas {
+  width: 100% !important;
 }
 
 .chart-cards input {

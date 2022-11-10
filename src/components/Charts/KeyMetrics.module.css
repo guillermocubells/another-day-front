@@ -1,0 +1,19 @@
+.keyMetrics {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.keyMetrics h1 {
+  padding-top: 0;
+}
+
+.keyMetrics > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.keyMetrics img {
+  width: calc(var(--text-size-xl) * 2);
+}

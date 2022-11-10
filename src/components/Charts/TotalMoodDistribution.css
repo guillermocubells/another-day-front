@@ -1,5 +1,6 @@
 .mood-distribution footer {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--spacer-s);
 }
 

@@ -2,6 +2,7 @@ import styles from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
+import ButtonRegular from "../Buttons/ButtonRegular";
 
 function Navbar() {
   // Subscribe to the AuthContext to gain access to
@@ -10,7 +11,9 @@ function Navbar() {
 
   return (
     <nav className={`${styles.nav}`}>
-      <NavLink to="/">Anoday Anode $</NavLink>
+      <NavLink className={styles.logoLol} to="/">
+        <strong>Another Day Another $</strong>
+      </NavLink>
 
       {isLoggedIn && (
         <div className={`${styles.nav__links}`}>
@@ -33,20 +36,18 @@ function Navbar() {
           >
             Profile
           </NavLink>
-          <button className="submits" onClick={logOutUser}>
-            Logout
-          </button>
+          <ButtonRegular handleClick={logOutUser}>Logout</ButtonRegular>
         </div>
       )}
 
       {!isLoggedIn && (
         <div>
-          <NavLink to="/login" className="submits">
-            Login
-          </NavLink>
-          <NavLink to="/signup" className="submits">
-            Sign Up
-          </NavLink>
+          <ButtonRegular>
+            <NavLink to="/login">Login</NavLink>
+          </ButtonRegular>
+          <ButtonRegular>
+            <NavLink to="/signup">Sign Up</NavLink>
+          </ButtonRegular>
         </div>
       )}
     </nav>

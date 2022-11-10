@@ -42,12 +42,10 @@ function DashboardPage() {
     <main className="dashboard-layout">
       <h1>Dashboard</h1>
       <div className="chart-cards">
-        <h2>Key Metrics</h2>
-        <br />
         <KeyMetrics data={data} />
       </div>
       <div className="chart-layout">
-        <div>
+        <div className="chart-column-1">
           <div className="chart-cards">
             <h2>Mood Counter</h2>
             <br />
@@ -60,7 +58,7 @@ function DashboardPage() {
           </div>
         </div>
         <div className="chart-cards">
-          <h2>Mood Distribution</h2>
+          <h2>Total Mood Distribution</h2>
           <br />
           <TotalMoodDistribution className="chart-cards" data={data} />
         </div>

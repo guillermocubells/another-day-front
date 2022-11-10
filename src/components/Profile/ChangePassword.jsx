@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/auth.context";
 import apiClient from "../../services/api-client";
+import ButtonSubmit from "../Buttons/ButtonSubmit";
 
 function ChangePassword() {
   const navigate = useNavigate();
@@ -77,9 +78,7 @@ function ChangePassword() {
             value={passwords.confirmPassword}
           />
         </label>
-        <button className="submits" type="submit">
-          Change Password
-        </button>
+        <ButtonSubmit>Change Password</ButtonSubmit>
         {errorMessage && <div>{errorMessage}</div>}
       </form>
     </article>

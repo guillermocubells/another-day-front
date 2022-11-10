@@ -22,11 +22,17 @@
 
 .nav__links > a {
   border: var(--border-small) transparent solid;
-  transition: border var(--animation-timing-slow) ease;
+  transition: border var(--animation-timing-slow) ease,
+    background-color var(--animation-timing-slow) ease;
   padding: var(--spacer-xs) var(--spacer-s);
   border-radius: 100vh;
 }
 
+.nav__links > a:not(.active):hover {
+  border-color: var(--color-gray) !important;
+}
+
 .active {
-  border-color: var(--color-text) !important;
+  background-color: var(--color-gray);
+  /* border-color: var(--color-text) !important; */
 }
