@@ -46,16 +46,11 @@ function KeyMetrics({ data }) {
 
   return (
     <div>
+      <div>Checkins: {checkInCount(moodList)}</div>
+      <div>Total score: {scoreCount(moodList)}</div>
       <div>
-        <ul>
-          <li>Checkins: {checkInCount(moodList)}</li>
-          <li>Total score: {scoreCount(moodList)}</li>
-          <li>
-            Average: {moodConversion(averageMood)} ({averageMood})
-          </li>
-        </ul>
+        Average: {moodConversion(averageMood)} ({averageMood})
       </div>
-      <br />
     </div>
   );
 }

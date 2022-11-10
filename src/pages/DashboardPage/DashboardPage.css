@@ -1,19 +1,17 @@
-li {
-  list-style-type: none;
+.dashboard-layout,
+.chart-layout,
+.chart-column-1 {
+  display: grid;
+  gap: var(--spacer-l);
 }
-
-.dashboard-layout {
-  display: inline-block;
-}
-
 .chart-layout {
-  display: flex;
+  grid-template-columns: 2fr 3fr;
 }
 
 .chart-cards {
   border: var(--border-large) var(--color-text) solid;
+  border-radius: var(--spacer-m);
   background-color: var(--color-white);
-  margin: var(--spacer-l);
   padding: var(--spacer-l);
 }
 

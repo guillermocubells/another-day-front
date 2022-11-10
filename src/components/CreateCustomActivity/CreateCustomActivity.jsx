@@ -69,15 +69,13 @@ function CreateCustomActivity({ form, setForm, moodData, setMoodData }) {
             <input
               onChange={handleChange}
               type="text"
-              placeholder="Something else"
+              placeholder="Custom Activity"
               name="createActivity"
               value={newActivity}
               onKeyPress={preventSubmitOnEnter}
             />
           </label>
-          <ButtonRegular handleClick={handleCreate}>
-            Create Activity
-          </ButtonRegular>
+          <ButtonRegular handleClick={handleCreate}>Create</ButtonRegular>
 
           {errorMessage && <div>{errorMessage}</div>}
         </div>
