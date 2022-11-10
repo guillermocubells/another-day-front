@@ -12,7 +12,7 @@ function Navbar() {
   return (
     <nav className={`${styles.nav}`}>
       <NavLink className={styles.logoLol} to="/">
-        <strong>Anoday Anode $</strong>
+        <strong>Another Day Another $</strong>
       </NavLink>
 
       {isLoggedIn && (
