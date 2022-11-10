@@ -55,8 +55,8 @@ function MoodPageActivities({ mood }) {
       <div>
         {statusObjectSelection(moodList, "Great").map((activity) => {
           return (
-            <div className="pill-moodpage">
-              <PillSmall content={activity} key={activity} />
+            <div key={activity} className="pill-moodpage">
+              <PillSmall content={activity} />
             </div>
           );
         })}
@@ -66,8 +66,8 @@ function MoodPageActivities({ mood }) {
       <div>
         {statusObjectSelection(moodList, "Awful").map((activity) => {
           return (
-            <div className="pill-moodpage">
-              <PillSmall content={activity} key={activity}></PillSmall>
+            <div key={activity} className="pill-moodpage">
+              <PillSmall content={activity}></PillSmall>
             </div>
           );
         })}
