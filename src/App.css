@@ -39,8 +39,7 @@ h4 {
   font-size: 2rem;
 }
 
-.submits,
-.btn-submit {
+.submits {
   font: inherit;
   background-color: var(--color-background);
   /* background-color: var(--color-text);

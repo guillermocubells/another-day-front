@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ButtonRegular from "../Buttons/ButtonRegular";
 
 function CreateCustomActivity({ form, setForm, moodData, setMoodData }) {
   const [isActive, setIsActive] = useState(false);
@@ -58,9 +59,9 @@ function CreateCustomActivity({ form, setForm, moodData, setMoodData }) {
 
   return (
     <div>
-      <button className="btn-submit" type="button" onClick={showForm}>
+      <ButtonRegular handleClick={showForm}>
         {isActive ? "Close" : "..."}
-      </button>
+      </ButtonRegular>
       {isActive && (
         <div>
           <label>
@@ -73,9 +74,10 @@ function CreateCustomActivity({ form, setForm, moodData, setMoodData }) {
               onKeyPress={preventSubmitOnEnter}
             />
           </label>
-          <button className="btn-submit" type="button" onClick={handleCreate}>
+          <ButtonRegular handleClick={handleCreate}>
             Create Activity
-          </button>
+          </ButtonRegular>
+
           {errorMessage && <div>{errorMessage}</div>}
         </div>
       )}

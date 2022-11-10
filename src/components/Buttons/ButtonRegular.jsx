@@ -1,8 +1,9 @@
 import React from "react";
+import styles from "./ButtonRegular.module.css";
 
 function ButtonRegular({ children, handleClick }) {
   return (
-    <button className="submits" type="button" onClick={handleClick}>
+    <button className={styles.btnRegular} type="button" onClick={handleClick}>
       {children}
     </button>
   );
