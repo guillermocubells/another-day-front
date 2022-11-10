@@ -1,7 +1,12 @@
 section.mood-check-in {
-  position: sticky;
-  top: 5rem;
+  position: relative;
   align-self: flex-start;
+}
+@media (min-width: 768px) {
+  section.mood-check-in {
+    position: sticky;
+    top: 5rem;
+  }
 }
 
 section.mood-check-in form,
