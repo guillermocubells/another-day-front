@@ -5,6 +5,7 @@ import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import authService from "../../services/auth.service";
+import ButtonSubmit from "../../components/Buttons/ButtonSubmit";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -70,9 +71,7 @@ function LoginPage() {
               onChange={handlePassword}
             />
           </label>
-          <button className="submits" type="submit">
-            Login
-          </button>
+          <ButtonSubmit>Login</ButtonSubmit>
         </form>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <p>

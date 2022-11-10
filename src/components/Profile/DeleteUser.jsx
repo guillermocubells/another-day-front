@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/auth.context";
 import apiClient from "../../services/api-client";
+import ButtonSubmit from "../Buttons/ButtonSubmit";
 
 function DeleteUser() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -59,9 +60,7 @@ function DeleteUser() {
             value={form.password}
           />
         </label>
-        <button className="submits" type="submit">
-          Delete Account
-        </button>
+        <ButtonSubmit>Delete Account</ButtonSubmit>
         {errorMessage && <div>{errorMessage}</div>}
       </form>
     </article>

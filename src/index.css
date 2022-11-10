@@ -72,6 +72,7 @@ button:hover {
   --border-medium: 1.5px;
   --border-large: 2px;
 
+  --animation-timing-fast: 0.25s;
   --animation-timing-slow: 0.5s;
   --opacity: 35%;
 }
@@ -82,6 +83,7 @@ body {
   --color-white: #fefefe;
   --color-text: #1d1d1d;
   --color-neutral: #d1fff8;
+  --color-gray: #ededed;
   --color-background: #fffa7b;
 
   --color-awful: #fd9eb0;
