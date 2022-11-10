@@ -1,8 +1,9 @@
+import styles from "./MoodCheckInDate.module.css";
 import React from "react";
 
 function MoodCheckInDate({ handleChange, date }) {
   return (
-    <label>
+    <label className={styles.formDate}>
       Date
       <input
         type="datetime-local"
