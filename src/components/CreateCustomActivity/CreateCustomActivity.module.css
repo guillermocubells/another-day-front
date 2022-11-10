@@ -1,0 +1,4 @@
+.activityWrapper {
+  display: flex;
+  gap: var(--spacer-s);
+}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./CreateCustomActivity.module.css";
 import ButtonRegular from "../Buttons/ButtonRegular";
 
 function CreateCustomActivity({ form, setForm, moodData, setMoodData }) {
@@ -63,7 +64,7 @@ function CreateCustomActivity({ form, setForm, moodData, setMoodData }) {
         {isActive ? "Close" : "..."}
       </ButtonRegular>
       {isActive && (
-        <div>
+        <div className={styles.activityWrapper}>
           <label>
             <input
               onChange={handleChange}
