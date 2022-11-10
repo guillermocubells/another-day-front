@@ -5,7 +5,7 @@
 }
 
 .smiley-image {
-  width: 6vw;
+  width: calc(var(--text-size-m) * 3);
 }
 
 /* ############# TYPOGRAPHY ############# */

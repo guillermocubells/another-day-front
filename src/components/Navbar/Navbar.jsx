@@ -11,7 +11,9 @@ function Navbar() {
 
   return (
     <nav className={`${styles.nav}`}>
-      <NavLink to="/">Anoday Anode $</NavLink>
+      <NavLink className={styles.logoLol} to="/">
+        <strong>Anoday Anode $</strong>
+      </NavLink>
 
       {isLoggedIn && (
         <div className={`${styles.nav__links}`}>
