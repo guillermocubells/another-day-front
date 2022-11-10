@@ -1,6 +1,6 @@
 import React from "react";
 
-function MoodCheckInImage(form, handleChange) {
+function MoodCheckInImage({ form, handleChange }) {
   return (
     <label className="mood-check-in__form-image mood-check-in__form-flex">
       Image

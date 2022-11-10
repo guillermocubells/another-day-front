@@ -1,6 +1,6 @@
 import React from "react";
 
-function MoodCheckInNote(form, handleChange) {
+function MoodCheckInNote({ form, handleChange }) {
   return (
     <label>
       Note
