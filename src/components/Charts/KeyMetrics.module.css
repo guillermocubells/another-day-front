@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .keyMetrics h1 {
