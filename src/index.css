@@ -121,7 +121,7 @@ input[type="email"],
 input[type="datetime-local"],
 input[type="password"] {
   color: var(--color-text);
-  padding: var(--spacer-s);
+  padding: var(--spacer-xs) var(--spacer-s);
   border-radius: var(--spacer-s);
   border: var(--border-small) solid var(--color-text);
 }
