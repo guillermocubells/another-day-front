@@ -1,11 +1,10 @@
 import "./MoodCheckInForm.css";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
 import apiClient from "../../services/api-client";
+import { MOOD_ASSETS } from "../../utils/consts";
+
 import Loading from "../../components/Loading/Loading";
 
-import { MOOD_ASSETS } from "../../utils/consts";
 import MoodCheckInDate from "../MoodCheckInFormFields/MoodCheckInDate";
 import MoodCheckInStatus from "../MoodCheckInFormFields/MoodCheckInStatus";
 import MoodCheckInSubstatus from "../MoodCheckInFormFields/MoodCheckInSubstatus";
@@ -14,25 +13,18 @@ import MoodCheckInNote from "../MoodCheckInFormFields/MoodCheckInNote";
 import MoodCheckInImage from "../MoodCheckInFormFields/MoodCheckInImage";
 import ButtonSubmit from "../Buttons/ButtonSubmit";
 
-function MoodCheckInForm() {
-  const navigate = useNavigate();
+function MoodCheckInForm({
+  form,
+  setForm,
+  handleSubmit,
+  errorMessage,
+  setErrorMessage,
+}) {
   const [isLoading, setIsLoading] = useState(true);
-  const [errorMessage, setErrorMessage] = useState("");
   const [moodData, setMoodData] = useState({
     mood_status: [],
     mood_substatus: [],
     activities: [],
-  });
-
-  const [form, setForm] = useState({
-    status: "",
-    substatus: "",
-    activities: [],
-    journal: "",
-    date: new Date(new Date().toString().split("GMT")[0] + " UTC")
-      .toISOString()
-      .split(".")[0],
-    image: "",
   });
 
   // Getting Mood Data
@@ -42,11 +34,12 @@ function MoodCheckInForm() {
       .get("/api")
       .then((res) => {
         setMoodData(res.data);
-        setIsLoading(false);
       })
       .catch((error) => {
-        setIsLoading(false);
         console.error(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
@@ -74,22 +67,6 @@ function MoodCheckInForm() {
     setForm({ ...form, [name]: form[name].filter((item) => item !== id) });
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    setErrorMessage("");
-
-    apiClient
-      .post("/api/mood/create", form)
-      .then((response) => {
-        const { data } = response;
-        navigate(`/mood/${data._id}`);
-      })
-      .catch((err) => {
-        console.error(err);
-        const errorDescription = err.response.data.message;
-        setErrorMessage(errorDescription);
-      });
-  }
   return (
     <section className="mood-check-in">
       <h1>Check In</h1>
