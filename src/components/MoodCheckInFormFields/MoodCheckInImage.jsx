@@ -3,7 +3,7 @@ import React from "react";
 function MoodCheckInImage({ form, handleChange }) {
   return (
     <label className="mood-check-in__form-image mood-check-in__form-flex">
-      Image
+      <div className="submits">Upload Image</div>
       <input
         type="file"
         name="image"

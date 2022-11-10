@@ -98,6 +98,9 @@ section.mood-check-in .mood-check-in__wrapper form {
 .mood-check-in__form-image {
   flex-direction: column;
 }
+.mood-check-in__form-image input {
+  display: none;
+}
 
 section.mood-check-in form textarea {
   width: 100%;
