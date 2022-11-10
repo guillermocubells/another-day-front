@@ -11,18 +11,14 @@ function MarketingPage() {
   const navigate = useNavigate();
 
   return (
-    <div>
-      <div className="marketing-layout">
-        <div>
-          <br />
-          <br />
-          <br />
-          <br />
+    <main className="marketingPage">
+      <div className="hero-layout">
+        <div className="hero-text">
           <h1>
             Daily moodcheck <br />
             for just a $
           </h1>
-          <br />
+
           <h3>
             Some say the more you pay <br />
             the better you stay
@@ -34,53 +30,45 @@ function MarketingPage() {
               }}
               className="cta"
             >
-              Checkin
+              Check In
             </button>
           </div>
         </div>
-        <div>
+        <div className="hero-image">
           <img src={banner} alt="banner" />
         </div>
       </div>
 
-      <div className="hero-background">
-        <h3 style={{ margin: "0 auto" }}>How it works</h3>
-        <br />
-        <h4>
+      <div className="marketing-background">
+        <h3>How it works</h3>
+        <p>
           From checkin to action, track how you feel and own your state of mind
-        </h4>
-        <br />
-        <br />
-        <br />
+        </p>
 
-        <div className="marketing-layout ">
-          <div className="hero">
+        <section className="marketing-layout">
+          <article className="hero">
             <img src={checkInWithYourself} alt="checkin" />
             <h4>Checkin with yourself</h4>
-            <br />
-            <h5>In less than a 1 minute everyday</h5>
-          </div>
-          <div className="hero">
+            <p>In less than a 1 minute everyday</p>
+          </article>
+          <article className="hero">
             <img src={tagYourNotes} alt="tag your notes" />
             <h4>Monitor your moods</h4>
-            <br />
-            <h5>Look into your expansive and recessive cycles</h5>
-          </div>
-          <div className="hero">
+            <p>Look into your expansive and recessive cycles</p>
+          </article>
+          <article className="hero">
             <img src={monitorYourMoods} alt="monitor your moods" />
             <h4>Tag your notes</h4>
-            <br />
-            <h5>And start creating your digital archive</h5>
-          </div>
-          <div className="hero">
+            <p>And start creating your digital archive</p>
+          </article>
+          <article className="hero">
             <img src={pinpointWhatDrawnsYou} alt="pinpoint what draws you" />
-            <h4>Know what drawns you</h4>
-            <br />
-            <h5>And stop downward spirals</h5>
-          </div>
-        </div>
+            <h4>Know what drowns you</h4>
+            <p>And stop downward spirals</p>
+          </article>
+        </section>
       </div>
-    </div>
+    </main>
   );
 }
 
