@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import apiClient from "../../services/api-client";
 import MoodPageActivities from "../../components/MoodListActivities/MoodListActivities";
+import MoodListNotes from "../../components/MoodListNotes/MoodListNotes";
 import { dateFormat } from "../../utils/date-helper";
 import { MOOD_ASSETS } from "../../utils/consts";
 
@@ -107,6 +108,9 @@ function MoodPage() {
 
         <div>
           <MoodPageActivities />
+        </div>
+        <div>
+          <MoodListNotes />
         </div>
       </div>
     </div>

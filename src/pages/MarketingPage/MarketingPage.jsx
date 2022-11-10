@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./MarketingPage.css";
 import banner from "../../assets/image/another-homepage-banner.svg";
 import checkInWithYourself from "../../assets/image/checkin-with-yourself.svg";
@@ -7,6 +8,8 @@ import pinpointWhatDrawnsYou from "../../assets/image/pinpoint-what-drawns-you.s
 import tagYourNotes from "../../assets/image/tag-your-notes.svg";
 
 function MarketingPage() {
+  const navigate = useNavigate();
+
   return (
     <div>
       <div className="marketing-layout">
@@ -25,7 +28,12 @@ function MarketingPage() {
             the better you stay
           </h3>
           <div>
-            <button onClick="" className="cta">
+            <button
+              onClick={() => {
+                navigate(`/signup`);
+              }}
+              className="cta"
+            >
               Checkin
             </button>
           </div>
