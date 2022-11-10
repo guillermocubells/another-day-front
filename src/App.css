@@ -41,13 +41,18 @@ h4 {
 
 .submits {
   font: inherit;
-  background-color: var(--color-background);
-  /* background-color: var(--color-text);
-  color: var(--color-white); */
+  background-color: var(--color-gray);
   font-weight: 200;
   display: inline-block;
   width: fit-content;
-  border: var(--border-small) var(--color-text) solid;
+  border: var(--border-small) transparent solid;
+  outline: none;
   padding: var(--spacer-xs) var(--spacer-s);
   border-radius: var(--spacer-m);
+  transition: transform var(--animation-timing-fast) ease;
+}
+
+.submits:hover {
+  transform: translate(0, -5%);
+  cursor: pointer;
 }
