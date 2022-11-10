@@ -42,8 +42,6 @@ function DashboardPage() {
     <main className="dashboard-layout">
       <h1>Dashboard</h1>
       <div className="chart-cards">
-        <h2>Key Metrics</h2>
-        <br />
         <KeyMetrics data={data} />
       </div>
       <div className="chart-layout">

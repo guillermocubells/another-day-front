@@ -1,0 +1,10 @@
+.keyMetrics {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.keyMetrics h1 {
+  padding-top: 0;
+}

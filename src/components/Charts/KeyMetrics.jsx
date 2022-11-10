@@ -1,5 +1,8 @@
+import styles from "./KeyMetrics.module.css";
+
 import React, { useState } from "react";
 import Loading from "../../components/Loading/Loading";
+import MoodSmiley from "../MoodSmiley/MoodSmiley";
 
 function KeyMetrics({ data }) {
   const [moodList] = useState(data);
@@ -45,11 +48,20 @@ function KeyMetrics({ data }) {
   }
 
   return (
-    <div>
-      <div>Checkins: {checkInCount(moodList)}</div>
-      <div>Total score: {scoreCount(moodList)}</div>
+    <div className={styles.keyMetrics}>
       <div>
-        Average: {moodConversion(averageMood)} ({averageMood})
+        <h1>{checkInCount(moodList)}</h1>
+        <p>Checkins</p>
+      </div>
+      <div>
+        <h1>{scoreCount(moodList)}</h1>
+        <p>Total score</p>
+      </div>
+      <div>
+        <h1>{moodConversion(averageMood)}</h1> <p>Average ({averageMood})</p>
+      </div>
+      <div>
+        <MoodSmiley status={moodConversion(averageMood)} />
       </div>
     </div>
   );

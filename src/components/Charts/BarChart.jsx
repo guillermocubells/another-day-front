@@ -86,9 +86,9 @@ function BarChart({ data }) {
     return <Loading />;
   }
   return (
-    <div>
+    <article>
       <Bar options={chartOptions} data={chartData} />
-    </div>
+    </article>
   );
 }
 
