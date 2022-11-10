@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-weight: 400;
 }
 
 a {
@@ -58,15 +59,16 @@ button:hover {
 }
 
 :root {
+  --size-l: 1280px;
   --spacer-xs: 0.25rem;
   --spacer-s: 0.5rem;
   --spacer-m: 1rem;
   --spacer-l: 2rem;
   --text-size-xs: 0.625rem;
-  --text-size-s: 1rem;
-  --text-size-m: 2rem;
+  --text-size-s: 0.75rem;
+  --text-size-m: 1.5rem;
   --text-size-l: 3rem;
-  --text-size-xl: 5vw;
+  --text-size-xl: 7vw;
 
   --border-small: 1px;
   --border-medium: 1.5px;
@@ -75,6 +77,34 @@ button:hover {
   --animation-timing-fast: 0.25s;
   --animation-timing-slow: 0.5s;
   --opacity: 35%;
+}
+
+@media (min-width: 576px) {
+  :root {
+    --text-size-s: 1rem;
+    --text-size-xl: 6vw;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --text-size-m: 1.5rem;
+    --text-size-xl: 6.5vw;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --text-size-m: 1.75rem;
+    --text-size-xl: 6vw;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --text-size-m: 2rem;
+    --text-size-xl: 5.5rem;
+  }
 }
 
 /* ############# Globals ############# */
