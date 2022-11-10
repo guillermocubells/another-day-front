@@ -23,7 +23,9 @@ function DeleteButton({ id }) {
   }
   return (
     <>
-      <ButtonRegular handleClick={handleClick}>Delete Entry</ButtonRegular>
+      <ButtonRegular customClass={"delete"} handleClick={handleClick}>
+        Delete Entry
+      </ButtonRegular>
       {errorMessage && <div>{errorMessage}</div>}
     </>
   );

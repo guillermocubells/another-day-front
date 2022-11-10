@@ -56,3 +56,6 @@ h4 {
   transform: translate(0, -5%);
   cursor: pointer;
 }
+.delete {
+  background-color: var(--color-awful) !important;
+}

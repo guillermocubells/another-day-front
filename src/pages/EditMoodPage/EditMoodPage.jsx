@@ -1,4 +1,4 @@
-import "./EditMoodPage.css";
+import styles from "./EditMoodPage.module.css";
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -73,7 +73,10 @@ function EditMoodPage() {
 
   return (
     <main className="mood-check-in">
-      <h1>Edit Mood Entry</h1>
+      <header className={styles.editHeader}>
+        <h1>Edit Log</h1>
+        <DeleteButton id={id} />
+      </header>
       <MoodCheckInForm
         form={form}
         setForm={setForm}
@@ -81,7 +84,6 @@ function EditMoodPage() {
         errorMessage={message}
         setErrorMessage={setMessage}
       />
-      <DeleteButton id={id} />
       {message && <div>{message}</div>}
     </main>
   );
