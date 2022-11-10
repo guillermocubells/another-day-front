@@ -14,6 +14,7 @@ import MoodCheckInImage from "../MoodCheckInFormFields/MoodCheckInImage";
 import ButtonSubmit from "../Buttons/ButtonSubmit";
 
 function MoodCheckInForm({
+  title,
   form,
   setForm,
   handleSubmit,
@@ -69,7 +70,7 @@ function MoodCheckInForm({
 
   return (
     <section className="mood-check-in">
-      <h1>Check In</h1>
+      <h1>{title}</h1>
       <div className={`mood-check-in__wrapper ${!form.status && "inactive"}`}>
         <h2>How are you feeling right now?</h2>
         {errorMessage && <div>{errorMessage}</div>}
@@ -109,7 +110,7 @@ function MoodCheckInForm({
             <MoodCheckInNote form={form} handleChange={handleChange} />
             <MoodCheckInImage form={form} handleChange={handleChange} />
 
-            <ButtonSubmit>Check In</ButtonSubmit>
+            <ButtonSubmit>Submit</ButtonSubmit>
           </div>
         </form>
       </div>

@@ -40,6 +40,7 @@ function HomePage() {
   return (
     <main className="home">
       <MoodCheckInForm
+        title={"Check In"}
         form={form}
         setForm={setForm}
         handleSubmit={handleSubmit}
