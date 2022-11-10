@@ -84,6 +84,12 @@ section.mood-check-in .mood-check-in__wrapper form {
   opacity: var(--opacity);
 }
 
+.mood-check-in__form-activities-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacer-s);
+}
+
 .mood-check-in__form-activities,
 .mood-check-in__form-flex {
   display: flex;

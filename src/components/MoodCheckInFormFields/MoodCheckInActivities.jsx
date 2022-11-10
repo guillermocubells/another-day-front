@@ -12,7 +12,7 @@ function MoodCheckInActivities({
 }) {
   return (
     <div className="mood-check-in__form-activities-wrapper">
-      <h4>What are you doing?</h4>
+      What are you doing?
       <div className="mood-check-in__form-activities mood-check-in__form-flex">
         {activities.map((activity, index) => {
           const { _id, title } = activity;

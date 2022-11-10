@@ -74,7 +74,7 @@ function EditMoodPage() {
   return (
     <main className="mood-check-in">
       <header className={styles.editHeader}>
-        <h1>Edit Log</h1>
+        <h1>Edit Journal Entry</h1>
         <DeleteButton id={id} />
       </header>
       <MoodCheckInForm
