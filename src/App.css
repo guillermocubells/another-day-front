@@ -20,7 +20,7 @@ strong {
 
 h1 {
   font-size: var(--text-size-xl);
-  padding: 1rem 0;
+  padding: var(--spacer-m) 0;
 }
 
 h2 {
