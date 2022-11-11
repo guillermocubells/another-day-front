@@ -7,11 +7,14 @@ import TotalMoodDistribution from "../../components/Charts/TotalMoodDistribution
 // import RadarChart from "../../components/Charts/RadarChart";
 import KeyMetrics from "../../components/Charts/KeyMetrics";
 import "./DashboardPage.css";
+import ButtonRegular from "../../components/Buttons/ButtonRegular";
+import { useNavigate } from "react-router-dom";
 
 function DashboardPage() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
@@ -36,6 +39,25 @@ function DashboardPage() {
 
   if (errorMessage) {
     return <div>{errorMessage}</div>;
+  }
+
+  if (data.length === 0) {
+    function handleClick(e) {
+      navigate("/");
+    }
+
+    return (
+      <main className="dashboard-preview">
+        <h1>We need more data.</h1>
+        <h3>
+          Start tracking your mood first, statistics and $ will come later. Come
+          back some other time.
+        </h3>
+        <ButtonRegular customClass={"white"} handleClick={handleClick}>
+          Check In
+        </ButtonRegular>
+      </main>
+    );
   }
 
   return (

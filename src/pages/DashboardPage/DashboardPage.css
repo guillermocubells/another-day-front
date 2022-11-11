@@ -1,3 +1,9 @@
+.dashboard-preview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacer-l);
+}
+
 .dashboard-layout,
 .chart-layout,
 .chart-column-1 {
