@@ -22,6 +22,8 @@ function MoodCheckInForm({
   setErrorMessage,
 }) {
   const [isLoading, setIsLoading] = useState(true);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadingMessage, setUploadingMessage] = useState("");
   const [moodData, setMoodData] = useState({
     mood_status: [],
     mood_substatus: [],
@@ -50,6 +52,13 @@ function MoodCheckInForm({
 
   const { mood_status, mood_substatus, activities } = moodData;
 
+  function preventSubmit(e) {
+    e.preventDefault();
+    setUploadingMessage(
+      "An Image is beeing uploaded. Try again in a few seconds."
+    );
+  }
+
   function handleChange(evt) {
     const { name, value } = evt.target;
     setForm({ ...form, [name]: value });
@@ -74,7 +83,7 @@ function MoodCheckInForm({
       <div className={`mood-check-in__wrapper ${!form.status && "inactive"}`}>
         <h2>How are you feeling right now?</h2>
         <form
-          onSubmit={handleSubmit}
+          onSubmit={isUploading ? preventSubmit : handleSubmit}
           style={{
             backgroundColor: form.status ? MOOD_ASSETS[form.status].color : "",
           }}
@@ -107,9 +116,16 @@ function MoodCheckInForm({
               setMoodData={setMoodData}
             />
             <MoodCheckInNote form={form} handleChange={handleChange} />
-            <MoodCheckInImage form={form} handleChange={handleChange} />
+            <MoodCheckInImage
+              form={form}
+              isUploading={isUploading}
+              setIsUploading={setIsUploading}
+              setForm={setForm}
+              handleChange={handleChange}
+            />
 
             <ButtonSubmit>Submit</ButtonSubmit>
+            {isUploading && uploadingMessage && <p>{uploadingMessage}</p>}
           </div>
           {errorMessage && <div>{errorMessage}</div>}
         </form>
