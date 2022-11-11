@@ -117,3 +117,8 @@ section.mood-check-in form textarea {
 
   resize: none;
 }
+
+.buttonWrapper {
+  display: flex;
+  justify-content: space-between;
+}

@@ -7,7 +7,6 @@ import apiClient from "../../services/api-client";
 import MoodCheckInForm from "../../components/MoodCheckInForm/MoodCheckInForm";
 
 import Loading from "../../components/Loading/Loading";
-import DeleteButton from "../../components/DeleteButton/DeleteButton";
 
 function EditMoodPage() {
   const { id } = useParams();
@@ -75,9 +74,10 @@ function EditMoodPage() {
     <main className="mood-check-in">
       <header className={styles.editHeader}>
         <h1>Edit Journal Entry</h1>
-        <DeleteButton id={id} />
       </header>
       <MoodCheckInForm
+        id={id}
+        edit={true}
         form={form}
         setForm={setForm}
         handleSubmit={handleSubmit}

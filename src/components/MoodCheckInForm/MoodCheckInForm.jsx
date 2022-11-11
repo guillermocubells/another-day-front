@@ -12,8 +12,11 @@ import MoodCheckInImage from "../MoodCheckInFormFields/MoodCheckInImage";
 import MoodCheckInNote from "../MoodCheckInFormFields/MoodCheckInNote";
 import MoodCheckInStatus from "../MoodCheckInFormFields/MoodCheckInStatus";
 import MoodCheckInSubstatus from "../MoodCheckInFormFields/MoodCheckInSubstatus";
+import DeleteButton from "../DeleteButton/DeleteButton";
 
 function MoodCheckInForm({
+  id,
+  edit,
   title,
   form,
   setForm,
@@ -124,7 +127,11 @@ function MoodCheckInForm({
               handleChange={handleChange}
             />
 
-            <ButtonSubmit>Submit</ButtonSubmit>
+            <hr />
+            <div className="buttonWrapper">
+              <ButtonSubmit>Submit</ButtonSubmit>
+              {edit && <DeleteButton id={id} />}
+            </div>
             {isUploading && uploadingMessage && <p>{uploadingMessage}</p>}
           </div>
           {errorMessage && <div>{errorMessage}</div>}

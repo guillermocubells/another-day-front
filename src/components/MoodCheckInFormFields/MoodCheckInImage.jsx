@@ -50,6 +50,7 @@ function MoodCheckInImage({
     <label className="mood-check-in__form-image mood-check-in__form-flex">
       <div className={`submits ${isUploading && "loading"}`}>
         {!message && !form.image && "Upload Image"}
+        {!message && form.image && `Change Image`}
         {message && uploadProgress > 0 && (
           <p>
             {message} {uploadProgress}%
