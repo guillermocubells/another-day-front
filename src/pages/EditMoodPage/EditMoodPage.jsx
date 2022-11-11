@@ -84,7 +84,6 @@ function EditMoodPage() {
         errorMessage={message}
         setErrorMessage={setMessage}
       />
-      {message && <div>{message}</div>}
     </main>
   );
 }

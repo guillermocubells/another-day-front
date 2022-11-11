@@ -73,7 +73,6 @@ function MoodCheckInForm({
       <h1>{title}</h1>
       <div className={`mood-check-in__wrapper ${!form.status && "inactive"}`}>
         <h2>How are you feeling right now?</h2>
-        {errorMessage && <div>{errorMessage}</div>}
         <form
           onSubmit={handleSubmit}
           style={{
@@ -112,6 +111,7 @@ function MoodCheckInForm({
 
             <ButtonSubmit>Submit</ButtonSubmit>
           </div>
+          {errorMessage && <div>{errorMessage}</div>}
         </form>
       </div>
     </section>
