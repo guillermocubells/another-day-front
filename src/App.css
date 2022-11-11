@@ -58,6 +58,11 @@ h4 {
   transition: transform var(--animation-timing-fast) ease;
 }
 
+.submits.loading {
+  background-color: var(--color-text) !important;
+  color: var(--color-white) !important;
+}
+
 .submits:hover {
   transform: translate(0, -5%);
   cursor: pointer;
