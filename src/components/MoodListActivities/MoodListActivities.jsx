@@ -1,9 +1,9 @@
+import styles from "../MoodListActivities/MoodListActivities.module.css";
+
 import React, { useEffect, useState } from "react";
 import apiClient from "../../services/api-client";
 import Loading from "../Loading/Loading";
 import PillSmall from "../Pills/PillSmall";
-import "../Pills/PillSmall.css";
-import "../MoodListActivities/MoodListActivities.css";
 
 function MoodPageActivities({ mood }) {
   const [moodList, setMoodList] = useState([]);
@@ -48,31 +48,28 @@ function MoodPageActivities({ mood }) {
   //   console.log(statusObjectSelection(moodList, "Great"));
 
   return (
-    <section className="mood-list">
-      <div className="mood-list-wrapper"></div>
-      <br />
-      <h5>These are some of the things that pump you:</h5>
-      <div>
-        {statusObjectSelection(moodList, "Great").map((activity) => {
-          return (
-            <div key={activity} className="pill-moodpage">
-              <PillSmall content={activity} />
-            </div>
-          );
-        })}
-      </div>
-      <br />
-      <h5>Avoid getting involved in these things, they might drawn you:</h5>
-      <div>
-        {statusObjectSelection(moodList, "Awful").map((activity) => {
-          return (
-            <div key={activity} className="pill-moodpage">
-              <PillSmall content={activity}></PillSmall>
-            </div>
-          );
-        })}
-      </div>
-    </section>
+    <>
+      <hr />
+      <section className={styles.activities}>
+        <h5>These are some of the activities that motivate you</h5>
+        <div className={styles.activitiesWrapper}>
+          {statusObjectSelection(moodList, "Great").map((activity) => {
+            return <PillSmall key={activity}>{activity}</PillSmall>;
+          })}
+        </div>
+      </section>
+      <hr />
+      <section className={styles.activities}>
+        <h5>
+          Avoid getting involved in these activities, they might drown you
+        </h5>
+        <div className={styles.activitiesWrapper}>
+          {statusObjectSelection(moodList, "Awful").map((activity) => {
+            return <PillSmall key={activity}>{activity}</PillSmall>;
+          })}
+        </div>
+      </section>
+    </>
   );
 }
 

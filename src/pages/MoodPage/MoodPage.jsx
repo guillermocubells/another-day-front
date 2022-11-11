@@ -10,6 +10,7 @@ import ButtonRegular from "../../components/Buttons/ButtonRegular";
 import MoodPageActivities from "../../components/MoodListActivities/MoodListActivities";
 import MoodListNotes from "../../components/MoodListNotes/MoodListNotes";
 import PillSmall from "../../components/Pills/PillSmall";
+import DeleteButton from "../../components/DeleteButton/DeleteButton";
 
 function MoodPage() {
   const [data, setData] = useState({});
@@ -46,7 +47,7 @@ function MoodPage() {
     return;
   }
 
-  const { date, status, substatus, activities, journal, image } = data;
+  const { _id, date, status, substatus, activities, journal, image } = data;
   const { image: smileyImage } = MOOD_ASSETS[status];
 
   // console.log(activities);
@@ -58,47 +59,58 @@ function MoodPage() {
           backgroundColor: MOOD_ASSETS[status].color,
         }}
       >
-        <div>
-          <h1>{dateFormat(date)}</h1>
-        </div>
-
-        <article>
-          <header>
-            <img
-              src={smileyImage}
-              alt={`${status} smiley`}
-              className="smiley-image"
-            />
-            <h1 className={styles.singleMoodStatus}>{status}</h1>
-            {substatus && <h3>{substatus[status]}</h3>}
-          </header>
-          {activities && (
-            <section className={styles.singleMoodActivities}>
-              {activities.map((activity) => {
-                return (
-                  <PillSmall key={activity._id}>{activity.title}</PillSmall>
-                );
-              })}
-            </section>
-          )}
-          {journal && (
-            <section className={styles.singleMoodJournal}>
-              <h3>Journal</h3>
-              <div>{journal}</div>
-            </section>
-          )}
-        </article>
-        {image && (
-          <section className={styles.singleMoodImageWrapper}>
-            <img className={styles.singleMoodImage} src={image} alt={status} />{" "}
+        <section className={styles.singleMoodPageInfos}>
+          <div>
+            <header className={styles.header}>
+              <div>
+                <h3>{dateFormat(date)}</h3>
+                <h1 className={styles.singleMoodStatus}>{status}</h1>
+                {substatus && <h3>{substatus[status]}</h3>}
+              </div>
+              <img
+                src={smileyImage}
+                alt={`${status} smiley`}
+                className="smiley-image"
+              />
+            </header>
+            {activities && (
+              <article className={styles.singleMoodActivities}>
+                {activities.map((activity) => {
+                  return (
+                    <PillSmall key={activity._id} nofill={true}>
+                      {activity.title}
+                    </PillSmall>
+                  );
+                })}
+              </article>
+            )}
+          </div>
+          <div>
+            {image && (
+              <article className={styles.singleMoodImageWrapper}>
+                <img
+                  className={styles.singleMoodImage}
+                  src={image}
+                  alt={status}
+                />{" "}
+              </article>
+            )}
+          </div>
+        </section>
+        {journal && (
+          <section className={styles.singleMoodJournal}>
+            <h3>Journal</h3>
+            <div>{journal}</div>
           </section>
         )}
-
-        <ButtonRegular handleClick={moveToEditPage}>Edit</ButtonRegular>
-
         <MoodPageActivities />
-
-        <MoodListNotes />
+        <hr />
+        <MoodListNotes id={_id} />
+        <hr />
+        <footer className={styles.footer}>
+          <ButtonRegular handleClick={moveToEditPage}>Edit</ButtonRegular>
+          <DeleteButton id={_id} />
+        </footer>
       </div>
     </main>
   );

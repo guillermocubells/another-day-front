@@ -1,0 +1,14 @@
+.activities > h5 {
+  padding-bottom: var(--spacer-m);
+  font-size: var(--text-size-m);
+}
+
+.activitiesWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacer-s);
+}
+
+.activitiesWrapper > div {
+  border: none;
+}

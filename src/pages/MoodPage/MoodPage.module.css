@@ -1,7 +1,68 @@
 .singleMoodPageWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacer-m);
   border: var(--border-large) var(--color-text) solid;
   border-radius: var(--spacer-m);
   padding: var(--spacer-l);
+}
+
+@media (min-width: 1280px) {
+  .singleMoodPageWrapper {
+    margin-top: var(--spacer-l);
+  }
+}
+
+.singleMoodPageWrapper > h1 {
+  padding: 0;
+}
+
+.singleMoodPageWrapper > section:not(:first-of-type) {
+  padding-bottom: var(--spacer-m);
+}
+
+.singleMoodPageInfos {
+  /* padding: var(--spacer-l) 0; */
+  display: grid;
+  gap: var(--spacer-m);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .singleMoodPageInfos {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.singleMoodPageInfos > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacer-m);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacer-m);
+  justify-content: space-between;
+}
+.header img {
+  order: 2;
+}
+
+@media (min-width: 768px) {
+  .header {
+    flex-direction: column;
+  }
+  .header img {
+    order: 0;
+  }
+}
+
+.singleMoodActivities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacer-s);
 }
 
 .singleMoodStatus {
@@ -9,5 +70,24 @@
 }
 
 .singleMoodImage {
-  max-width: 100%;
+  width: 100%;
+  border-radius: var(--spacer-s);
+}
+
+.singleMoodJournal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacer-m);
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .singleMoodJournal {
+    width: 75%;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
 }

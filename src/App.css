@@ -37,12 +37,23 @@ h3 {
 h4 {
 }
 
+h5 {
+  font-size: var(--text-size-s);
+}
+
 .App {
   font-size: var(--text-size-s);
 }
 
 .text-size-medium {
   font-size: 2rem;
+}
+
+/* ############# Buttons ############# */
+
+hr {
+  border: none;
+  border-top: var(--border-large) var(--color-text) solid;
 }
 
 .submits {

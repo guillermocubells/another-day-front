@@ -1,11 +1,12 @@
+import styles from "./MoodListNotes.module.css";
+
 import React, { useEffect, useState } from "react";
 import apiClient from "../../services/api-client";
 import Loading from "../Loading/Loading";
-import PillSmall from "../Pills/PillSmall";
-import "../Pills/PillSmall.css";
-import "../MoodListActivities/MoodListActivities.css";
+import { Link } from "react-router-dom";
+import { dateFormat } from "../../utils/date-helper";
 
-function MoodListNotes() {
+function MoodListNotes({ id }) {
   const [moodList, setMoodList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
@@ -33,30 +34,52 @@ function MoodListNotes() {
   if (errorMessage) {
     return <div>{errorMessage}</div>;
   }
-  console.log(moodList);
+
   //Select the activities based on the mood that you select and clears duplicates
-  const statusObjectSelection = (arr, mood) => {
-    return arr
-      .filter((n) => n.status === mood)
-      .map((i) => i.journal)
-      .filter((element) => {
-        return element !== "";
+  const statusObjectSelection = (arr) => {
+    let newArray = arr
+      .filter(
+        (n) =>
+          (n.status === "Great" ||
+            n.status === "Good" ||
+            n.status === "Okay") &&
+          n._id !== id
+      )
+      .filter((item) => {
+        return item.journal !== "" || item.image !== "";
       });
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    shuffleArray(newArray);
+
+    return newArray.slice(0, 3);
   };
-  console.log(statusObjectSelection(moodList, "Great"));
-  //   //   console.log(statusObjectSelection(moodList, "Great"));
 
   return (
-    <section className="mood-list">
-      <div className="mood-list-wrapper"></div>
-      <br />
-      <h5>These are some of the notes you took on your best days</h5>
-      <div>
-        {statusObjectSelection(moodList, "Great").map((journal) => {
+    <section className={styles.moments}>
+      <h5>Revisit some of your favorite moments</h5>
+      <div className={styles.momentsWrapper}>
+        {statusObjectSelection(moodList).map((item) => {
+          const { _id, date, status } = item;
           return (
-            <div key={journal} className="pill-moodpage">
-              <PillSmall content={journal} />
-            </div>
+            <Link key={_id} to={`/mood/${_id}`}>
+              <div className={styles.moment}>
+                <p>
+                  {dateFormat(date)}{" "}
+                  {new Date(date).toLocaleTimeString("es-es", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </p>
+                <h4>{status}</h4>
+              </div>
+            </Link>
           );
         })}
       </div>
