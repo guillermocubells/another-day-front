@@ -42,29 +42,29 @@ function MarketingPage() {
       <div className="marketing-background">
         <h3>How it works</h3>
         <p>
-          From checkin to action, track how you feel and own your state of mind
+          From check-in to action, track how you feel and own your state of mind
         </p>
 
         <section className="marketing-layout">
           <article className="hero">
             <img src={checkInWithYourself} alt="checkin" />
-            <h4>Checkin with yourself</h4>
-            <p>In less than a 1 minute everyday</p>
+            <h4>Check-In with yourself</h4>
+            <p>In less than a 1 minute everyday.</p>
           </article>
           <article className="hero">
             <img src={tagYourNotes} alt="tag your notes" />
             <h4>Monitor your moods</h4>
-            <p>Look into your expansive and recessive cycles</p>
+            <p>Look into your expansive and recessive cycles.</p>
           </article>
           <article className="hero">
             <img src={monitorYourMoods} alt="monitor your moods" />
-            <h4>Tag your notes</h4>
-            <p>And start creating your digital archive</p>
+            <h4>Write notes</h4>
+            <p>And start creating your digital archive.</p>
           </article>
           <article className="hero">
             <img src={pinpointWhatDrawnsYou} alt="pinpoint what draws you" />
             <h4>Know what drowns you</h4>
-            <p>And stop downward spirals</p>
+            <p>And stop downward spirals.</p>
           </article>
         </section>
       </div>
