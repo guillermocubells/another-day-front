@@ -30,7 +30,7 @@ section.mood-list .mood-list__day-entries {
 .hero-journal {
   display: flex;
   flex-direction: column;
-  border-radius: 6px;
+  border-radius: var(--spacer-m);
   transition: transform var(--animation-timing-slow) ease,
     box-shadow var(--animation-timing-slow) ease;
 }

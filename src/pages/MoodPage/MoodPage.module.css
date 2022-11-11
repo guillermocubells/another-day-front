@@ -1,0 +1,13 @@
+.singleMoodPageWrapper {
+  border: var(--border-large) var(--color-text) solid;
+  border-radius: var(--spacer-m);
+  padding: var(--spacer-l);
+}
+
+.singleMoodStatus {
+  padding: 0;
+}
+
+.singleMoodImage {
+  max-width: 100%;
+}

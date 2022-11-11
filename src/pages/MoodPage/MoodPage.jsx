@@ -1,17 +1,15 @@
+import styles from "./MoodPage.module.css";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import apiClient from "../../services/api-client";
+import { MOOD_ASSETS } from "../../utils/consts";
+import { dateFormat } from "../../utils/date-helper";
+
+import ButtonRegular from "../../components/Buttons/ButtonRegular";
 import MoodPageActivities from "../../components/MoodListActivities/MoodListActivities";
 import MoodListNotes from "../../components/MoodListNotes/MoodListNotes";
-import { dateFormat } from "../../utils/date-helper";
-import { MOOD_ASSETS } from "../../utils/consts";
-
-import "./MoodPage.css";
-import "../../components/MoodCheckInForm/MoodCheckInForm.css";
-import "../../components/MoodList/MoodList.css";
-import "../../components/MoodListItem/MoodListItem.css";
-import ButtonRegular from "../../components/Buttons/ButtonRegular";
+import PillSmall from "../../components/Pills/PillSmall";
 
 function MoodPage() {
   const [data, setData] = useState({});
@@ -48,72 +46,61 @@ function MoodPage() {
     return;
   }
 
-  const { _id, date, status, substatus, activities, journal, image } = data;
+  const { date, status, substatus, activities, journal, image } = data;
   const { image: smileyImage } = MOOD_ASSETS[status];
 
   // console.log(activities);
   return (
-    <div className="mood-list-wrapper">
-      <div className="mood-list-date">
-        <h2>{dateFormat(date)}</h2>
-      </div>
+    <main className={styles.singleMoodPage}>
       <div
-        className="mood-layout"
+        className={styles.singleMoodPageWrapper}
         style={{
           backgroundColor: MOOD_ASSETS[status].color,
         }}
       >
-        <div className="mood-layout-2">
-          <div>
-            <article key={_id}>
-              <div className="mood-layout-2">
-                <div
-                  className={
-                    ("mood-list__item-smiley_wrapper", "smiley-layout")
-                  }
-                >
-                  <img
-                    src={smileyImage}
-                    alt={`${status} smiley`}
-                    className="smiley-image"
-                  />
-                </div>
-                <div>
-                  <h2>{status}</h2>
-                  {substatus && <h3>{substatus[status]}</h3>}
-                  {activities && (
-                    <h4>
-                      {activities.map((activity) => activity.title).join(" ")}
-                    </h4>
-                  )}
-                  {journal && (
-                    <article>
-                      <h3>Journal</h3>
-                      <div>{journal}</div>
-                    </article>
-                  )}
-                </div>
-                {image && (
-                  <div>
-                    <img src={image} alt={status} />
-                  </div>
-                )}
-              </div>
-            </article>
-          </div>
-          <div>
-            <ButtonRegular handleClick={moveToEditPage}>Edit</ButtonRegular>
-          </div>
+        <div>
+          <h1>{dateFormat(date)}</h1>
         </div>
 
-        <div>
-          <MoodPageActivities />
-        </div>
-        <div>
-          <MoodListNotes />
-        </div>
+        <article>
+          <header>
+            <img
+              src={smileyImage}
+              alt={`${status} smiley`}
+              className="smiley-image"
+            />
+            <h1 className={styles.singleMoodStatus}>{status}</h1>
+            {substatus && <h3>{substatus[status]}</h3>}
+          </header>
+          {activities && (
+            <section className={styles.singleMoodActivities}>
+              {activities.map((activity) => {
+                return (
+                  <PillSmall key={activity._id}>{activity.title}</PillSmall>
+                );
+              })}
+            </section>
+          )}
+          {journal && (
+            <section className={styles.singleMoodJournal}>
+              <h3>Journal</h3>
+              <div>{journal}</div>
+            </section>
+          )}
+        </article>
+        {image && (
+          <section className={styles.singleMoodImageWrapper}>
+            <img className={styles.singleMoodImage} src={image} alt={status} />{" "}
+          </section>
+        )}
+
+        <ButtonRegular handleClick={moveToEditPage}>Edit</ButtonRegular>
+
+        <MoodPageActivities />
+
+        <MoodListNotes />
       </div>
-    </div>
+    </main>
   );
 }
 
