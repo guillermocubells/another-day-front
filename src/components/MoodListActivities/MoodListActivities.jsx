@@ -66,16 +66,19 @@ function MoodPageActivities({ mood }) {
         </>
       )}
       {awfulArray.length > 0 && (
-        <section className={styles.activities}>
-          <h5>
-            Avoid getting involved in these activities, they might drown you
-          </h5>
-          <div className={styles.activitiesWrapper}>
-            {awfulArray.map((activity) => {
-              return <PillSmall key={activity}>{activity}</PillSmall>;
-            })}
-          </div>
-        </section>
+        <>
+          <section className={styles.activities}>
+            <h5>
+              Avoid getting involved in these activities, they might drown you
+            </h5>
+            <div className={styles.activitiesWrapper}>
+              {awfulArray.map((activity) => {
+                return <PillSmall key={activity}>{activity}</PillSmall>;
+              })}
+            </div>
+          </section>
+          <hr />
+        </>
       )}
     </>
   );

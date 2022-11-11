@@ -104,9 +104,7 @@ function MoodPage() {
           </section>
         )}
         <MoodPageActivities />
-        <hr />
         <MoodListNotes id={_id} />
-        <hr />
         <footer className={styles.footer}>
           <ButtonRegular handleClick={moveToEditPage}>Edit</ButtonRegular>
           <DeleteButton id={_id} />
