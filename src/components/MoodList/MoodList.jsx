@@ -65,17 +65,19 @@ function MoodList() {
           .map((day) => {
             return (
               <article key={day} className="mood-list__day-wrapper">
-                <div className="mood-list__day-date">
-                  <h2>{dateFormat(Number(day))}</h2>
-                </div>
-                <div className="mood-list__day-entries">
-                  {orderedMoods[day]
-                    .sort((a, b) => {
-                      return new Date(b.date) - new Date(a.date);
-                    })
-                    .map((mood) => {
-                      return <MoodListItem mood={mood} key={mood._id} />;
-                    })}
+                <div className="hero-journal">
+                  <div className="mood-list__day-date">
+                    <h2>{dateFormat(Number(day))}</h2>
+                  </div>
+                  <div className="mood-list__day-entries">
+                    {orderedMoods[day]
+                      .sort((a, b) => {
+                        return new Date(b.date) - new Date(a.date);
+                      })
+                      .map((mood) => {
+                        return <MoodListItem mood={mood} key={mood._id} />;
+                      })}
+                  </div>
                 </div>
               </article>
             );

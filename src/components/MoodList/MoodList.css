@@ -26,3 +26,18 @@ section.mood-list .mood-list__day-date {
 section.mood-list .mood-list__day-entries {
   border-top-left-radius: 0;
 }
+
+.hero-journal {
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+  transition: transform var(--animation-timing-slow) ease,
+    box-shadow var(--animation-timing-slow) ease;
+}
+
+.hero-journal:hover {
+  transform: scale(1.05);
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+    rgba(50, 50, 93, 0.25) 0px 25px 50px -10px,
+    rgba(0, 0, 0, 0.3) 0px 15px 30px -15px;
+}
