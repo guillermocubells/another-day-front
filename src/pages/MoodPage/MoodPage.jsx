@@ -48,8 +48,8 @@ function MoodPage() {
     return;
   }
 
-  const { _id, date, status, substatus, activities, journal } = data;
-  const { image } = MOOD_ASSETS[status];
+  const { _id, date, status, substatus, activities, journal, image } = data;
+  const { image: smileyImage } = MOOD_ASSETS[status];
 
   // console.log(activities);
   return (
@@ -73,7 +73,7 @@ function MoodPage() {
                   }
                 >
                   <img
-                    src={image}
+                    src={smileyImage}
                     alt={`${status} smiley`}
                     className="smiley-image"
                   />
@@ -93,6 +93,11 @@ function MoodPage() {
                     </article>
                   )}
                 </div>
+                {image && (
+                  <div>
+                    <img src={image} alt={status} />
+                  </div>
+                )}
               </div>
             </article>
           </div>
