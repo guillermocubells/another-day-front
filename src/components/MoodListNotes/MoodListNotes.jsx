@@ -61,29 +61,35 @@ function MoodListNotes({ id }) {
     return newArray.slice(0, 3);
   };
 
+  const greatArray = statusObjectSelection(moodList);
+
   return (
-    <section className={styles.moments}>
-      <h5>Revisit some of your favorite moments</h5>
-      <div className={styles.momentsWrapper}>
-        {statusObjectSelection(moodList).map((item) => {
-          const { _id, date, status } = item;
-          return (
-            <Link key={_id} to={`/mood/${_id}`}>
-              <div className={styles.moment}>
-                <p>
-                  {dateFormat(date)}{" "}
-                  {new Date(date).toLocaleTimeString("es-es", {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
-                </p>
-                <h4>{status}</h4>
-              </div>
-            </Link>
-          );
-        })}
-      </div>
-    </section>
+    <>
+      {greatArray.length > 0 && (
+        <section className={styles.moments}>
+          <h5>Revisit some of your favorite moments</h5>
+          <div className={styles.momentsWrapper}>
+            {greatArray.map((item) => {
+              const { _id, date, status } = item;
+              return (
+                <Link key={_id} to={`/mood/${_id}`}>
+                  <div className={styles.moment}>
+                    <p>
+                      {dateFormat(date)}{" "}
+                      {new Date(date).toLocaleTimeString("es-es", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </p>
+                    <h4>{status}</h4>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      )}
+    </>
   );
 }
 

@@ -45,30 +45,38 @@ function MoodPageActivities({ mood }) {
         return arr.indexOf(element) === index;
       });
   };
-  //   console.log(statusObjectSelection(moodList, "Great"));
+
+  const greatArray = statusObjectSelection(moodList, "Great");
+  const awfulArray = statusObjectSelection(moodList, "Awful");
 
   return (
     <>
       <hr />
-      <section className={styles.activities}>
-        <h5>These are some of the activities that motivate you</h5>
-        <div className={styles.activitiesWrapper}>
-          {statusObjectSelection(moodList, "Great").map((activity) => {
-            return <PillSmall key={activity}>{activity}</PillSmall>;
-          })}
-        </div>
-      </section>
-      <hr />
-      <section className={styles.activities}>
-        <h5>
-          Avoid getting involved in these activities, they might drown you
-        </h5>
-        <div className={styles.activitiesWrapper}>
-          {statusObjectSelection(moodList, "Awful").map((activity) => {
-            return <PillSmall key={activity}>{activity}</PillSmall>;
-          })}
-        </div>
-      </section>
+      {greatArray.length > 0 && (
+        <>
+          <section className={styles.activities}>
+            <h5>These are some of the activities that motivate you</h5>
+            <div className={styles.activitiesWrapper}>
+              {greatArray.map((activity) => {
+                return <PillSmall key={activity}>{activity}</PillSmall>;
+              })}
+            </div>
+          </section>
+          <hr />
+        </>
+      )}
+      {awfulArray.length > 0 && (
+        <section className={styles.activities}>
+          <h5>
+            Avoid getting involved in these activities, they might drown you
+          </h5>
+          <div className={styles.activitiesWrapper}>
+            {awfulArray.map((activity) => {
+              return <PillSmall key={activity}>{activity}</PillSmall>;
+            })}
+          </div>
+        </section>
+      )}
     </>
   );
 }
