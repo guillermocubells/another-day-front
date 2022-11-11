@@ -1,17 +1,17 @@
-import "./MoodCheckInForm.css";
 import React, { useEffect, useState } from "react";
 import apiClient from "../../services/api-client";
 import { MOOD_ASSETS } from "../../utils/consts";
+import "./MoodCheckInForm.css";
 
 import Loading from "../../components/Loading/Loading";
 
+import ButtonSubmit from "../Buttons/ButtonSubmit";
+import MoodCheckInActivities from "../MoodCheckInFormFields/MoodCheckInActivities";
 import MoodCheckInDate from "../MoodCheckInFormFields/MoodCheckInDate";
+import MoodCheckInImage from "../MoodCheckInFormFields/MoodCheckInImage";
+import MoodCheckInNote from "../MoodCheckInFormFields/MoodCheckInNote";
 import MoodCheckInStatus from "../MoodCheckInFormFields/MoodCheckInStatus";
 import MoodCheckInSubstatus from "../MoodCheckInFormFields/MoodCheckInSubstatus";
-import MoodCheckInActivities from "../MoodCheckInFormFields/MoodCheckInActivities";
-import MoodCheckInNote from "../MoodCheckInFormFields/MoodCheckInNote";
-import MoodCheckInImage from "../MoodCheckInFormFields/MoodCheckInImage";
-import ButtonSubmit from "../Buttons/ButtonSubmit";
 
 function MoodCheckInForm({
   title,
