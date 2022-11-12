@@ -1,6 +1,6 @@
 import styles from "./EditMoodPage.module.css";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import apiClient from "../../services/api-client";
@@ -12,6 +12,7 @@ function EditMoodPage() {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     status: "",
@@ -61,6 +62,7 @@ function EditMoodPage() {
     apiClient
       .post(`/api/mood/${id}/edit`, form)
       .then((response) => {
+        navigate(`/mood/${id}`);
         setMessage("Successfully Updated");
       })
       .catch((err) => {
